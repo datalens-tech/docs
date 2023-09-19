@@ -1,0 +1,37 @@
+---
+editable: false
+sourcePath: ru/_api-ref/datalens/function-ref/URL.md
+__system: {"dislikeVariants":["Нет ответа на мой вопрос","Рекомендации не помогли","Содержание не соответствует заголовку","Другое"]}
+---
+
+# URL
+
+
+
+#### Синтаксис {#syntax}
+
+
+```
+URL( address, text )
+```
+
+#### Описание {#description}
+Оборачивает `text` в ссылку на URL `address`.
+
+**Типы аргументов:**
+- `address` — `Строка`
+- `text` — `Разметка | Строка`
+
+
+**Возвращаемый тип**: `Разметка`
+
+#### Пример {#examples}
+
+```
+URL('https://example.com/?value=' + [value], [value])
+```
+
+
+#### Поддержка источников данных {#data-source-support}
+
+`ClickHouse 21.8`, `Microsoft SQL Server 2017 (14.0)`, `MySQL 5.6`, `Oracle Database 12c (12.1)`, `PostgreSQL 9.3`, `YDB`.

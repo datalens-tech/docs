@@ -1,0 +1,11 @@
+{
+  "name": "@datalens-tech/docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf ./build && yfm -i ./source -o ./build"
+  },
+  "dependencies": {
+    "@doc-tools/docs": "^3.25.0"
+  }
+}

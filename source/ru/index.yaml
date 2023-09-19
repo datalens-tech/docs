@@ -1,0 +1,8 @@
+title: Документация DataLens
+meta:
+  title: DataLens
+  noIndex: true
+links:
+  - title: DataLens
+    description: Визуализация и анализ данных
+    href: datalens/

@@ -1,0 +1,55 @@
+---
+editable: false
+sourcePath: en/_api-ref/datalens/function-ref/IFNULL.md
+__system: {"dislikeVariants":["There's no answer to my question","Recommendations aren't helpful","Content does not match the title","Other"]}
+---
+
+# IFNULL
+
+
+
+#### Syntax {#syntax}
+
+
+```
+IFNULL( check_value, alt_value )
+```
+
+#### Description {#description}
+Returns `check_value` if it's not `NULL`. Otherwise returns `alt_value`.
+
+**Argument types:**
+- `check_value` — `Any`
+- `alt_value` — `Any`
+
+
+**Return type**: Same type as (`check_value`, `alt_value`)
+
+{% note info %}
+
+Arguments (`check_value`, `alt_value`) must be of the same type.
+
+{% endnote %}
+
+
+#### Example {#examples}
+
+
+
+| **[sales]**   | **IFNULL([sales], -100.0)**   |
+|:--------------|:------------------------------|
+| `432.40`      | `432.40`                      |
+| `77.00`       | `77.00`                       |
+| `12000.00`    | `12000.00`                    |
+| `NULL`        | `-100.00`                     |
+| `34.25`       | `34.25`                       |
+| `128.00`      | `128.00`                      |
+| `0.00`        | `0.00`                        |
+| `NULL`        | `-100.00`                     |
+
+
+
+
+#### Data source support {#data-source-support}
+
+`ClickHouse 21.8`, `Microsoft SQL Server 2017 (14.0)`, `MySQL 5.6`, `Oracle Database 12c (12.1)`, `PostgreSQL 9.3`, `YDB`.

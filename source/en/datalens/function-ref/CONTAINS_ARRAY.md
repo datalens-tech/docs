@@ -1,0 +1,42 @@
+---
+editable: false
+sourcePath: en/_api-ref/datalens/function-ref/CONTAINS_ARRAY.md
+__system: {"dislikeVariants":["There's no answer to my question","Recommendations aren't helpful","Content does not match the title","Other"]}
+---
+
+# CONTAINS (array)
+
+_Function `CONTAINS` is also found in the following categories: [String functions](CONTAINS.md)._
+
+#### Syntax {#syntax}
+
+
+```
+CONTAINS( array, value )
+```
+
+#### Description {#description}
+Returns `TRUE` if `array` contains `value`.
+
+**Argument types:**
+- `array` — `Array of fractional numbers | Array of integers | Array of strings`
+- `value` — `Fractional number | Integer | String`
+
+
+**Return type**: `Boolean`
+
+#### Example {#examples}
+
+
+
+| **[array]**   | **[value]**   | **CONTAINS([array], [value])**   |
+|:--------------|:--------------|:---------------------------------|
+| `'[1,2,3]'`   | `2`           | `True`                           |
+| `'[1,2,3]'`   | `4`           | `False`                          |
+
+
+
+
+#### Data source support {#data-source-support}
+
+`ClickHouse 21.8`, `PostgreSQL 9.3`.

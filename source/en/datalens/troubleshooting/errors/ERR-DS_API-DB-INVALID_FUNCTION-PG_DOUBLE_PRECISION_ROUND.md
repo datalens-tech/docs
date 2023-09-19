@@ -1,0 +1,16 @@
+---
+__system: {"dislikeVariants":["There's no answer to my question","Recommendations aren't helpful","Content does not match the title","Other"]}
+---
+# ROUND with precision parameter is not supported for double precision data type in PostgreSQL
+
+`ERR.DS_API.DB.INVALID_FUNCTION.PG_DOUBLE_PRECISION_ROUND`
+
+The [ROUND](../../../datalens/function-ref/ROUND.md) function with the `precision` parameter isn't supported for the `double precision` type of the PostgreSQL data source.
+
+DataLens recognizes the `double precision` and `numeric` types from PostgreSQL as a `Fractional numbers`. Out of these two types, the ROUND function with the `precision` parameter only accepts the `numeric` type. To cast `double precision` back to the database level, use [DB_CAST](../../../datalens/function-ref/DB_CAST.md).
+
+Example:
+
+```
+ROUND(DB_CAST([your field]/1000000, 'numeric', 16, 8) [, precision ]), where 16 is the total count of digits in a fractional number, and 8 is the count of digits in its fractional part.
+```
