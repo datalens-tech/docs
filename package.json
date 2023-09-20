@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./build && yfm -i ./source -o ./build"
+    "build": "rm -rf ./build && yfm -i ./src -o ./build/docs",
+    "post-build": "node ./scripts/post-build.js ./build/docs"
   },
   "dependencies": {
-    "@doc-tools/docs": "^3.25.0"
+    "@doc-tools/docs": "^3.25.0",
+    "cheerio": "^1.0.0-rc.12",
+    "walk-sync": "^3.0.0"
   }
 }
