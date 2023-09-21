@@ -101,10 +101,13 @@ const SCRIPT_FIX = `
 if(sessionStorage.fullScreen === 'true'){
   document.querySelector('.dl-header').style.display = 'none'
 }
-document.querySelector('.dc-controls.dc-controls_vertical button:first-child').addEventListener('click',()=>{
-  const header = document.querySelector('.dl-header')
-  header.style.display = sessionStorage.fullScreen === 'true' ? '' : 'none';
-})
+const fullScreenButton = document.querySelector('.dc-controls.dc-controls_vertical button:first-child')
+if(fullScreenButton){
+  fullScreenButton.addEventListener('click',()=>{
+    const header = document.querySelector('.dl-header')
+    header.style.display = sessionStorage.fullScreen === 'true' ? '' : 'none';
+  })
+}
 `
 
 async function main() {
