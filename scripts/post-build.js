@@ -57,19 +57,25 @@ const STYLE_FIX = `
   overflow: auto;
 }
 
+.dl-header-container {
+  height: 64px;
+  width: 100%;
+  margin: auto;
+  position: fixed;
+  z-index: 100;
+}
+
 .dl-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 64px;
   width: 100%;
-  padding-right: 24px;
+  max-width: 1440px;
+  padding-right: 4px;
   padding-left: 24px;
   background-color: var(--yc-color-base-background);
-  margin-right: auto;
-  margin-left: auto;
-  position: fixed;
-  z-index: 100;
+  margin: auto;
 }
 
 .dl-logo-icon {
