@@ -171,6 +171,7 @@ async function main() {
         .replace(/{{lang}}/g, lang)
         .replace(/{{lang_title}}/g, lang === 'ru' ? 'English' : 'Russian')
         .replace(/{{lang_switch}}/g, lang === 'ru' ? 'en' : 'ru')
+        .replace(/{{home}}/g, lang === 'ru' ? '/ru' : '/')
     );
 
     const html = $.html()
