@@ -5,9 +5,6 @@ items:
     items:
       - name: Service overview
         href: concepts/index.md
-      - name: Navigation and interface
-        href: getting-started/navigation.md
-        hidden: true
       - name: Limits
         href: concepts/limits.md
   - name: Workbooks and collections

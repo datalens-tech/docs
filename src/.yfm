@@ -1,3 +1,4 @@
 allowHTML: true
 staticContent: true
 addSystemMeta: true
+lang: ru

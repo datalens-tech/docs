@@ -10,5 +10,13 @@
     "@doc-tools/docs": "^3.25.0",
     "cheerio": "^1.0.0-rc.12",
     "walk-sync": "^3.0.0"
+  },
+  "devDependencies": {
+    "@gravity-ui/eslint-config": "^2.0.0",
+    "@gravity-ui/prettier-config": "^1.0.1",
+    "@gravity-ui/stylelint-config": "^2.0.0",
+    "eslint": "8.48.0",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.16.1"
   }
 }

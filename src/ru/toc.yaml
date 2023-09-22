@@ -5,9 +5,6 @@ items:
     items:
       - name: Обзор сервиса
         href: concepts/index.md
-      - name: Навигация и интерфейс
-        href: getting-started/navigation.md
-        hidden: true
       - name: Лимиты
         href: concepts/limits.md
   - name: Воркбуки и коллекции
@@ -60,8 +57,6 @@ items:
             href: operations/dataset/create-calculated-field.md
           - name: Создание фильтра по умолчанию для новых чартов
             href: operations/dataset/create-filter.md
-          - name: Замена подключения в датасете
-            href: operations/dataset/replace-connection.md
           - name: Обновление полей в датасете
             href: operations/dataset/update-field.md
           - name: Описание датасета через SQL-запрос к источнику
@@ -504,8 +499,6 @@ items:
             items:
               - name: Создание чарта
                 href: operations/chart/create-chart.md
-              - name: Замена датасета в чарте
-                href: operations/chart/replace-dataset.md
               - name: Добавление иерархии
                 href: operations/chart/add-hierarchy.md
               - name: Настройка навигатора
@@ -652,9 +645,6 @@ items:
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-FORMULA-VALIDATION-AGG-INCONSISTENT.md
-      - name: Internal server error
-        hidden: true
-        href: troubleshooting/errors/ERR-DS_API.md
       - name: Invalid grouping configuration
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-INVALID_GROUP_BY_CONFIGURATION.md
@@ -725,15 +715,6 @@ items:
       - name: Не удалось создать <тип объекта>
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-DB_OPERATIONAL_ERROR.md
-      - name: Ошибка в запросе к объекту
-        hidden: true
-        href: troubleshooting/errors/ERR-DS_API-US-BAD_REQUEST.md
-      - name: Ошибка выполнения запроса в источнике данных
-        hidden: true
-        href: troubleshooting/errors/ERR-DS_API-DB.md
-      - name: Ошибка на стороне БД
-        hidden: true
-        href: troubleshooting/errors/ERR-US-BAD_REQUEST-ALREADY_EXISTS.md
       - name: Ошибка преобразования типа данных
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-TYPE_CAST-FAILED.md

@@ -1,44 +1,45 @@
-const walkSync = require('walk-sync');
-const cheerio = require('cheerio');
 const fs = require('fs');
 
-const META = [
-  {name: "theme-color", content: "#efefef"},
-  {itemprop: "name", content: ({title})=>title||"DataLens" },
-  {itemprop: "description", content: ({description})=>description||"" },
-  {itemprop: "image", content: ({lang})=>`/docs/${lang}/_assets/share.png` },
-  
-  {property: "og:title", content: ({title})=>title||"DataLens" },
-  {property: "og:description", content: ({description})=>description||"" },
-  {property: "og:type", content: "website" },
-  {property: "og:site_name", content: "DataLens" },
-  {property: "og:locale", content: ({lang})=>lang },
-  {property: "og:image", content: ({lang})=>`/docs/${lang}/_assets/share.png` },
-  {property: "og:url", content: ({lang})=>`https://datalens.tech/docs/${lang}/` },
+const cheerio = require('cheerio');
+const walkSync = require('walk-sync');
 
-  {name: "twitter:title", content: ({title})=>title||"DataLens" },
-  {name: "twitter:description", content: ({description})=>description||"" },
-  {name: "twitter:card", content: "summary_large_image" },
-  {name: "twitter:image", content: ({lang})=>`/docs/${lang}/_assets/share.png` },
-  
-  {property: "share:title", content: ({title})=>title||"DataLens" },
-  {property: "share:sharing_schema", content: "default" },
-]
+const META = [
+    {name: 'theme-color', content: '#efefef'},
+    {itemprop: 'name', content: ({title}) => title || 'DataLens'},
+    {itemprop: 'description', content: ({description}) => description || ''},
+    {itemprop: 'image', content: ({lang}) => `/docs/${lang}/_assets/share.png`},
+
+    {property: 'og:title', content: ({title}) => title || 'DataLens'},
+    {property: 'og:description', content: ({description}) => description || ''},
+    {property: 'og:type', content: 'website'},
+    {property: 'og:site_name', content: 'DataLens'},
+    {property: 'og:locale', content: ({lang}) => lang},
+    {property: 'og:image', content: ({lang}) => `/docs/${lang}/_assets/share.png`},
+    {property: 'og:url', content: ({lang}) => `https://datalens.tech/docs/${lang}/`},
+
+    {name: 'twitter:title', content: ({title}) => title || 'DataLens'},
+    {name: 'twitter:description', content: ({description}) => description || ''},
+    {name: 'twitter:card', content: 'summary_large_image'},
+    {name: 'twitter:image', content: ({lang}) => `/docs/${lang}/_assets/share.png`},
+
+    {property: 'share:title', content: ({title}) => title || 'DataLens'},
+    {property: 'share:sharing_schema', content: 'default'},
+];
 
 const LINK = [
-  {rel: "icon", href: "/favicon.ico", sizes: "any" },
-  {type: "image/x-icon", rel: "shortcut icon", href: "/favicon.ico" },
-  {type: "image/png", sizes: "16x16", rel: "icon", href: "/favicon-16x16.png" },
-  {type: "image/png", sizes: "32x32", rel: "icon", href: "/favicon-32x32.png" },
-  {type: "image/png", sizes: "64x64", rel: "icon", href: "/favicon-64x64.png" },
-  {type: "image/png", sizes: "76x76", rel: "icon", href: "/favicon-76x76.png" },
-  {type: "image/png", sizes: "120x120", rel: "icon", href: "/favicon-120x120.png" },
-  {type: "image/png", sizes: "152x152", rel: "icon", href: "/favicon-152x152.png" },
-  {type: "image/png", sizes: "180x180", rel: "icon", href: "/favicon-180x180.png" },
-  {type: "image/png", sizes: "192x192", rel: "icon", href: "/favicon-192x192.png" },
-  {rel: "apple-touch-icon", href: "/favicon-192x192.png" },
-  {rel: "manifest", href: "/manifest.json" },
-]
+    {rel: 'icon', href: '/favicon.ico', sizes: 'any'},
+    {type: 'image/x-icon', rel: 'shortcut icon', href: '/favicon.ico'},
+    {type: 'image/png', sizes: '16x16', rel: 'icon', href: '/favicon-16x16.png'},
+    {type: 'image/png', sizes: '32x32', rel: 'icon', href: '/favicon-32x32.png'},
+    {type: 'image/png', sizes: '64x64', rel: 'icon', href: '/favicon-64x64.png'},
+    {type: 'image/png', sizes: '76x76', rel: 'icon', href: '/favicon-76x76.png'},
+    {type: 'image/png', sizes: '120x120', rel: 'icon', href: '/favicon-120x120.png'},
+    {type: 'image/png', sizes: '152x152', rel: 'icon', href: '/favicon-152x152.png'},
+    {type: 'image/png', sizes: '180x180', rel: 'icon', href: '/favicon-180x180.png'},
+    {type: 'image/png', sizes: '192x192', rel: 'icon', href: '/favicon-192x192.png'},
+    {rel: 'apple-touch-icon', href: '/favicon-192x192.png'},
+    {rel: 'manifest', href: '/manifest.json'},
+];
 
 const STYLE_FIX = `
 @media (max-width: 768px) {
@@ -95,7 +96,7 @@ const STYLE_FIX = `
 .yc-root_theme_dark .dl-header-logo-icon {
   color: rgba(255, 255, 255, 0.85);
 }
-`
+`;
 
 const SCRIPT_FIX = `
 if(sessionStorage.fullScreen === 'true'){
@@ -108,85 +109,119 @@ if(fullScreenButton){
     header.style.display = sessionStorage.fullScreen === 'true' ? '' : 'none';
   })
 }
-`
+`;
+
+const FILE_CHECK_MAP = [];
 
 async function main() {
-  const basePath = process.argv[2]
-  const paths = walkSync(basePath, { directories: false, globs: ['**/*.html'], includeBasePath: true })
+    const basePath = process.argv[2];
+    const paths = walkSync(basePath, {
+        directories: false,
+        globs: ['**/*.html'],
+        includeBasePath: true,
+    });
 
-  const headerHtml = fs.readFileSync('./scripts/header.html').toString()
-  
-  for(let i=0;i<paths.length;i+=1){
-    const path = paths[i]
-    console.log('POST-BUILD:', path.replace(basePath, ''))
+    const headerHtml = fs.readFileSync('./scripts/header.html').toString();
 
-    const lang = path.match(/\/(en|ru)\//)[1]
+    for (let i = 0; i < paths.length; i += 1) {
+        const path = paths[i];
+        const trimPath = path.replace(basePath, '');
 
-    const fileHtml = fs.readFileSync(path)
-    const $ = cheerio.load(fileHtml);
+        // eslint-disable-next-line no-console
+        console.log('POST-BUILD:', trimPath);
 
-    const head = $('head')
-    const body = $('body')
+        const lang = trimPath.match(/\/(en|ru)\//)[1];
 
-    let title = $('meta[name="title"]')
-    if(title) title = title.attr('content')
+        const pathWithoutLang = trimPath
+            .replace(new RegExp(`^/${lang}/`), '/')
+            .replace(new RegExp(`.html$`), '');
 
-    let description = $('meta[name="description"]')
-    if(description) description = description.attr('content')
-    
-    META.forEach((meta)=>{
-      const tag = $('<meta>')
-
-      Object.entries(meta).forEach(([key,value])=>{
-        if (typeof value === 'function') {
-          tag.attr(key,value({lang, title, description}))
+        if (FILE_CHECK_MAP[pathWithoutLang]) {
+            delete FILE_CHECK_MAP[pathWithoutLang];
         } else {
-          tag.attr(key,value)
+            FILE_CHECK_MAP[pathWithoutLang] = lang;
         }
-      })
 
-      head.append(tag)
-    })
+        const fileHtml = fs.readFileSync(path);
+        const $ = cheerio.load(fileHtml);
 
-    LINK.forEach((link)=>{
-      const tag = $('<link>')
+        const head = $('head');
+        const body = $('body');
 
-      Object.entries(link).forEach(([key,value])=>{
-        tag.attr(key,value)
-      })
+        let title = $('meta[name="title"]');
+        if (title) {
+            title = title.attr('content');
+        }
 
-      head.append(tag)
-    })
+        let description = $('meta[name="description"]');
+        if (description) {
+            description = description.attr('content');
+        }
 
-    const tag = $('<style type="text/css"></style>')
-    tag.text(STYLE_FIX)
-    head.append(tag)
+        META.forEach((meta) => {
+            const tag = $('<meta>');
 
-    const tagScript = $('<script type="application/javascript"></script>')
-    tagScript.text(SCRIPT_FIX)
-    body.append(tagScript)
+            Object.entries(meta).forEach(([key, value]) => {
+                if (typeof value === 'function') {
+                    tag.attr(key, value({lang, title, description}));
+                } else {
+                    tag.attr(key, value);
+                }
+            });
 
-    $('#root').before(
-      headerHtml
-        .replace(/{{lang}}/g, lang)
-        .replace(/{{lang_title}}/g, lang === 'ru' ? 'English' : 'Russian')
-        .replace(/{{lang_switch}}/g, lang === 'ru' ? 'en' : 'ru')
-        .replace(/{{home}}/g, lang === 'ru' ? '/ru' : '/')
-    );
+            head.append(tag);
+        });
 
-    const html = $.html()
-      .replace(/(\"href\":\".+?\/)index\.html\"/g, '$1"')
-      .replace(/( href=\".+?\/)index\.html\"/g, '$1"')
-      .replace(/(\"href\":\")index\.html\"/g, '$1./"')
-      .replace(/( href=\")index\.html\"/g, '$1./"')
-      .replace(/"[^"]+?\/_bundle\/app\.client\.js"/, '"/docs/_bundle/app.client.js"')
-      .replace(/"[^"]+?\/_bundle\/app\.client\.css"/, '"/docs/_bundle/app.client.css"')
+        LINK.forEach((link) => {
+            const tag = $('<link>');
 
-    fs.writeFileSync(path, html)
-  }
+            Object.entries(link).forEach(([key, value]) => {
+                tag.attr(key, value);
+            });
 
+            head.append(tag);
+        });
+
+        const tag = $('<style type="text/css"></style>');
+        tag.text(STYLE_FIX);
+        head.append(tag);
+
+        const tagScript = $('<script type="application/javascript"></script>');
+        tagScript.text(SCRIPT_FIX);
+        body.append(tagScript);
+
+        $('#root').before(
+            headerHtml
+                .replace(/{{lang}}/g, lang)
+                .replace(/{{lang_title}}/g, lang === 'ru' ? 'English' : 'Russian')
+                .replace(/{{lang_switch}}/g, lang === 'ru' ? 'en' : 'ru')
+                .replace(/{{home}}/g, lang === 'ru' ? '/ru' : '/'),
+        );
+
+        const html = $.html()
+            .replace(/"lang":"[a-z]+"/g, `"lang":"${lang}"`)
+            .replace(/("href":".+?\/)index\.html"/g, '$1"')
+            .replace(/( href=".+?\/)index\.html"/g, '$1"')
+            .replace(/("href":")index\.html"/g, '$1./"')
+            .replace(/( href=")index\.html"/g, '$1./"')
+            .replace(/"[^"]+?\/_bundle\/app\.client\.js"/, '"/docs/_bundle/app.client.js"')
+            .replace(/"[^"]+?\/_bundle\/app\.client\.css"/, '"/docs/_bundle/app.client.css"');
+
+        fs.writeFileSync(path, html);
+    }
+
+    if (Object.keys(FILE_CHECK_MAP).length > 0) {
+        // eslint-disable-next-line no-console
+        console.error(
+            '\nERROR: detected files without pair on other lang\n' +
+                Object.entries(FILE_CHECK_MAP)
+                    .map(([file, lang]) => `  - ${lang}: ${file}`)
+                    .join('\n'),
+        );
+    }
 }
 
-main().catch((err)=>{
-  console.error(err.message || err)
-})
+main().catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err.message || err);
+});
