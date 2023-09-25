@@ -26,6 +26,13 @@ const META = [
     {property: 'share:sharing_schema', content: 'default'},
 ];
 
+const notes = {
+    Примечание: 'Note',
+    Совет: 'Tip',
+    Внимание: 'Alert',
+    Важно: 'Warning',
+};
+
 const LINK = [
     {rel: 'icon', href: '/favicon.ico', sizes: 'any'},
     {type: 'image/x-icon', rel: 'shortcut icon', href: '/favicon.ico'},
@@ -100,12 +107,12 @@ const STYLE_FIX = `
 
 const SCRIPT_FIX = `
 if(sessionStorage.fullScreen === 'true'){
-  document.querySelector('.dl-header').style.display = 'none'
+  document.querySelector('.dl-header-container').style.display = 'none'
 }
-const fullScreenButton = document.querySelector('.dc-controls.dc-controls_vertical button:first-child')
+const fullScreenButton = document.querySelector('.dc-controls button:first-child')
 if(fullScreenButton){
   fullScreenButton.addEventListener('click',()=>{
-    const header = document.querySelector('.dl-header')
+    const header = document.querySelector('.dl-header-container')
     header.style.display = sessionStorage.fullScreen === 'true' ? '' : 'none';
   })
 }
@@ -198,7 +205,7 @@ async function main() {
                 .replace(/{{home}}/g, lang === 'ru' ? '/ru' : '/'),
         );
 
-        const html = $.html()
+        let html = $.html()
             .replace(/"lang":"[a-z]+"/g, `"lang":"${lang}"`)
             .replace(/("href":".+?\/)index\.html"/g, '$1"')
             .replace(/( href=".+?\/)index\.html"/g, '$1"')
@@ -206,6 +213,14 @@ async function main() {
             .replace(/( href=")index\.html"/g, '$1./"')
             .replace(/"[^"]+?\/_bundle\/app\.client\.js"/, '"/docs/_bundle/app.client.js"')
             .replace(/"[^"]+?\/_bundle\/app\.client\.css"/, '"/docs/_bundle/app.client.css"');
+
+        if (lang !== 'ru') {
+            html = html
+                .replace(new RegExp(`>(${Object.keys(notes).join('|')})<`, 'g'), (sub, group) => {
+                    return `>${notes[group]}<`;
+                })
+                .replace(/>В этой статье</g, '>In this article<');
+        }
 
         fs.writeFileSync(path, html);
     }
