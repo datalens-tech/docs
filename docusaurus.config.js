@@ -1,3 +1,4 @@
+import lunr from 'docusaurus-lunr-search';
 import {themes as prismThemes} from 'prism-react-renderer';
 
 import YfmToRemark from './yfm-to-remark';
@@ -14,6 +15,16 @@ const config = {
         preprocessor: YfmToRemark,
     },
 
+    plugins: [
+        [
+            lunr,
+            {
+                languages: ['ru', 'en'],
+                disableVersioning: true,
+            },
+        ],
+    ],
+
     organizationName: 'datalens-tech',
     projectName: 'docs',
 
@@ -21,10 +32,10 @@ const config = {
     // onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
 
-    i18n: {
-        defaultLocale: 'ru',
-        locales: ['ru', 'en'],
-    },
+    // i18n: {
+    //     defaultLocale: 'ru',
+    //     locales: ['ru', 'en'],
+    // },
 
     presets: [
         [
