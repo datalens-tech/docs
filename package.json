@@ -3,15 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./build && yfm -i ./src -o ./build/docs",
+    "build": "rm -rf ./build && yfm -i ./docs -o ./build/docs",
     "post-build": "node ./scripts/post-build.js ./build/docs"
   },
   "dependencies": {
     "@doc-tools/docs": "^3.25.0",
+    "@docusaurus/core": "^3.0.0",
+    "@docusaurus/preset-classic": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
     "cheerio": "^1.0.0-rc.12",
+    "docusaurus-lunr-search": "^3.3.0",
+    "prism-react-renderer": "^2.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "walk-sync": "^3.0.0"
   },
   "devDependencies": {
+    "@docusaurus/module-type-aliases": "^3.0.0",
+    "@docusaurus/types": "^3.0.0",
     "@gravity-ui/eslint-config": "^2.0.0",
     "@gravity-ui/prettier-config": "^1.0.1",
     "@gravity-ui/stylelint-config": "^2.0.0",
