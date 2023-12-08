@@ -1,0 +1,13 @@
+# Adding a dashboard header
+
+To add a dashboard [header](../../dashboard/widget.md#title):
+
+
+1. In the left-hand panel, click ![image](../../../_assets/datalens/dashboard-0523.svg) **Dashboards** and select the dashboard you need. If you do not have a dashboard, [create one](create.md).
+1. At the top of the page, click **Edit**.
+1. In the panel at the bottom of the page, select **Header**.
+
+   ![image](../../../_assets/datalens/operations/widget-select.png =500x118)
+
+1. Enter the header text and select its size.
+1. Click **Add**. The widget will be displayed on the dashboard.

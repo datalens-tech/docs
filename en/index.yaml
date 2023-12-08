@@ -1,14 +1,8 @@
 title: DataLens documentation
-description: []
 meta:
   title: DataLens
+  noIndex: true
 links:
-  - title: Concepts
-    description: Learn about basic concepts and service functions
-    href: concepts/
-  - title: Step-by-step instructions
-    description: Instructions on how to perform basic operations
-    href: operations/chart/create-chart
-  - title: Quotas and limits
-    description: Technical and organizational limitations of the service
-    href: concepts/limits
+  - title: DataLens
+    description: Data visualization and analytics
+    href: datalens/

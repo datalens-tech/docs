@@ -1,6 +1,6 @@
 ### Where can I get geopolygons/geopoints for regions/districts/cities? {#get-geo}
 
-You can use ready-made [geodata sets](https://geointellect.com/files/geo_for_datalens.zip) in DataLens format from Geointellect, our partner.
+You can use ready-made [geodata sets](https://geointellect.com/files/geo_for_datalens.zip) in {{ datalens-short-name }} format from Geointellect, our partner.
 
 The archive contains the following data:
 

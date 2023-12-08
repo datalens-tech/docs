@@ -1,0 +1,15 @@
+default:
+  api-url-prefix: /docs
+  CH: ClickHouse
+  ch:
+    docs: https://clickhouse.com/docs/en
+  datalens-full-name: DataLens
+  datalens-name: DataLens
+  datalens-short-name: DataLens
+  dns-zone: mdb.yandexcloud.net
+  link-datalens-main: https://datalens.yandex.com
+  PG: PostgreSQL
+  speechkit-name: SpeechKit
+  wiki-full-name: Yandex Wiki
+  yandex-cloud: Yandex Cloud
+  ytsaurus-name: YTsaurus

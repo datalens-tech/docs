@@ -1,4 +1,4 @@
-{% cut "Пример запроса для БД ClickHouse" %}
+{% cut "Пример запроса для БД {{ CH }}" %}
 
 ```sql
 SELECT Category, Month, ROUND(SUM(Sales))
