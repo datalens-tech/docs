@@ -12,6 +12,12 @@ Our documentation is developed using [Yandex Flavored Markdown](https://diplodoc
 
 ## Building docs
 
+Pre-build script for prepare navigation and up datalens docs to root level.
+
+```bash
+npm run pre-build
+```
+
 Build .md doc sources into .html static files.
 
 ```bash
