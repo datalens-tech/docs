@@ -1,0 +1,18 @@
+navigation:
+  logo:
+    url: '/'
+    dark:
+      icon: '/docs/en/_assets/icon/logo-dark.svg'
+    light:
+      icon: '/docs/en/_assets/icon/logo.svg'
+  header:
+    rightItems:
+      - type: 'button'
+        img: '/docs/en/_assets/icon/lang.svg'
+        theme: 'flat'
+        text: '{{lang_title}}'
+      - type: 'button'
+        img: '/docs/en/_assets/icon/github.svg'
+        theme: 'flat'
+        text: 'GitHub'
+      - type: controls

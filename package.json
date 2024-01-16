@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./build && yfm -i ./docs -o ./build/docs",
+    "build": "rm -rf ./build/* && yfm -i ./docs -o ./build/docs",
+    "pre-build": "node ./scripts/pre-build.js ./docs",
     "post-build": "node ./scripts/post-build.js ./build/docs"
   },
   "dependencies": {
-    "@doc-tools/docs": "^3.25.0",
+    "@diplodoc/cli": "^4.8.0",
     "cheerio": "^1.0.0-rc.12",
+    "fs-extra": "^11.2.0",
     "walk-sync": "^3.0.0"
   },
   "devDependencies": {

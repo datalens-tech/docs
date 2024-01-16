@@ -56,6 +56,7 @@ const STYLE_FIX = `
     justify-content: flex-end;
   }
 }
+
 .yc-root {
   --dc-header-height: 64px;
 }
@@ -65,57 +66,30 @@ const STYLE_FIX = `
   overflow: auto;
 }
 
-.dl-header-container {
-  height: 64px;
-  width: 100%;
-  margin: auto;
-  position: fixed;
-  z-index: 100;
+.dc-settings-control__list-item {
+  max-width: var(--yc-popover-max-width);
 }
 
-.dl-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 64px;
-  width: 100%;
-  max-width: 1440px;
-  padding-right: 4px;
-  padding-left: 24px;
-  background-color: var(--yc-color-base-background);
-  margin: auto;
-}
-
-.dl-logo-icon {
-  display: flex;
-  margin-right: 8px;
-  object-fit: contain;
-}
-
-.dl-button-lang {
-  padding-left: 8px;
-}
-
-.yc-root_theme_light .dl-header-logo-icon {
-  color: #222;
-}
-
-.yc-root_theme_dark .dl-header-logo-icon {
-  color: rgba(255, 255, 255, 0.85);
+li.pc-navigation-item > button img {
+  position: absolute;
+  left: 12px;
 }
 `;
 
 const SCRIPT_FIX = `
-if(sessionStorage.fullScreen === 'true'){
-  document.querySelector('.dl-header-container').style.display = 'none'
-}
-const fullScreenButton = document.querySelector('.dc-controls button:first-child')
-if(fullScreenButton){
-  fullScreenButton.addEventListener('click',()=>{
-    const header = document.querySelector('.dl-header-container')
-    header.style.display = sessionStorage.fullScreen === 'true' ? '' : 'none';
+  const controlsButtons = document.querySelectorAll('li.pc-navigation-item > button')
+
+  controlsButtons[0].addEventListener('click', () => {
+    let langSwitch = '/ru/'
+    if(window.location.pathname.includes('/en/')) {
+      langSwitch = '/en/'
+    }
+    window.location.href = window.location.pathname.replace(langSwitch, langSwitch === '/ru/' ? '/en/' : '/ru/')
   })
-}
+
+  controlsButtons[1].addEventListener('click', () => {
+    window.location.href = 'https://github.com/datalens-tech/datalens'
+  })
 `;
 
 const FILE_CHECK_MAP = [];
@@ -127,8 +101,6 @@ async function main() {
         globs: ['**/*.html'],
         includeBasePath: true,
     });
-
-    const headerHtml = fs.readFileSync('./scripts/header.html').toString();
 
     for (let i = 0; i < paths.length; i += 1) {
         const path = paths[i];
@@ -197,13 +169,8 @@ async function main() {
         tagScript.text(SCRIPT_FIX);
         body.append(tagScript);
 
-        $('#root').before(
-            headerHtml
-                .replace(/{{lang}}/g, lang)
-                .replace(/{{lang_title}}/g, lang === 'ru' ? 'English' : 'Russian')
-                .replace(/{{lang_switch}}/g, lang === 'ru' ? 'en' : 'ru')
-                .replace(/{{home}}/g, lang === 'ru' ? '/ru' : '/'),
-        );
+        const logoLink = $('a.pc-logo');
+        logoLink.attr('href', lang === 'ru' ? '/ru' : '/');
 
         let html = $.html()
             .replace(/"lang":"[a-z]+"/g, `"lang":"${lang}"`)
