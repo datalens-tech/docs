@@ -44,3 +44,5 @@ To optimize data operations, follow the recommendations below:
    * Each time you switch between the dashboard tabs, the service queries the source data again. On the one hand, this ensures that data displayed to users is always up-to-date. On the other, this is inefficient if data changes are not frequent.
    * Each time after you set selector values, the service accesses the source and updates the data. If you use multiple selectors on your dashboard, the number of queries to the source increases.
 
+
+{% include [clickhouse-disclaimer](../../_includes/clickhouse-disclaimer.md) %}

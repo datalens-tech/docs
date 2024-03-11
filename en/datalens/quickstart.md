@@ -46,7 +46,7 @@ The first release of the open-source version includes everything you need to try
 ## Create a workbook {#create-workbook}
 
 1. Go to the {{ datalens-short-name }} home page.
-1. In the left-hand panel, select ![collections](../_assets/datalens/collections.svg) **Collections and workbooks**.
+1. In the left-hand panel, select ![collections](../_assets/console-icons/rectangles-4.svg) **Collections and workbooks**.
 1. In the top-right corner, click **Create** → **Create workbook**.
 1. Enter a name for the workbook.
 1. Click **Create**.
@@ -104,7 +104,7 @@ The first release of the open-source version includes everything you need to try
 
 1. Save the chart:
 
-   1. In the top-right corner, click ![save-button](../_assets/datalens/save-button.svg) → **Save as copy**.
+   1. In the top-right corner, click ![save-button](../_assets/console-icons/chevron-down.svg) → **Save as copy**.
    1. In the window that opens, enter the **Sales by week** name for the new chart and click **Save**.
 
    ![create-chart-2](../_assets/datalens/quickstart/05-create-area-chart-os.png)
@@ -122,7 +122,7 @@ The first release of the open-source version includes everything you need to try
 
 1. Save the chart:
 
-   1. In the top-right corner, click ![save-button](../_assets/datalens/save-button.svg) → **Save as copy**.
+   1. In the top-right corner, click ![save-button](../_assets/console-icons/chevron-down.svg) → **Save as copy**.
    1. In the window that opens, enter the **Sales by category** name for the new chart and click **Save**.
 
    ![create-chart-2](../_assets/datalens/quickstart/06-create-pie-chart-os.png)
@@ -167,3 +167,5 @@ The first release of the open-source version includes everything you need to try
 
 * Read about [service concepts](./concepts/index.md).
 * View an [example of a ready-to-use dashboard](https://datalens.yandex/9fms9uae7ip02).
+
+{% include [clickhouse-disclaimer](../_includes/clickhouse-disclaimer.md) %}

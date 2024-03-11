@@ -3,7 +3,7 @@ href: index.yaml
 items:
   - name: Getting started
     items:
-      - name: Service overview
+      - name: Overview
         href: concepts/index.md
       - name: Navigation and interface
         href: getting-started/navigation.md
@@ -22,7 +22,7 @@ items:
     items:
       - name: Overview
         href: concepts/connection.md
-      - name: Joining data
+      - name: Combining data
         href: concepts/data-join.md
       - name: Step-by-step guides
         items:
@@ -34,7 +34,7 @@ items:
             items:
               - name: Connection
                 href: operations/connection/chyt/create-chyt.md
-              - name: Specifics of JOINs
+              - name: Specifics of JOIN
                 href: operations/connection/chyt/chyt-global-join.md
               - name: Recommendations
                 href: operations/connection/chyt/chyt-recommendations.md
@@ -560,7 +560,7 @@ items:
         items:
           - name: Adding parameters in dashboard chart settings
             href: operations/chart/add-parameters.md
-          - name: Adding ID as a parameter
+          - name: Adding an ID as a parameter
             href: operations/chart/add-guid.md
           - name: Adding parameters to a chart
             href: operations/chart/add-parameter-chart.md
@@ -594,7 +594,7 @@ items:
             href: operations/dashboard/add-title.md
           - name: Creating an alias
             href: operations/dashboard/create-alias.md
-          - name: Deleting an alias field
+          - name: Deleting an alias
             href: operations/dashboard/edit-alias.md
           - name: Adding parameters to a dashboard
             href: operations/dashboard/add-parameters.md
@@ -652,6 +652,9 @@ items:
       - name: Field title conflicts with another field
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-FIELD-TITLE-CONFLICT.md
+      - name: File check failed
+        hidden: true
+        href: troubleshooting/errors/ERR-FILE-UNSUPPORTED_DOCUMENT.md
       - name: Incompatible dimensions
         hidden: true
         href: >-
@@ -663,7 +666,7 @@ items:
       - name: Internal server error
         hidden: true
         href: troubleshooting/errors/ERR-DS_API.md
-      - name: Error parsing clique GUID
+      - name: Failed to parse clique name
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-CHYT-CLIQUE-INVALID_GUID.md
       - name: Invalid grouping configuration

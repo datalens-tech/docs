@@ -1,6 +1,4 @@
 title: Документация {{ yandex-cloud }}
 href: index.yaml
-items:
-  - name: Managed Service for GitLab
-    href: managed-gitlab/index.yaml
+items: []
 base: ru

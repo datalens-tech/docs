@@ -1,6 +1,7 @@
 # Markdown
 
 {{ datalens-short-name }} allows you to use the Markdown markup language in the [{#T}](./widget.md#text) widget on the dashboard.
+
 You can insert explanatory text, links, tables, images, or use formatting to highlight key points.
 
 In text widgets, you can use the following elements:

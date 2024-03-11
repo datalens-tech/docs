@@ -46,7 +46,7 @@
 ## Создайте воркбук {#create-workbook}
 
 1. Перейдите на главную страницу {{ datalens-short-name }}.
-1. На панели слева выберите ![collections](../_assets/datalens/collections.svg) **Коллекции и воркбуки**.
+1. На панели слева выберите ![collections](../_assets/console-icons/rectangles-4.svg) **Коллекции и воркбуки**.
 1. В правом верхнем углу нажмите **Создать** → **Создать воркбук**.
 1. Укажите название воркбука.
 1. Нажмите кнопку **Создать**.
@@ -104,7 +104,7 @@
 
 1. Сохраните чарт:
 
-   1. В правом верхнем углу нажмите значок ![save-button](../_assets/datalens/save-button.svg) → **Сохранить как копию**.
+   1. В правом верхнем углу нажмите значок ![save-button](../_assets/console-icons/chevron-down.svg) → **Сохранить как копию**.
    1. В открывшемся окне введите название нового чарта **Продажи по неделям** и нажмите кнопку **Сохранить**.
 
    ![create-chart-2](../_assets/datalens/quickstart/05-create-area-chart-os.png)
@@ -122,7 +122,7 @@
 
 1. Сохраните чарт:
 
-   1. В правом верхнем углу нажмите значок ![save-button](../_assets/datalens/save-button.svg) → **Сохранить как копию**.
+   1. В правом верхнем углу нажмите значок ![save-button](../_assets/console-icons/chevron-down.svg) → **Сохранить как копию**.
    1. В открывшемся окне введите название нового чарта **Продажи по категориям** и нажмите кнопку **Сохранить**.
 
    ![create-chart-2](../_assets/datalens/quickstart/06-create-pie-chart-os.png)
@@ -167,3 +167,5 @@
 
 * Ознакомьтесь с [концепциями сервиса](./concepts/index.md).
 * Посмотрите [пример готового дашборда](https://datalens.yandex/9fms9uae7ip02).
+
+{% include [clickhouse-disclaimer](../_includes/clickhouse-disclaimer.md) %}

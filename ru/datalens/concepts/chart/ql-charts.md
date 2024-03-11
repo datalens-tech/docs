@@ -25,3 +25,5 @@
 * [{#T}](../../operations/chart/create-sql-chart.md)
 * [{#T}](../../concepts/chart/index.md)
 * [{#T}](../../operations/chart/create-chart.md)
+
+{% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}

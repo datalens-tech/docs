@@ -1,3 +1,8 @@
+---
+title: "How to create a chart in {{ datalens-full-name }}"
+description: "Follow this guide to create a chart."
+---
+
 # Creating a chart
 
 To create a chart:
@@ -14,4 +19,4 @@ To create a chart:
 
 #### See also {#see-also}
 
-* [{#T}](../../concepts/chart/index.md)
+* [{#T}](../../concepts/chart/index.md).

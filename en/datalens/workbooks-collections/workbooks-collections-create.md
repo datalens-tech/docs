@@ -1,3 +1,8 @@
+---
+title: "How to create a workbook or collection in {{ datalens-full-name }}"
+description: "Follow this guide to create a workbook or collection in {{ datalens-full-name }}."
+---
+
 # Creating a workbook or collection {{ datalens-short-name }}
 
 To create a workbook or collection:
@@ -7,7 +12,7 @@ To create a workbook or collection:
 - Creating a workbook
 
    1. Go to the {{ datalens-short-name }} home page.
-   1. In the left-hand panel, select ![collections](../../_assets/datalens/collections.svg) **Collections and workbooks**.
+   1. In the left-hand panel, select ![collections](../../_assets/console-icons/rectangles-4.svg) **Collections and workbooks**.
    1. In the top-right corner, click **Create** → **Create workbook**.
    1. Enter a name for the workbook.
    1. Click **Create**.
@@ -15,7 +20,7 @@ To create a workbook or collection:
 - Creating a collection
 
    1. Go to the {{ datalens-short-name }} home page.
-   1. In the left-hand panel, select ![collections](../../_assets/datalens/collections.svg) **Collections and workbooks**.
+   1. In the left-hand panel, select ![collections](../../_assets/console-icons/rectangles-4.svg) **Collections and workbooks**.
    1. In the top-right corner, click **Create** → **Create collection**.
    1. Enter a name for the collection.
    1. Click **Create**.

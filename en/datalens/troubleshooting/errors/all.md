@@ -15,7 +15,7 @@ To view detailed error information, follow the link by clicking the error code:
 | [ERR.DS_API.DB.AUTHENTICATION_FAILED](ERR-DS_API-DB-AUTHENTICATION_FAILED.md) | Database authentication failed |
 | [ERR.DS_API.DB.CANNOT_PARSE.DATETIME](ERR-DS_API-DB-CANNOT_PARSE-DATETIME.md) | Cannot parse datetime |
 | [ERR.DS_API.DB.CANNOT_PARSE.NUMBER](ERR-DS_API-DB-CANNOT_PARSE-NUMBER.md) | Cannot parse number |
-| [ERR.DS_API.DB.CHYT.CLIQUE.INVALID_GUID](ERR-DS_API-DB-CHYT-CLIQUE-INVALID_GUID.md) | Error parsing clique GUID | 
+| [ERR.DS_API.DB.CHYT.CLIQUE.INVALID_GUID](ERR-DS_API-DB-CHYT-CLIQUE-INVALID_GUID.md) | Failed to parse clique name |
 | [ERR.DS_API.DB.CHYT.INVALID_SORTED_JOIN.MORE_THAN_ONE_TABLE](ERR-DS_API-DB-CHYT-INVALID_SORTED_JOIN-MORE_THAN_ONE_TABLE.md) | Cannot join a concatenation of tables with another table |
 | [ERR.DS_API.DB.CHYT.INVALID_SORTED_JOIN.NOT_A_KEY_COLUMN](ERR-DS_API-DB-CHYT-INVALID_SORTED_JOIN-NOT_A_KEY_COLUMN.md) | Column used in join expression is not a key column |
 | [ERR.DS_API.DB.CHYT.INVALID_SORTED_JOIN.NOT_KEY_PREFIX_COLUMN](ERR-DS_API-DB-CHYT-INVALID_SORTED_JOIN-NOT_KEY_PREFIX_COLUMN.md) | Joined columns should form prefix of joined table key columns |
@@ -49,4 +49,5 @@ To view detailed error information, follow the link by clicking the error code:
  |
 | [ERR.DS_API.TYPE_CAST.FAILED](ERR-DS_API-TYPE_CAST-FAILED.md) | Data type conversion error |
 | [ERR.DS_API.US.BAD_REQUEST](ERR-DS_API-US-BAD_REQUEST.md) | Object request error |
-| [ERR.US.BAD_REQUEST.ALREADY_EXISTS](ERR-US-BAD_REQUEST-ALREADY_EXISTS.md) | Could not create <object type> |
+| [ERR.FILE.UNSUPPORTED_DOCUMENT](ERR-FILE-UNSUPPORTED_DOCUMENT.md) | File check failed |
+| [ERR.US.BAD_REQUEST.ALREADY_EXISTS](ERR-US-BAD_REQUEST-ALREADY_EXISTS.md) | Failed to create <object type> |

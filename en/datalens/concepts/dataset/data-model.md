@@ -18,7 +18,7 @@ There is a limit on displaying the first 1,000 tables from a source in a dataset
 {% endnote %}
 
 If there are multiple tables in the source, you can join them with a [JOIN](https://en.wikipedia.org/wiki/Join_(SQL)).
-When the tables are joined, a link is created between them. When you create a link, you specify the fields from the source table and merged table.
+When the tables are [joined](../data-join.md), a link is created between them. When you create a link, you specify the fields from the source table and merged table.
 
 Tables are linked automatically by the first match in the field name and field data type.
 
@@ -39,17 +39,17 @@ A `JOIN` is not used if:
 The fields define the structure and format of the dataset. The following types of fields are available:
 
 - **Dimension**. Contains values that define data characteristics, such as city, date of purchase, or product category. The aggregation function is not applied to fields with a dimension, otherwise the field becomes an measure. In the interface, dimensions are displayed in green.
-- **Measure**. Contains numeric values that aggregation functions (information) are applied to. such as the amount of clicks and the number of click-throughs. If you remove the aggregation function from this field, it becomes a dimension. In the interface, measures are displayed in blue.
+- **Measure**. Contains numeric values that aggregation functions (information) are applied to, such as the amount of clicks and the number of click-throughs. If you remove the aggregation function from this field, it becomes a dimension. In the interface, measures are displayed in blue.
 
 In the dataset creation interface and wizard, you can duplicate fields, create fields, and use [aggregation functions](#aggregation).
 
 {% note warning %}
 
-The maximum number of fields in a single dataset is 1200.
+The maximum number of fields in a single dataset is 1,200.
 
 {% endnote %}
 
-{{ datalens-short-name }} lets you create calculated fields using formulas.
+{{ datalens-short-name }} enables you to create calculated fields using formulas.
 To write formulas, you can use existing dataset fields, constants, and functions.
 For a full list of functions, see the [Function reference](../../function-ref/all.md).
 

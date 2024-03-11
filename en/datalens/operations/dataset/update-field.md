@@ -5,7 +5,7 @@ You need to update fields if you changed the schema of a table (or tables) in a 
 To update fields in a dataset:
 
 
-1. In the left-hand panel, click ![image](../../../_assets/datalens/datasets.svg) **Datasets** and select the dataset you need.
+1. In the left-hand panel, click ![image](../../../_assets/console-icons/circles-intersection.svg) **Datasets** and select the dataset you need.
 1. In the top-left corner, select the **Fields** tab.
 1. At the top of the screen, click **Update fields**.
 
@@ -15,7 +15,7 @@ If a field has been removed from a data source, it will not be updated when a da
 
 To fix the error, replace the field in the dataset:
 
-1. In the left-hand panel, click ![image](../../../_assets/datalens/datasets.svg) **Datasets** and select the dataset you need.
+1. In the left-hand panel, click ![image](../../../_assets/console-icons/circles-intersection.svg) **Datasets** and select the dataset you need.
 1. In the top-left corner, select the **Fields** tab.
 1. In the dataset, select the field you want to replace.
 1. Go to the **Field source** column.

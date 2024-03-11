@@ -28,9 +28,16 @@ To add a parameter:
 1. Click **Add parameter**.
 1. Set the value type for the parameter, e.g., `date-interval`.
 1. Name the parameter, e.g., `interval`.
-1. Reset the default values, e.g., `2017-01-01 — 2019-12-31`.
+1. Set the default values, e.g., `2017-01-01 — 2019-12-31`.
 
    ![image](../../../_assets/datalens/parameters/date-interval.png =450x167)
+
+   Parameter values of the `date`, `datetime`, `date-interval`, and `datetime-interval` types can be specified in one of the following ways:
+
+   * **Exact date**: Specified as an exact value.
+   * **Offset from the current date**: Specified as a relative value that gets updated automatically.
+
+   Use presets to quickly fill in the values.
 
 ### Intervals {#params-interval}
 
@@ -99,3 +106,5 @@ CASE
     ELSE column IN not_var{{param}}
 END
 ```
+
+{% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}

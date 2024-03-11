@@ -11,3 +11,5 @@ _Подключение_ содержит информацию о парамет
 * [{{ ytsaurus-name }} CHYT](../operations/connection/chyt/create-chyt.md)
 
 
+
+{% include [clickhouse-disclaimer](../../_includes/clickhouse-disclaimer.md) %}

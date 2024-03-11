@@ -1,10 +1,15 @@
+---
+title: "How to create a dataset field in {{ datalens-full-name }}"
+description: "Follow this guide to create a field in a dataset."
+---
+
 # Creating a field
 
 To create a field in a dataset:
 
 
-1. In the left-hand panel, click ![image](../../../_assets/datalens/datasets.svg) **Datasets** and select the dataset you need. If you do not have a dataset, [create one](create.md).
-1. At the top of the screen, click ![image](../../../_assets/plus-sign.svg)**Add field**.
+1. In the left-hand panel, click ![image](../../../_assets/console-icons/circles-intersection.svg) **Datasets** and select the dataset you need. If you do not have a dataset, [create one](create.md).
+1. At the top of the screen, click ![image](../../../_assets/console-icons/plus.svg)**Add field**.
 1. Fill in the field parameters. Pay close attention to the following fields in the form:
 
    * **Name**: Specifies the name of the field you create.

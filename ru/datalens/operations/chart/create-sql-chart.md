@@ -32,6 +32,13 @@
 
    ![image](../../../_assets/datalens/parameters/date-interval.png =450x167)
 
+   Для параметров типа `date`, `datetime`, `date-interval` и `datetime-interval` значения можно указать несколькими способами:
+
+   * **Точная дата** — чтобы указать точное значение.
+   * **Смещение от текущей даты** — чтобы указать относительное значение, которое будет обновляться автоматически.
+   
+   Для быстрого заполнения значений используйте пресеты.
+
 ### Интервалы {#params-interval}
 
 Параметры типа `date-interval` и `datetime-interval` можно использовать в коде запроса только с постфиксами `_from` и `_to`. Например, для параметра `interval` со значением `2017-01-01 — 2019-12-31` нужно указать:
@@ -99,3 +106,5 @@ CASE
     ELSE column IN not_var{{param}}
 END
 ```
+
+{% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}

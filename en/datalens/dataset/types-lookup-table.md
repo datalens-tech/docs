@@ -10,7 +10,7 @@ This helps {{ datalens-short-name }} unify the operations with data from differe
 
 The table below shows how data types of different databases and {{ datalens-short-name }} internal data types correspond to one another.
 
-DataLens | ClickHouse | PostgreSQL |
+DataLens | {{ CH }} | PostgreSQL |
 ----- | ----- | ----- |
 **Boolean** | boolean | boolean |
 **Date** | date | date |
@@ -25,3 +25,5 @@ DataLens | ClickHouse | PostgreSQL |
 **String array** | Array(string) | Array(char)<br/>Array(varchar)<br/>Array(text) |
 
 <sup>*</sup> You may lose precision when converting data.
+
+{% include [clickhouse-disclaimer](../../_includes/clickhouse-disclaimer.md) %}

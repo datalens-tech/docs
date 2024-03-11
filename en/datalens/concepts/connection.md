@@ -11,3 +11,5 @@ The following connection types are available in {{ datalens-short-name }}:
 * [{{ ytsaurus-name }} CHYT](../operations/connection/chyt/create-chyt.md)
 
 
+
+{% include [clickhouse-disclaimer](../../_includes/clickhouse-disclaimer.md) %}

@@ -1,9 +1,14 @@
-# Adding charts to dashboards
+---
+title: "How to add a chart to a dashboard in {{ datalens-full-name }}"
+description: "Follow this guide to add a chart to a dashboard."
+---
+
+# Adding a chart to a dashboard
 
 To add a chart to a dashboard:
 
 
-1. In the left-hand panel, click ![image](../../../_assets/datalens/dashboard-0523.svg) **Dashboards** and select the dashboard you need. If you do not have a dashboard, [create one](create.md).
+1. In the left-hand panel, click ![image](../../../_assets/console-icons/layout-cells-large.svg) **Dashboards** and select the dashboard you need. If you do not have a dashboard, [create one](create.md).
 1. At the top of the page, click **Edit**.
 1. In the panel at the bottom of the page, select **Chart**.
 

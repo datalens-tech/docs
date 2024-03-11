@@ -1,6 +1,6 @@
 ---
 title: "How to create a {{ CH }} connection"
-description: "This guide describes how you can create a {{ CH }} connection."
+description: "Follow this guide to create a {{ CH }} connection."
 ---
 
 # Creating a {{ CH }} connection
@@ -56,3 +56,5 @@ CREATE VIEW ... (
 You should also enable this option for raw-sql subqueries that are used as a data source in your dataset.
 
 To avoid errors when using views with a JOIN in {{ datalens-short-name }}, re-create all views and set `join_use_nulls = 1`. This fills in empty cells with `NULL` values and converts the type of the corresponding fields to [Nullable]({{ ch.docs }}/sql-reference/data-types/nullable/#data_type-nullable).
+
+{% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}

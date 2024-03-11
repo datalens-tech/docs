@@ -1,9 +1,14 @@
+---
+title: "How to create a default filter for new charts in {{ datalens-full-name }}"
+description: "Follow this guide to create a default filter for new charts."
+---
+
 # Creating a default filter for new charts
 
 To create a default filter:
 
 
-1. In the left-hand panel, click ![image](../../../_assets/datalens/datasets.svg) **Datasets** and select the dataset you need. If you do not have a dataset, [create one](create.md).
+1. In the left-hand panel, click ![image](../../../_assets/console-icons/circles-intersection.svg) **Datasets** and select the dataset you need. If you do not have a dataset, [create one](create.md).
 1. In the top-left corner, select the **Filtration** tab.
 1. Click **Add**.
 1. Select the field to apply the filter to.

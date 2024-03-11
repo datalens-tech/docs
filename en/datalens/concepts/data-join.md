@@ -27,13 +27,13 @@ To join data at the dataset level, you can [add tables](#ui-join) to the workspa
 
 {% note warning %}
 
-You can't join data from different sources at the level of a single dataset.
+You cannot join data from different sources at a single dataset level.
 
 {% endnote %}
 
 #### Adding tables {#ui-join}
 
-You can combine data through the dataset creation interface by dragging tables to the workspace and configuring links between them via the [JOIN operator](dataset/data-model.md#source).
+You can [join data](../operations/dataset/join-data.md) through the dataset creation interface by dragging tables to the workspace and configuring links between them using the [JOIN operator](dataset/data-model.md#source).
 
 #### SQL query {#sql-join}
 
