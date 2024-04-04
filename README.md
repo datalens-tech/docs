@@ -28,3 +28,15 @@ Post-build script for fixing metadata tags and adding headers.
 ```bash
 npm run post-build
 ```
+
+## Deployment
+
+1. Push changes to the `main` branch
+
+2. Wait for the automatic deployment with GitHub Actions: [build.yaml](.github/workflows/build.yaml)
+
+3. GitHub workflow action will create new release with current date tag
+
+4. Go to [datalens-landing](https://github.com/datalens-tech/landing/) repository and manually run `Deploy` workflow action: [link](https://github.com/datalens-tech/landing/actions/workflows/deploy.yml)
+
+5. GitHub workflow action at landing repository automatically pull new docs release, build and deploy landing and docs to [datalens.tech](https://datalens.tech) as GitHub pages 
