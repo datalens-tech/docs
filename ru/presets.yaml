@@ -6,7 +6,7 @@ default:
   datalens-name: DataLens
   datalens-short-name: DataLens
   dns-zone: mdb.yandexcloud.net
-  link-datalens-main: https://datalens.yandex.ru
+  link-datalens-main: https://datalens.yandex.cloud
   PG: PostgreSQL
   wiki-full-name: Yandex Wiki
   yandex-cloud: Yandex Cloud

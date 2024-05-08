@@ -29,15 +29,23 @@ A table is a good choice for quantitative comparison, where you can see differen
 
 {% endcut %}
 
-To make it easier to compare different values, you can add conditional formatting to a table: [row color](#add-column-colour) or [linear indicators](#add-linear-indicator).
+To simplify the comparison of different values and make the information easier to comprehend, you can use advanced settings when [creating a table](#create-diagram):
 
-## Sections in the wizard {#wizard-sections}
+* [Renaming table columns](#change-columns-names).
+* [Setting up table data sorting by multiple columns](#sorting-columns).
+* [Setting up the width of table columns](#set-column-width).
+* [Adding a row with totals](#add-totals).
+* [Adding row color](#add-column-colour).
+* [Setting up a field fill color](#set-field-colour).
+* [Adding a linear indicator to a column with a measure](#add-linear-indicator).
 
-| Wizard section | Description |
+## Wizard sections {#wizard-sections}
+
+| Wizard<br/> section | Description |
 ----- | ----
-| Columns | Dimensions and measures to be used as columns. Field names are used as column headers. |
+| Columns | Dimensions and measures to be used as columns. You can see the field name in the column header. You can use [markup functions](../function-ref/markup-functions.md) in columns. |
 | Colors | Measure. Affects shading of all cells within a row. It may only contain one measure. |
-| Sorting | Dimensions and measures specified in the **Columns** section.<br/>You can use multiple dimensions and measures.<br/>The order of section fields affects the sorting order of table fields. The sorting direction is marked with an icon next to the field: ![image](../../_assets/console-icons/bars-ascending-align-left.svg) ascending or ![image](../../_assets/console-icons/bars-descending-align-left.svg) descending. To change the sorting direction, click the icon. |
+| Sorting | Dimensions and measures specified in the **Columns** section.<br/>You can use multiple dimensions and measures.<br/>The order of section fields affects the sorting order of table fields. The sorting direction is marked with an icon next to the field: ![image](../../_assets/console-icons/bars-ascending-align-left.svg) for ascending or ![image](../../_assets/console-icons/bars-descending-align-left.svg) for descending. To change the sorting direction, click the icon. |
 | Filters | Dimension or measure. Used as a filter. |
 
 ## Creating a table {#create-diagram}
@@ -45,10 +53,13 @@ To make it easier to compare different values, you can add conditional formattin
 To create a table:
 
 
-1. On the {{ datalens-full-name }} [home page]({{ link-datalens-main }}), click **Create chart**.
+{% include [datalens-workbooks-collections-note](../../_includes/datalens/operations/datalens-workbooks-collections-note-step4.md) %}
 
 
-1. Under **Dataset**, select a dataset for visualization.
+1. Go to the {{ datalens-short-name }} home page.
+1. In the left-hand panel, select ![chart](../../_assets/console-icons/chart-column.svg) **Charts**.
+1. Click **Create chart** → **Chart**.
+1. At the top left, click ![image](../../_assets/console-icons/circles-intersection.svg) **Select dataset** and specify the dataset to visualize.
 1. Select the **Table** chart type.
 1. Drag a dimension or measure from the dataset to **Columns**. The field is displayed as a column.
 
@@ -118,10 +129,10 @@ Values in the **Total** row are calculated only for measures. For dimensions, th
 1. In the top-right corner of the **Color** section, click ![image](../../_assets/console-icons/gear.svg) (the icon is displayed when you mouse over the section).
 1. Set up colors:
 
-   * **Gradient type**: Select 2 or 3 colors.
+   * **Gradient type**: Select two or three colors.
       * Gradient color: Select a color palette for the gradient from the list.
       * Gradient direction: Change the gradient direction using the ![image](../../_assets/console-icons/arrow-right-arrow-left.svg) icon.
-   * **Set threshold values**: Set numeric thresholds for each color. Works if the **X** section contains a single value.
+   * **Set threshold values**: Set numeric thresholds for each color.
 
 ### Setting up a field fill color {#set-field-colour}
 
@@ -136,18 +147,18 @@ Values in the **Total** row are calculated only for measures. For dimensions, th
 
    {% endnote %}
 
-   {% list tabs %}
+   {% list tabs group=fill %}
 
-   - For a dimension
+   - For a dimension {#measure}
 
       1. Click the color scheme selection field and set a color for each dimension value.
       1. Click **Apply**.
 
-   - For a measure
+   - For a measure {#indicator}
 
       1. Click the gradient selection field and set up:
 
-         * **Gradient type**: Select 2 or 3 colors.
+         * **Gradient type**: Select two or three colors.
 
             * Gradient color: Select a color palette for the gradient from the list.
             * Gradient direction: Change the gradient direction using the ![image](../../_assets/console-icons/arrow-right-arrow-left.svg) icon.

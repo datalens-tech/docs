@@ -12,14 +12,14 @@ _Limits_ are technical limitations due to {{ datalens-short-name }} architectura
 
 
 | Type of limit | Value |
-| ----- | ----- |
+----- | -----
 | Maximum number of tables in a single dataset | 32 |
 | Maximum number of fields in a single dataset | 1,200 |
 
 
 #### Chart data limits {#datalens-chart-data-limits}
 
-Charts in {{ datalens-short-name }} can only display a limited amount of data. If the number of rows (columns and cells for pivot tables) in a dataset exceeds the established limit, the chart will not be built. Therefore, to build a chart from data in a large dataset, select a part of the data to display based on the limits below using [filters](../../datalens/concepts/dataset/settings.md#default-setting):
+Charts in {{ datalens-short-name }} can only display a limited amount of data. If the number of rows (columns and cells for pivot tables) in a dataset exceeds the established limit, the chart will not be built. Therefore, to build a chart from data in a large dataset, select a part of the data to display based on the limits below using the [filters](../../datalens/concepts/dataset/settings.md#default-setting):
 
 | Chart type | Limit |
 ----- | -----

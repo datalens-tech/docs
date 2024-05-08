@@ -16,7 +16,7 @@ description: "Из статьи вы узнаете, как подключить
 
    {% include [datalens-db-connection-parameters-postgresql](../../../_includes/datalens/datalens-db-connection-parameters-postgresql.md) %}
 
-1. Нажмите кнопку **Создать подключение**.
+1. Нажмите кнопку **Создать подключение**. Если вы работаете с новой объектной моделью {{ datalens-short-name }}, включающей [воркбуки и коллекции](../../../datalens/workbooks-collections/index.md), выберите или создайте воркбук, в котором сохранится подключение.
 1. Укажите название подключения и нажмите кнопку **Создать**.
 
 {% include [datalens-check-host](../../../_includes/datalens/operations/datalens-check-host.md) %}

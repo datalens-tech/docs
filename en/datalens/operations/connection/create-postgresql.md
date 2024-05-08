@@ -1,5 +1,5 @@
 ---
-title: "Instructions for creating a {{ PG }} connection in {{ datalens-full-name }}"
+title: "How to create a {{ PG }} connection in {{ datalens-full-name }}"
 description: "In this tutorial, you will learn how to connect to {{ PG }} in {{ datalens-full-name }}."
 ---
 
@@ -16,7 +16,7 @@ To create a {{ PG }} connection:
 
    {% include [datalens-db-connection-parameters-postgresql](../../../_includes/datalens/datalens-db-connection-parameters-postgresql.md) %}
 
-1. Click **Create connection**.
+1. Click **Create connection**. If you use the new {{ datalens-short-name }} object model with [workbooks and collections](../../../datalens/workbooks-collections/index.md), select or create a workbook to save the connection in.
 1. Enter a name for the connection and click **Create**.
 
 {% include [datalens-check-host](../../../_includes/datalens/operations/datalens-check-host.md) %}

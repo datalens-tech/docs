@@ -253,7 +253,7 @@ For example, the following markup:
 
 {% cut "Title of the text to cut" %}
 
-The content to be displayed when you click it.
+Content to be displayed on click.
 
 {% endcut %}
 
@@ -263,6 +263,6 @@ will be displayed as:
 
 {% cut "Title of the text to cut" %}
 
-The content to be displayed when you click it.
+Content to be displayed on click.
 
 {% endcut %}

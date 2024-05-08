@@ -1,8 +1,7 @@
 To create a {{ ytsaurus-name }} CHYT connection:
 
-
-1. Go to the [connections page](https://datalens.yandex.ru/connections).
-1. Click **Create connection**.
+1. Go to the [connections page]({{ link-datalens-main }}/connections).
+1. Click **Create connection**.
 1. Select **{{ ytsaurus-name }} CHYT** as the connection type.
 
 
@@ -17,7 +16,7 @@ To create a {{ ytsaurus-name }} CHYT connection:
    * **HTTPS**: Enable the secure connection option if your server supports HTTPS.
 
 
-1. Click **Create connection**.
+1. Click **Create connection**.
 1. Enter a name for the connection and click **Create**.
 
 {% include [datalens-check-host](../../../_includes/datalens/operations/datalens-check-host.md) %}

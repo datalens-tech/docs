@@ -15,7 +15,7 @@ URL( address, text )
 ```
 
 #### Описание {#description}
-Оборачивает `text` в ссылку на URL `address`.
+Оборачивает `text` в ссылку на URL `address`. При переходе по ссылке страница открывается в новой вкладке браузера.
 
 **Типы аргументов:**
 - `address` — `Строка`
@@ -27,7 +27,7 @@ URL( address, text )
 #### Пример {#examples}
 
 ```
-URL('https://example.com/?value=' + [value], [value])
+URL('https://yandex.ru/search/?text=buy+a+' + [Product Name], [Product Name])
 ```
 
 

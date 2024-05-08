@@ -39,15 +39,15 @@ Pivot tables make it easier to work with large amounts of data and let you analy
 
 {% endcut %}
 
-## Sections in the wizard {#wizard-sections}
+## Wizard sections {#wizard-sections}
 
-| Wizard section | Description |
+| Wizard<br/> section | Description |
 ----- | ----
-| Columns | Dimensions. |
-| Strings | Dimensions. |
+| Columns | Dimensions |
+| Strings | Dimensions |
 | Measures | Measures. If you add more than one measure to a section, the **Columns** section contains the [Measure Names](../concepts/chart/measure-values.md) dimension that defines the location of the measure headers. [Measure Names](../concepts/chart/measure-values.md) can be moved to **Rows**. |
 | Colors | Measure. Affects shading of all cells containing indicators. It may only contain one measure. |
-| Sorting | Dimensions and measures specified in the **Columns** and **Rows** sections.<br/>You can use multiple dimensions and measures.<br/>The order of section fields affects the sorting order of table fields. The sorting direction is marked with an icon next to the field: ![image](../../_assets/console-icons/bars-ascending-align-left.svg) ascending or ![image](../../_assets/console-icons/bars-descending-align-left.svg) descending. To change the sorting direction, click the icon. Sorting by measure only impacts a request to the source and does not affect the pivot table. |
+| Sorting | Dimensions and measures specified in the **Columns** and **Rows** sections.<br/>You can use multiple dimensions and measures.<br/>The order of section fields affects the sorting order of table fields. The sorting direction is marked with an icon next to the field: ![image](../../_assets/console-icons/bars-ascending-align-left.svg) for ascending or ![image](../../_assets/console-icons/bars-descending-align-left.svg) for descending. To change the sorting direction, click the icon. Sorting by measure only impacts a request to the source and does not affect the pivot table. |
 | Filters | Dimension or measure. Used as a filter. |
 
 ## Creating a pivot table {#create-diagram}
@@ -60,8 +60,14 @@ Not supported in [QL charts](../concepts/chart/index.md#sql-charts).
 
 To create a pivot table:
 
-1. On the {{ datalens-full-name }} [home page]({{ link-datalens-main }}), click **Create chart**.
-1. Under **Dataset**, select a dataset for visualization.
+
+{% include [datalens-workbooks-collections-note](../../_includes/datalens/operations/datalens-workbooks-collections-note-step4.md) %}
+
+
+1. Go to the {{ datalens-short-name }} home page.
+1. In the left-hand panel, select ![chart](../../_assets/console-icons/chart-column.svg) **Charts**.
+1. Click **Create chart** → **Chart**.
+1. At the top left, click ![image](../../_assets/console-icons/circles-intersection.svg) **Select dataset** and specify the dataset to visualize.
 1. Select the **Pivot table** chart type.
 1. Drag a dimension from the dataset to the **Columns** section.
 1. Drag a dimension from the dataset to the **Rows** section.
@@ -109,7 +115,7 @@ To set the width of any column to `Auto`, click **Reset**.
 1. In the field settings window, enable **Sub-totals**.
 1. Click **Apply**.
 
-The table will show columns and/or rows with **Total <field name>**.
+The table will show columns and/or rows with **Total <field_name>**.
 
 To output the common **Total** row, enable **Sub-totals** in the settings for the first fields under **Columns** and **Rows**.
 
@@ -139,18 +145,18 @@ To output the common **Total** row, enable **Sub-totals** in the settings for th
 
    {% endnote %}
 
-   {% list tabs %}
+   {% list tabs group=fill %}
 
-   - For a dimension
+   - For a dimension {#measure}
 
       1. Click the color scheme selection field and set a color for each dimension value.
       1. Click **Apply**.
 
-   - For a measure
+   - For a measure {#indicator}
 
       1. Click the gradient selection field and set up:
 
-         * **Gradient type**: Select 2 or 3 colors.
+         * **Gradient type**: Select two or three colors.
 
             * Gradient color: Select a color palette for the gradient from the list.
             * Gradient direction: Change the gradient direction using the ![image](../../_assets/console-icons/arrow-right-arrow-left.svg) icon.

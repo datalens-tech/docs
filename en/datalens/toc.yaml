@@ -1,5 +1,10 @@
 title: DataLens
 href: index.yaml
+label:
+  title: To be announced soon
+  description: The service will soon be available in Kazakhstan.
+  theme: info
+  when: region == "kz"
 items:
   - name: Getting started
     items:
@@ -384,10 +389,16 @@ items:
                 href: function-ref/markup-functions.md
               - name: BOLD
                 href: function-ref/BOLD.md
+              - name: BR
+                href: function-ref/BR.md
+              - name: COLOR
+                href: function-ref/COLOR.md
               - name: ITALIC
                 href: function-ref/ITALIC.md
               - name: MARKUP
                 href: function-ref/MARKUP.md
+              - name: SIZE
+                href: function-ref/SIZE.md
               - name: URL
                 href: function-ref/URL.md
           - name: Time series functions
@@ -574,6 +585,8 @@ items:
         href: dashboard/link.md
       - name: Selectors
         href: dashboard/selector.md
+      - name: Filtering charts by charts
+        href: dashboard/chart-chart-filtration.md
       - name: Parameters
         href: dashboard/dashboard_parameters.md
       - name: Markdown
@@ -598,6 +611,8 @@ items:
             href: operations/dashboard/edit-alias.md
           - name: Adding parameters to a dashboard
             href: operations/dashboard/add-parameters.md
+          - name: Setting up filtering by charts
+            href: operations/dashboard/add-filtration.md
   - name: Troubleshooting
     expanded: true
     items:
@@ -655,6 +670,10 @@ items:
       - name: File check failed
         hidden: true
         href: troubleshooting/errors/ERR-FILE-UNSUPPORTED_DOCUMENT.md
+      - name: Incorrect Yandex Documents link format
+        hidden: true
+        href: >-
+          troubleshooting/errors/ERR-FILE-INVALID_LINK-YADOCS_INVALID_PUBLIC_LINK_PREFIX.md
       - name: Incompatible dimensions
         hidden: true
         href: >-
@@ -736,7 +755,7 @@ items:
       - name: YT table has no schema. Only schematized tables are supported
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-CHYT-TABLE_HAS_NO_SCHEMA.md
-      - name: Could not create <object type>
+      - name: Failed to create <object_type>
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-DB_OPERATIONAL_ERROR.md
       - name: Object request error

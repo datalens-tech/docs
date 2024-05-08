@@ -25,6 +25,26 @@ Stylizes the passed text in bold font.
 
 
 
+## [BR](BR.md)
+
+**Syntax:**`BR()`
+
+Adds a line break.
+
+
+
+## [COLOR](COLOR.md)
+
+**Syntax:**`COLOR( text, color )`
+
+Enables specifying the color for the provided text.
+
+We recommend using the [color variables](https://preview.gravity-ui.com/uikit/iframe.html?args=&id=colors--texts&viewMode=story) from the [Gravity UI](https://gravity-ui.com/) palette to specify colors. Such colors are easily discernible with both the light and dark theme.
+
+You can also specify the color in any web format, such as HEX, keyword (e.g., `green`), RGB, etc. In this case, however, we cannot guarantee that the colors will be discernible.
+
+
+
 ## [ITALIC](ITALIC.md)
 
 **Syntax:**`ITALIC( text )`
@@ -41,10 +61,18 @@ Merges marked up text pieces. Can also be used for converting strings to marked 
 
 
 
+## [SIZE](SIZE.md)
+
+**Syntax:**`SIZE( text, size )`
+
+Enables specifying the size (in pixels) for the provided text.
+
+
+
 ## [URL](URL.md)
 
 **Syntax:**`URL( address, text )`
 
-Wraps `text` into a hyperlink to URL `address`.
+Wraps `text` into a hyperlink to URL `address`. When you click on the link, the page opens in a new browser tab.
 
 
