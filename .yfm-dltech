@@ -1,5 +1,12 @@
 allowHTML: true
 staticContent: true
 addSystemMeta: true
-lang: ru
 assetsPublicPath: /docs
+lang: ru
+langs:
+  - ru
+  - en
+analytics:
+  gtm:
+    id: 'GTM-PBP3P5LB'
+    mode: 'notification'

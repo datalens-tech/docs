@@ -15,7 +15,7 @@ Our documentation is developed using [Yandex Flavored Markdown](https://diplodoc
 Pre-build script for prepare navigation and up datalens docs to root level.
 
 ```bash
-npm run pre-build
+npm run prebuild
 ```
 
 Build .md doc sources into .html static files.
@@ -26,7 +26,7 @@ npm run build
 Post-build script for fixing metadata tags and adding headers.
 
 ```bash
-npm run post-build
+npm run postbuild
 ```
 
 ## Deployment

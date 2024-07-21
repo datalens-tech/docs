@@ -18,9 +18,7 @@ jobs:
           node-version: 18
           cache: 'npm'
       - run: npm ci
-      - run: npm run pre-build
       - run: npm run build
-      - run: npm run post-build
       - run: echo "DATE=$(date -Im | sed 's|:|_|g' | sed 's|+|__|g')" >> $GITHUB_ENV
       - run: echo "DATE_RELEASE=$(date -Im)" >> $GITHUB_ENV
       - uses: thedoctor0/zip-release@0.7.1

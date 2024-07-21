@@ -8,11 +8,8 @@ navigation:
   header:
     rightItems:
       - type: 'button'
-        img: '/docs/en/_assets/icon/lang.svg'
-        theme: 'flat'
-        text: '{{lang_title}}'
-      - type: 'button'
         img: '/docs/en/_assets/icon/github.svg'
         theme: 'flat'
         text: 'GitHub'
+        url: 'https://github.com/datalens-tech/datalens'
       - type: controls
