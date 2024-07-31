@@ -8,7 +8,7 @@
     "postbuild": "node ./scripts/post-build.js ./build/docs"
   },
   "dependencies": {
-    "@diplodoc/cli": "^4.34.3",
+    "@diplodoc/cli": "^4.35.0",
     "cheerio": "^1.0.0-rc.12",
     "fs-extra": "^11.2.0",
     "walk-sync": "^3.0.0"
