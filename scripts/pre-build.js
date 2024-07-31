@@ -27,11 +27,7 @@ function fixNestedPath(basePath, lang) {
     fs.rmSync(path.join(basePath, lang, 'datalens'), {recursive: true});
 
     let tocYaml = fs.readFileSync(path.join(basePath, lang, 'toc.yaml')).toString();
-    let navigationYaml = fs.readFileSync('assets/navigation.yaml').toString();
-    navigationYaml = navigationYaml.replace(
-        /{{lang_title}}/g,
-        lang === 'ru' ? 'English' : 'Russian',
-    );
+    const navigationYaml = fs.readFileSync('assets/navigation.yaml').toString();
     tocYaml = tocYaml.replace('href: index.yaml', `href: index.yaml\n${navigationYaml}`);
     fs.writeFileSync(path.join(basePath, lang, 'toc.yaml'), tocYaml);
 

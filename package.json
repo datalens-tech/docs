@@ -4,21 +4,21 @@
   "private": true,
   "scripts": {
     "build": "rm -rf ./build/* && yfm -i ./docs -o ./build/docs",
-    "pre-build": "node ./scripts/pre-build.js ./docs",
-    "post-build": "node ./scripts/post-build.js ./build/docs"
+    "prebuild": "node ./scripts/pre-build.js ./docs",
+    "postbuild": "node ./scripts/post-build.js ./build/docs"
   },
   "dependencies": {
-    "@diplodoc/cli": "^4.8.0",
+    "@diplodoc/cli": "^4.35.0",
     "cheerio": "^1.0.0-rc.12",
     "fs-extra": "^11.2.0",
     "walk-sync": "^3.0.0"
   },
   "devDependencies": {
-    "@gravity-ui/eslint-config": "^2.0.0",
-    "@gravity-ui/prettier-config": "^1.0.1",
-    "@gravity-ui/stylelint-config": "^2.0.0",
+    "@gravity-ui/eslint-config": "3.2.0",
+    "@gravity-ui/prettier-config": "1.1.0",
+    "@gravity-ui/stylelint-config": "2.0.0",
     "eslint": "8.48.0",
-    "prettier": "^2.7.1",
-    "stylelint": "^14.16.1"
+    "prettier": "3.2.0",
+    "stylelint": "14.0.0"
   }
 }

@@ -49,47 +49,11 @@ const LINK = [
 ];
 
 const STYLE_FIX = `
-@media (max-width: 768px) {
-  .dc-doc-page__controls {
-    padding-right: 20px;
-    position: static;
-    justify-content: flex-end;
-  }
+li.pc-navigation-item:first-child {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
 }
-
-.yc-root {
-  --dc-header-height: 64px;
-}
-
-.dc-doc-layout__center {
-  top: var(--dc-header-height);
-  overflow: auto;
-}
-
-.dc-settings-control__list-item {
-  max-width: var(--yc-popover-max-width);
-}
-
-li.pc-navigation-item > button img {
-  position: absolute;
-  left: 12px;
-}
-`;
-
-const SCRIPT_FIX = `
-  const controlsButtons = document.querySelectorAll('li.pc-navigation-item > button')
-
-  controlsButtons[0].addEventListener('click', () => {
-    let langSwitch = '/ru/'
-    if(window.location.pathname.includes('/en/')) {
-      langSwitch = '/en/'
-    }
-    window.location.href = window.location.pathname.replace(langSwitch, langSwitch === '/ru/' ? '/en/' : '/ru/')
-  })
-
-  controlsButtons[1].addEventListener('click', () => {
-    window.location.href = 'https://github.com/datalens-tech/datalens'
-  })
 `;
 
 const FILE_CHECK_MAP = [];
@@ -105,27 +69,31 @@ async function main() {
     for (let i = 0; i < paths.length; i += 1) {
         const path = paths[i];
         const trimPath = path.replace(basePath, '');
+        const trimPathLog = trimPath.replace(/^\//g, '');
 
         // eslint-disable-next-line no-console
-        console.log('POST-BUILD:', trimPath);
+        console.log('\x1b[33m%s\x1b[0m %s %s', 'POST-BUILD', 'Fixing file', trimPathLog);
 
-        const lang = trimPath.match(/\/(en|ru)\//)[1];
+        let lang = trimPath.match(/\/(en|ru)\//);
 
-        const pathWithoutLang = trimPath
-            .replace(new RegExp(`^/${lang}/`), '/')
-            .replace(new RegExp(`.html$`), '');
+        if (lang) {
+            lang = lang[1];
 
-        if (FILE_CHECK_MAP[pathWithoutLang]) {
-            delete FILE_CHECK_MAP[pathWithoutLang];
-        } else {
-            FILE_CHECK_MAP[pathWithoutLang] = lang;
+            const pathWithoutLang = trimPath
+                .replace(new RegExp(`^/${lang}/`), '')
+                .replace(new RegExp(`.html$`), '');
+
+            if (FILE_CHECK_MAP[pathWithoutLang]) {
+                delete FILE_CHECK_MAP[pathWithoutLang];
+            } else {
+                FILE_CHECK_MAP[pathWithoutLang] = lang;
+            }
         }
 
         const fileHtml = fs.readFileSync(path);
         const $ = cheerio.load(fileHtml);
 
         const head = $('head');
-        const body = $('body');
 
         let title = $('meta[name="title"]');
         if (title) {
@@ -165,10 +133,6 @@ async function main() {
         tag.text(STYLE_FIX);
         head.append(tag);
 
-        const tagScript = $('<script type="application/javascript"></script>');
-        tagScript.text(SCRIPT_FIX);
-        body.append(tagScript);
-
         const logoLink = $('a.pc-logo');
         logoLink.attr('href', lang === 'ru' ? '/ru' : '/');
 
@@ -195,7 +159,7 @@ async function main() {
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
         // eslint-disable-next-line no-console
         console.error(
-            '\nERROR: detected files without pair on other lang\n' +
+            '\n\x1b[31mERROR\x1b[0m Detected files without pair on other lang\n' +
                 Object.entries(FILE_CHECK_MAP)
                     .map(([file, lang]) => `  - ${lang}: ${file}`)
                     .join('\n'),
@@ -205,5 +169,5 @@ async function main() {
 
 main().catch((err) => {
     // eslint-disable-next-line no-console
-    console.error(err.message || err);
+    console.error(err.stack || err);
 });
