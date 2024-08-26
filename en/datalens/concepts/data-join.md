@@ -42,7 +42,7 @@ In a dataset, you can add an [ad-hoc SQL query](dataset/settings.md#sql-request-
 ### Chart level {#chart-join}
 
 
-To combine data at the chart level, you can use a [QL chart](#sql-chart).
+To combine data at the chart level, you can use a [QL chart](operations/chart/create-sql-chart.md).
 
 
 
