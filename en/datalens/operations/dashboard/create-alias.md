@@ -5,6 +5,7 @@ description: "Follow this guide to add an alias for widgets in {{ datalens-full-
 
 # Creating an alias
 
+
 To add an [alias](../../dashboard/link.md#alias) for a pair of widgets:
 
 
@@ -64,9 +65,3 @@ Setting a link between the **tutorial 2 — Manual input** selector and the **tu
 {% endcut %}
 
 When adding an alias, make sure the field the selector uses for filtering is included in the dataset used to build the chart. Otherwise, the link will not work.
-
-{% cut "Example of invalid linking" %}
-
-{% include [datalens-data-join-wrong-example](../../../_includes/datalens/datalens-data-join-wrong-example.md) %}
-
-{% endcut %}

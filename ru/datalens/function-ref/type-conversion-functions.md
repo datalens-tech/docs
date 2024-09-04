@@ -58,7 +58,7 @@ sourcePath: ru/_api-ref/datalens/function-ref/type-conversion-functions.md
 
 **Синтаксис:**`DATETIME_PARSE( value )`
 
-Переводит выражение `value` в формат даты и времени. В отличие от [DATETIME](DATETIME.md), поддерживает множество форматов.
+Переводит выражение `value` в формат даты и времени. В отличие от [DATETIME](DATETIME.md), поддерживает множество форматов. Обработка выражения происходит на стороне источника {{ CH }}. Подробнее о поддерживаемых форматах  читайте в [документации](https://clickhouse.com/docs/en/sql-reference/functions/type-conversion-functions#parsedatetime32besteffort) {{ CH }}.
 
 
 
@@ -89,9 +89,9 @@ sourcePath: ru/_api-ref/datalens/function-ref/type-conversion-functions.md
 | `PostgreSQL`      | `Массив дробных чисел` | `double precision[]`  |                              |                               |
 | `PostgreSQL`      | `Массив дробных чисел` | `real[]`              |                              |                               |
 | `PostgreSQL`      | `Массив дробных чисел` | `numeric[]`           | `Целое число`, `Целое число` |                               |
-| `PostgreSQL`      | `Массив целых числел`  | `smallint[]`          |                              |                               |
-| `PostgreSQL`      | `Массив целых числел`  | `integer[]`           |                              |                               |
-| `PostgreSQL`      | `Массив целых числел`  | `bigint[]`            |                              |                               |
+| `PostgreSQL`      | `Массив целых чисел`   | `smallint[]`          |                              |                               |
+| `PostgreSQL`      | `Массив целых чисел`   | `integer[]`           |                              |                               |
+| `PostgreSQL`      | `Массив целых чисел`   | `bigint[]`            |                              |                               |
 | `PostgreSQL`      | `Массив строк`         | `text[]`              |                              |                               |
 | `PostgreSQL`      | `Массив строк`         | `character varying[]` |                              |                               |
 | `PostgreSQL`      | `Массив строк`         | `varchar[]`           |                              |                               |
@@ -137,7 +137,7 @@ sourcePath: ru/_api-ref/datalens/function-ref/type-conversion-functions.md
 
 **Синтаксис:**`GEOPOLYGON( value )`
 
-Переводит выражение `value` в формат [геополигона](../concepts/data-types.md#geopolygon).
+Переводит выражение `value` в формат [геополигона](../concepts/data-types.md#geopolygon). Функция принимает на вход строку вида `[[[lat_1,lon_1], [lat_2,lon_2], ..., [lat_N-1,lon_N-1], [lat_N,lon_N]]]`.
 
 
 
@@ -162,5 +162,13 @@ sourcePath: ru/_api-ref/datalens/function-ref/type-conversion-functions.md
 **Синтаксис:**`STR( expression )`
 
 Переводит выражение `expression` к типу строки.
+
+
+
+## [TREE](TREE.md)
+
+**Синтаксис:**`TREE( array )`
+
+Переводит выражение `array` в формат `Дерево строк`. Используется для создания [древовидных иерархий](../concepts/data-types.md#tree-hierarchy).
 
 

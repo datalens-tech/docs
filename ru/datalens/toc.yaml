@@ -23,18 +23,20 @@ items:
         href: workbooks-collections/index.md
       - name: Создание воркбука и коллекции
         href: workbooks-collections/workbooks-collections-create.md
-  - name: Подключение
+  - name: Подключения
     items:
       - name: Обзор
         href: concepts/connection.md
       - name: Объединение данных
         href: concepts/data-join.md
-      - name: Пошаговые инструкции
+      - name: Базы данных
         items:
           - name: Создание подключения к {{ CH }}
             href: operations/connection/create-clickhouse.md
           - name: Создание подключения к {{ PG }}
             href: operations/connection/create-postgresql.md
+          - name: Создание подключения к {{ MY }}
+            href: operations/connection/create-mysql.md
           - name: Создание подключения к {{ ytsaurus-name }} CHYT
             items:
               - name: Подключение
@@ -43,7 +45,9 @@ items:
                 href: operations/connection/chyt/chyt-global-join.md
               - name: Рекомендации
                 href: operations/connection/chyt/chyt-recommendations.md
-  - name: Датасет
+          - name: Создание подключения к {{ GP }}
+            href: operations/connection/create-greenplum.md
+  - name: Датасеты
     items:
       - name: Обзор
         href: concepts/dataset/index.md
@@ -333,6 +337,8 @@ items:
                 href: function-ref/LTRIM.md
               - name: REGEXP_EXTRACT
                 href: function-ref/REGEXP_EXTRACT.md
+              - name: REGEXP_EXTRACT_ALL
+                href: function-ref/REGEXP_EXTRACT_ALL.md
               - name: REGEXP_EXTRACT_NTH
                 href: function-ref/REGEXP_EXTRACT_NTH.md
               - name: REGEXP_MATCH
@@ -437,6 +443,8 @@ items:
                 href: function-ref/COUNT_ITEM.md
               - name: GET_ITEM
                 href: function-ref/GET_ITEM.md
+              - name: LEN
+                href: function-ref/LEN_ARRAY.md
               - name: REPLACE
                 href: function-ref/REPLACE_ARRAY.md
               - name: SLICE
@@ -471,6 +479,8 @@ items:
                 href: function-ref/INT.md
               - name: STR
                 href: function-ref/STR.md
+              - name: TREE
+                href: function-ref/TREE.md
           - name: Функции разметки
             items:
               - name: Обзор
@@ -481,6 +491,8 @@ items:
                 href: function-ref/BR.md
               - name: COLOR
                 href: function-ref/COLOR.md
+              - name: IMAGE
+                href: function-ref/IMAGE.md
               - name: ITALIC
                 href: function-ref/ITALIC.md
               - name: MARKUP
@@ -489,9 +501,11 @@ items:
                 href: function-ref/SIZE.md
               - name: URL
                 href: function-ref/URL.md
+              - name: USER_INFO
+                href: function-ref/USER_INFO.md
           - name: Поддержка функций
             href: function-ref/availability.md
-      - name: Туториалы по функциям
+      - name: Примеры использования функций
         items:
           - name: Агрегатные функции
             href: concepts/aggregation-tutorial.md
@@ -575,7 +589,7 @@ items:
             href: operations/chart/add-guid.md
           - name: Добавление параметра в чарт
             href: operations/chart/add-parameter-chart.md
-  - name: Дашборд
+  - name: Дашборды
     items:
       - name: Обзор
         href: concepts/dashboard.md
@@ -595,8 +609,6 @@ items:
         items:
           - name: Создание дашборда
             href: operations/dashboard/create.md
-          - name: Добавление описания к дашборду
-            href: operations/dashboard/add-description.md
           - name: Добавление чарта на дашборд
             href: operations/dashboard/add-chart.md
           - name: Добавление селектора на дашборд
@@ -605,6 +617,8 @@ items:
             href: operations/dashboard/add-text.md
           - name: Добавление заголовка на дашборд
             href: operations/dashboard/add-title.md
+          - name: Добавление описания к дашборду
+            href: operations/dashboard/add-description.md
           - name: Создание алиаса
             href: operations/dashboard/create-alias.md
           - name: Удаление алиаса
@@ -614,7 +628,6 @@ items:
           - name: Настройка фильтрации чартами
             href: operations/dashboard/add-filtration.md
   - name: Решение проблем
-    expanded: true
     items:
       - name: Рекомендации по оптимизации
         href: concepts/optimization_recommendations.md
@@ -767,6 +780,9 @@ items:
       - name: Ошибка на стороне БД
         hidden: true
         href: troubleshooting/errors/ERR-US-BAD_REQUEST-ALREADY_EXISTS.md
+      - name: Ошибка в синтаксисе формулы
+        hidden: true
+        href: troubleshooting/errors/ERR-DS_API-FORMULA-PARSE-UNEXPECTED_TOKEN.md
       - name: Ошибка преобразования типа данных
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-TYPE_CAST-FAILED.md

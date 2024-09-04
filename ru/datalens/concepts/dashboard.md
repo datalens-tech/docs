@@ -14,7 +14,9 @@ _Дашборд_ — страница или набор страниц, на к�
 * [{#T}](../dashboard/widget.md)
 * [{#T}](../dashboard/link.md)
 * [{#T}](../dashboard/selector.md)
+* [{#T}](../dashboard/chart-chart-filtration.md)
 * [{#T}](../dashboard/dashboard_parameters.md)
+* [{#T}](../dashboard/markdown.md)
 * Пошаговые инструкции:
 
   * [{#T}](../operations/dashboard/create.md)
@@ -26,4 +28,5 @@ _Дашборд_ — страница или набор страниц, на к�
   * [Создание алиаса](../operations/dashboard/create-alias.md)
   * [{#T}](../operations/dashboard/edit-alias.md)
   * [{#T}](../operations/dashboard/add-parameters.md)
+  * [{#T}](../operations/dashboard/add-filtration.md)
 

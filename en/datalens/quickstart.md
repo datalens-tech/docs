@@ -15,23 +15,30 @@ To deploy {{ datalens-short-name }} locally, just run multiple containers using 
 
 1. Run the following commands:
 
-   ```bash
-   git clone https://github.com/datalens-tech/datalens
-   cd datalens
-   HC=1 docker compose up
-   ```
+   1. Clone the repository:
 
-   The last command will run all containers required to start {{ datalens-short-name }}. You can execute it with a parameter for connecting an external database:
+      ```bash
+      git clone https://github.com/datalens-tech/datalens
+      ```
 
-   ```bash
-   METADATA_POSTGRES_DSN_LIST="postgres://{user}:{password}@{host}:{port}/{database}" HC=1 docker compose up
-   ```
+   1. Go to the repository directory and run all the containers required to start {{ datalens-short-name }}:
 
-   {% note info %}
+      ```bash
+      cd <datalens_folder_path> && \
+      HC=1 docker compose up
+      ```
 
-   [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) is a patented commercial product. If you enable Highcharts in your {{ datalens-short-name }} instance (with the `HC=1` variable), make sure to comply with the [license](https://github.com/highcharts/highcharts/blob/master/license.txt).
+      You can run the last command with a parameter for connecting an external database:
 
-   {% endnote %}
+      ```bash
+      METADATA_POSTGRES_DSN_LIST="postgres://{user}:{password}@{host}:{port}/{database}" HC=1 docker compose up
+      ```
+
+      {% note info %}
+
+      [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) is a patented commercial product. If you enable Highcharts in your {{ datalens-short-name }} instance (with the `HC=1` variable), make sure to comply with the [license](https://github.com/highcharts/highcharts/blob/master/license.txt). When Highcharts is disabled, not all [visualization types](./visualization-ref/index.md) are available.
+
+      {% endnote %}
 
 1. Open the {{ datalens-short-name }} GUI at `http://localhost:8080`.
 

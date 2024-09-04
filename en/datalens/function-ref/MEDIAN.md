@@ -43,9 +43,34 @@ Returns the [median](https://en.wikipedia.org/wiki/Median) value. For an even nu
 
 #### Example {#examples}
 
-```
-MEDIAN([Profit])
-```
+
+
+
+Source data
+
+| **City**          | **Category**        | **Orders**   | **Profit**   |
+|:------------------|:--------------------|:-------------|:-------------|
+| `'London'`        | `'Office Supplies'` | `8`          | `120.10`     |
+| `'London'`        | `'Furniture'`       | `1`          | `750.00`     |
+| `'Moscow'`        | `'Furniture'`       | `2`          | `1250.50`    |
+| `'Moscow'`        | `'Office Supplies'` | `4`          | `85.34`      |
+| `'San Francisco'` | `'Office Supplies'` | `23`         | `723.00`     |
+| `'San Francisco'` | `'Technology'`      | `12`         | `1542.00`    |
+| `'Detroit'`       | `'Furniture'`       | `5`          | `6205.87`    |
+| `'Detroit'`       | `'Technology'`      | `9`          | `2901.00`    |
+
+Formulas:
+
+- **Median Profit**: `MEDIAN([Profit])` .
+
+
+Result
+
+| **Median Profit**   |
+|:--------------------|
+| `1250.50`           |
+
+
 
 
 #### Data source support {#data-source-support}

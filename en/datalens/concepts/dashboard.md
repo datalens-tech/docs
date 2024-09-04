@@ -14,7 +14,9 @@ For more information about dashboards, see the following sections:
 * [{#T}](../dashboard/widget.md)
 * [{#T}](../dashboard/link.md)
 * [{#T}](../dashboard/selector.md)
+* [{#T}](../dashboard/chart-chart-filtration.md)
 * [{#T}](../dashboard/dashboard_parameters.md)
+* [{#T}](../dashboard/markdown.md)
 * Step-by-step guides:
 
   * [{#T}](../operations/dashboard/create.md)
@@ -26,4 +28,5 @@ For more information about dashboards, see the following sections:
   * [Creating an alias](../operations/dashboard/create-alias.md)
   * [{#T}](../operations/dashboard/edit-alias.md)
   * [{#T}](../operations/dashboard/add-parameters.md)
+  * [{#T}](../operations/dashboard/add-filtration.md)
 

@@ -7,12 +7,18 @@ links:
   - title: Getting started
     description: Getting started with DataLens
     href: quickstart
-  - title: Concepts
-    description: Learn about basic concepts and service functions
-    href: concepts/
-  - title: Step-by-step instructions
-    description: Instructions on how to perform basic operations
-    href: operations/
+  - title: Connection
+    description: Connect to various data sources
+    href: concepts/connection
+  - title: Datasets
+    description: Describe the structure of the data you got from the source
+    href: concepts/dataset/
+  - title: Charts
+    description: Visualize your data based on the dataset
+    href: concepts/chart/
+  - title: Dashboards
+    description: Build your charts on a single page
+    href: concepts/dashboard
   - title: Quotas and limits
-    description: Technical and organizational limitations of the service
+    description: Technical and organizational restrictions
     href: concepts/limits

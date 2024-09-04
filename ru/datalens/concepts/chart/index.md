@@ -17,7 +17,11 @@ _Чарт_ — это визуализация данных из датасет�
 
   * [{#T}](../../operations/chart/create-chart.md)
   * [{#T}](../../operations/chart/create-sql-chart.md)
+  * [{#T}](../../operations/chart/replace-dataset.md)
   * [{#T}](../../operations/chart/add-hierarchy.md)
   * [{#T}](../../operations/chart/config-chart-navigator.md)
   * [{#T}](../../operations/chart/chart-null-settings.md)
   * [{#T}](../../operations/chart/create-palette.md)
+  * [{#T}](../../operations/chart/add-parameters.md)
+  * [{#T}](../../operations/chart/add-guid.md)
+  * [{#T}](../../operations/chart/add-parameter-chart.md)

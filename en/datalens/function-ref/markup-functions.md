@@ -45,6 +45,17 @@ You can also specify the color in any web format, such as HEX, keyword (e.g., `g
 
 
 
+## [IMAGE](IMAGE.md)
+
+**Syntax:**`IMAGE( src [ , width [ , height [ , alt ] ] ] )`
+
+Enables inserting an image located at the `src` address to the table. The `width` and `height` values are provided in pixels. If one of the dimensions is `NULL`, it will be calculated automatically in proportion to the other. If both dimensions are `NULL`, the image will be inserted with the original width and height. In case there are issues when uploading the image, the function will display the `alt` text.
+
+
+
+
+
+
 ## [ITALIC](ITALIC.md)
 
 **Syntax:**`ITALIC( text )`
@@ -74,5 +85,18 @@ Enables specifying the size (in pixels) for the provided text.
 **Syntax:**`URL( address, text )`
 
 Wraps `text` into a hyperlink to URL `address`. When you click on the link, the page opens in a new browser tab.
+
+
+
+## [USER_INFO](USER_INFO.md)
+
+**Syntax:**`USER_INFO( user_id, user_info_type )`
+
+Returns the marked up text by `user_id` to display username or email depending on the `user_info_type` value:
+
+* `email`: Returns email.
+* `name`: Returns name.
+
+If the user has not been found, the function will return the original string from the source.
 
 

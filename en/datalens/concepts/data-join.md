@@ -35,6 +35,8 @@ You cannot join data from different sources at a single dataset level.
 
 You can [join data](../operations/dataset/join-data.md) through the dataset creation interface by dragging tables to the workspace and configuring links between them using the [JOIN operator](dataset/data-model.md#source).
 
+{% include [data-join-duplicate-fields-note](../../_includes/datalens/datalens-data-join-duplicate-fields-note.md) %}
+
 #### SQL query {#sql-join}
 
 In a dataset, you can add an [ad-hoc SQL query](dataset/settings.md#sql-request-in-datatset) to the data source. When accessing a data source, the query code is run as a subquery. You can use the output of the query as final dataset data or combine it with other source tables via the interface.
@@ -44,6 +46,10 @@ In a dataset, you can add an [ad-hoc SQL query](dataset/settings.md#sql-request-
 
 To combine data at the chart level, you can use a [QL chart](#sql-chart).
 
+
+#### QL chart {#sql-chart}
+
+[QL charts](chart/index.md#sql-charts) are charts created from a connection if there is a database at the other end of the connection. Running a SQL query does not create a separate dataset object; instead, it generates one on the fly and displays it in the preview panel. For more information, see [{#T}](../operations/chart/create-sql-chart.md).
 
 
 ### Selector link level {#selector-join}

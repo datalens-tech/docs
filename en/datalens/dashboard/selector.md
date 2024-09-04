@@ -1,9 +1,15 @@
 # Selectors
 
-Selectors are filters that affect the results of queries in the linked [widgets](./widget.md). To add a selector to a dashboard, go to [{#T}](../operations/dashboard/add-selector.md).
+Selectors are filters that affect the results of queries in the linked [widgets](./widget.md).
+
+
 A selector can be linked to a chart or another selector. For more information, see [{#T}](./link.md).
 
-A selector works within a single dashboard tab.
+In a single widget, you can [group](../operations/dashboard/add-selector.md) multiple selectors. Each of them will work within one dashboard tab. When working with a selector group:
+* You can add **Apply** and **Reset** buttons to a widget with a selector group.
+* To fix selectors inside the widget, specify the exact width for each one either in pixels or percent of widget width.
+* To place selectors one on top of the other, specify `100%` width for each one of them.
+* You can copy selectors and paste them into a group.
 
 {{ datalens-short-name }} supports multiple selector types:
 
@@ -11,6 +17,7 @@ A selector works within a single dashboard tab.
 * **Input field**: Used for entering a field value manually.
 * **Calendar**: Used for entering values of the `Date` or `Date and time` type.
 * **Checkbox**: Allows selecting one of the two possible `Boolean` type values, `True` or `False`. To choose both boolean values, use the **List** selector type.
+
 
 When adding a selector to a dashboard, consider how it affects chart filters:
 

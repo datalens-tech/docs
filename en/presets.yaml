@@ -6,7 +6,11 @@ default:
   datalens-name: DataLens
   datalens-short-name: DataLens
   dns-zone: mdb.yandexcloud.net
+  GP: Greenplum®
+  link-console-support: https://support.yandex.cloud
   link-datalens-main: https://datalens.yandex.cloud
+  link-datalens-wizard: https://datalens.yandex.cloud/wizard
+  MY: MySQL
   PG: PostgreSQL
   wiki-full-name: Yandex Wiki
   yandex-cloud: Yandex Cloud

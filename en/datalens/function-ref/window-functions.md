@@ -1,45 +1,69 @@
 ---
 title: Window functions
-description: Window functions are calculated in the same way as aggregations, but they do not merge multiple entries into one.
+description: Window functions in {{ datalens-short-name }} are calculated as aggregate functions of measures.
 editable: false
 sourcePath: en/_api-ref/datalens/function-ref/window-functions.md
 ---
 
 # Window functions
-Window functions are calculated in the same way as aggregations, but they do not merge multiple entries into one. In some cases, this leads to duplication of values among entries in the same group (for example, `SUM(... TOTAL)`).
+Window functions in {{ datalens-short-name }} are calculated as aggregate functions of measures. At the same time, grouping by dimensions differs from the grouping set in the chart. Grouping parameters are specified in the function call as a list of dimensions to be included in the grouping (`WITHIN ...`) or excluded from it (`AMONG ...`).
 
-Aggregate functions are calculated from groups of values that are determined by the dimension fields used in a data query: entries with matching dimension values are grouped. Window functions are also calculated over groups of entries called _windows_. In this case, you should specify grouping parameters in the function call as a list of dimensions to be included (`WITHIN ...`) or excluded (`AMONG ...`) from the grouping.
+Given that measures are aggregated values, one may consider window functions in {{ datalens-short-name }} as aggregations of aggregations. One should note that not all aggregate functions would have the result of aggregating particular results that is identical to the general aggregation of values.
+
+For example, when calculating the sum of a measure for each group and then adding these values together, you will get the total sum of the measure in all groups:
+```
+SUM(SUM(a) UNION SUM(b)) = SUM(a UNION b)
+```
+When counting the amount of measure values for each group and then trying to calculate the amount from the sum of these values, you will get the amount of amounts (summands in the sum) rather than the total amount of values in all groups:
+```
+COUNT(COUNT(a) UNION COUNT(b)) = 2
+```
+
+**Example**
+
+| `Category`   |   `Sales` |   `OrderCount` |   `Sales_Furniture+Technology` |   `OrderCount_Furniture+Technology` |
+|:-------------|----------:|---------------:|-------------------------------:|------------------------------------:|
+| Furniture    |    100000 |            350 |                         300000 |                                   2 |
+| Technology   |    200000 |            650 |                         300000 |                                   2 |
+
+Where:
+* **Sales**: Sum of the sales measure in the categories
+* **Order Count**: Amount of the order measure values in the categories
+* **Sales_Furniture+Technology**: Total sum of the sales measure in all categories:
+  ```
+  SUM_IF([Sales], [Category] = 'Furniture' TOTAL) + SUM_IF([Sales], [Category] = 'Technology' TOTAL)
+  ```
+* **OrderCount_Furniture+Technology**: Amount of amounts of the order measure values:
+  ```
+  COUNT(COUNT_IF([Order Count], [Category] = 'Furniture' TOTAL) +  COUNT_IF([Order Count], [Category] = 'Technology' TOTAL) TOTAL)
+  ```
+
 ## Usage Restrictions {#usage-restrictions}
 
 1. The first argument in window functions can only be [measures](../concepts/dataset/data-model.md#field).
-For the `AVG_IF`, `COUNT_IF`, `SUM_IF` window functions, the first argument (`expression` in the function description) must always be a measure.
-    Example:
 
-    `AVG_IF([Profit], [Profit] > 5)`
+   For the `AVG_IF`, `COUNT_IF`, `SUM_IF` window functions, the first argument (`expression` in the function description) must always be a measure.
 
-For other window functions, the first (and only) argument (`value` in the function description) must always be a measure, too.
+   Example:
 
-    Examples:
-    - Valid: `SUM(SUM([Profit]) TOTAL)`.
-    - Not valid: `RANK([Profit] TOTAL)`, where `[Profit]` is a non-aggregated expression.
+   `AVG_IF([Profit], [Profit] > 5)`
+
+   For other window functions, the first (and only) argument (`value` in the function description) must always be a measure, too.
+
+   Examples:
+   * Correct formula: `SUM(SUM([Profit]) TOTAL)`.
+   * Incorrect formula: `RANK([Profit] TOTAL)`, where `[Profit]` is a non-aggregated expression.
 
 1. For grouping window functions, only the [dimensions](../concepts/dataset/data-model.md#field) used to build the chart can be applied. Only the dimensions used to build the chart set the [grouping when calculating a measure](../concepts/aggregation-tutorial.md#aggregation-in-charts). These dimensions define how values are split into groups and therefore have fixed values in each group.
 
-If you specify a dimension that was not used to build the chart, it won't have a fixed value and the value can be different in each group row. As a result, it will be impossible to determine which value of this dimension must be used to calculate the measure. This limitation applies to the `WITHIN` and `AMONG` grouping types.
+   If you specify a dimension that was not used to build the chart, it won't have a fixed value and the value can be different in each group row. As a result, it will be impossible to determine which value of this dimension must be used to calculate the measure. This limitation applies to the `WITHIN` and `AMONG` grouping types.
 
-    Examples:
-    - Valid: `RANK(SUM([Profit]) WITHIN [Category])` in the chart with grouping by the `[Order Date]` and `[Category]` dimensions.
-    - Allowed: `RANK(SUM([Profit]) WITHIN [City])` in the chart with grouping by the `[Category]` dimension,       `[City]` does not participate in the grouping.
-    - Not valid: `RANK(SUM([Profit]) WITHIN [Category])` in a chart with grouping by the `[Order Date]` and `[City]` dimensions.
-    - Not valid: `RANK(SUM([Profit]) AMONG [City])` in a chart with grouping by the `[Order Date]` and `[Category]` dimensions.
-1. The **Filters** section doesn't affect the chart grouping, so if the dimension is only in this chart section, you can't use it in the window function.
-
-    Example:
-    - Chart type: **Table**.
-    - In the **Columns** section, the `Category` dimension and the `SUM(SUM([Sales] BEFORE FILTER BY [Date])` expression are added.
-    - The `Date` dimension is added to the **Filters** section.
-
-    This will result in an error because the `Date` dimension isn't used to build the chart.
+   Examples:
+   * Correct formula: `RANK(SUM([Profit]) WITHIN [Category])` in the chart with grouping by the `[Order Date]` and `[Category]` dimensions. `[Category]` is used when building the chart.
+   * Correct formula: `RANK(SUM([Profit]) WITHIN [Category])` in the chart with grouping by the `[Order Date]` and `[City]` dimensions. `[Category]` is not part of the grouping, so it will not be used in the calculation. The result will be the same as when using the `RANK(SUM([Profit]) TOTAL)` formula.
+   * Incorrect formula: `RANK(SUM([Profit]) AMONG [City])` in the chart with grouping by the `[Order Date]` and `[Category]` dimensions. Running the function will return the [Unknown dimension for window](../troubleshooting/errors/ERR-DS_API-FORMULA-UNKNOWN_WINDOW_DIMENSION.md) error.
+1. Window functions do not support managing the [level of detail](./aggregation-functions.md#syntax-lod). This is only available for aggregate functions.
+1. For functions that depend on sorting order, the fields listed in `ORDER BY` must be used when building the chart.
 1. If a window function is used to build a **Table** chart, we don't recommend enabling the display of **Total** in the settings. This may cause an error.
 
 ## Syntax {#syntax}
@@ -64,9 +88,9 @@ It starts off, just like a regular function call, with its name and arguments (`
 ### Grouping {#syntax-grouping}
 
 The arguments are followed by a window grouping, which can be one of three types:
-- `TOTAL` (equivalent to `WITHIN` without dimensions): all query entries fall into a single window.
-- `WITHIN dim1, dim2, ...` : records are grouped by the dimensions `dim1, dim2, ...`.
-- `AMONG dim1, dim2, ...` : records are grouped by all dimensions from the query, except those listed. For example, if we use formula `RSUM(SUM([Sales]) AMONG dim1, dim2)` with dimensions `dim1`, `dim2`, `dim3`, `dim4` in the data query, then the entries will be grouped by `dim3` and `dim4`, so it will be equivalent to `RSUM([Sales] WITHIN dim3, dim4)`.
+* `TOTAL` (equivalent to `WITHIN` without dimensions): all query entries fall into a single window.
+* `WITHIN dim1, dim2, ...` : records are grouped by the dimensions `dim1, dim2, ...`.
+* `AMONG dim1, dim2, ...` : records are grouped by all dimensions from the query, except those listed. For example, if we use formula `RSUM(SUM([Sales]) AMONG dim1, dim2)` with dimensions `dim1`, `dim2`, `dim3`, `dim4` in the data query, then the entries will be grouped by `dim3` and `dim4`, so it will be equivalent to `RSUM([Sales] WITHIN dim3, dim4)`.
 
 The grouping clause is optional. `TOTAL` is used by default.
 
@@ -90,9 +114,9 @@ The `ORDER BY` clause accepts dimensions as well as measures. It also supports t
 
 Fields listed in `ORDER BY` are combined with fields listed in the chart's sorting section.
 Example:
-- Function — `... ORDER BY [Date] DESC, [City]`.
-- Chart — Sorted by `Date` and `Category`.
-- Result — `Date` (descending), `City`, `Category`.
+* Function — `... ORDER BY [Date] DESC, [City]`.
+* Chart — Sorted by `Date` and `Category`.
+* Result — `Date` (descending), `City`, `Category`.
 
 ### BEFORE FILTER BY {#syntax-before-filter-by}
 
@@ -100,14 +124,14 @@ If any fields are listed in `BEFORE FILTER BY`, then this window function is cal
 
 `BEFORE FILTER BY` applies to all nested window functions too.
 Example:
-- Formula — `MAVG(RSUM([Sales]), 10 BEFORE FILTER BY [Date])`.
-- Equivalent — `MAVG(RSUM([Sales] BEFORE FILTER BY [Date]), 10 BEFORE FILTER BY [Date])`.
+* Formula — `MAVG(RSUM([Sales]), 10 BEFORE FILTER BY [Date])`.
+* Equivalent — `MAVG(RSUM([Sales] BEFORE FILTER BY [Date]), 10 BEFORE FILTER BY [Date])`.
 
 Do not use conflicting `BEFORE FILTER BY` clauses:
-- Valid: `MAVG(RSUM([Sales] BEFORE FILTER BY [Date], [Category]), 10 BEFORE FILTER BY [Date])` — functions are nested and (`[Date]`) is a subset of (`[Date], [Category]`).
-- Valid: `MAVG(RSUM([Sales] BEFORE FILTER BY [Category]), 10 BEFORE FILTER BY [Date])` — functions are nested, so field lists are combined in the second of the two functions.
-- Valid: `RSUM([Sales] BEFORE FILTER BY [Date], [Category]) - RSUM([Sales] BEFORE FILTER BY [Date])` — (`[Date]`) is a subset of (`[Date], [Category]`).
-- Not valid: `RSUM([Sales] BEFORE FILTER BY [Category]) - RSUM([Sales] BEFORE FILTER BY [Date])` — functions are not nested and neither of (`[Category]`) and (`[Date]`) is a subset of the other.
+* Correct formula: `MAVG(RSUM([Sales] BEFORE FILTER BY [Date], [Category]), 10 BEFORE FILTER BY [Date])` — functions are nested and (`[Date]`) is a subset of (`[Date], [Category]`).
+* Correct formula: `MAVG(RSUM([Sales] BEFORE FILTER BY [Category]), 10 BEFORE FILTER BY [Date])` — functions are nested, so field lists are combined in the second of the two functions.
+* Correct formula: `RSUM([Sales] BEFORE FILTER BY [Date], [Category]) - RSUM([Sales] BEFORE FILTER BY [Date])` — (`[Date]`) is a subset of (`[Date], [Category]`).
+* Incorrect formula: `RSUM([Sales] BEFORE FILTER BY [Category]) - RSUM([Sales] BEFORE FILTER BY [Date])` — functions are not nested and neither of (`[Category]`) and (`[Date]`) is a subset of the other.
 
 ## Aggregate Functions as Window Functions {#aggregate-functions-as-window-functions}
 
@@ -123,8 +147,7 @@ The following aggregations can also be used as window functions:
 
 To use the window version of the aggregate functions, you must explicitly specify the grouping (unlike other window functions, where it is optional).
 
-Example:
-- `SUM([Sales]) / SUM(SUM([Sales]) TOTAL)` can be used to calculate the ratio of a group's sum of `[Sales]` to the sum of `[Sales]` among all entries.
+For example, the `SUM([Sales]) / SUM(SUM([Sales]) TOTAL)` expression can be used to calculate the ratio of a group's sum of `[Sales]` to the sum of `[Sales]` among all entries.
 
 
 

@@ -1,13 +1,13 @@
 # Markdown
 
 {{ datalens-short-name }} allows you to use the Markdown markup language in the [{#T}](./widget.md#text) widget on the dashboard.
-
 You can insert explanatory text, links, tables, images, or use formatting to highlight key points.
 
 In text widgets, you can use the following elements:
 
 * [Headers](#headings)
 * [Bold and italics](#emphasizing)
+* [Text color](#text-color)
 * [Lists](#lists)
    * [Simple unordered list](#unordered-list)
    * [Nested unordered list](#unordered-sublist)
@@ -19,7 +19,6 @@ In text widgets, you can use the following elements:
    * [Inline code snippet](#inline-code)
    * [Code block](#codeblock)
 * [Image](#image)
-* [Cuts](#cuts)
 
 ## Headers {#headings}
 
@@ -57,6 +56,28 @@ Use formatting to highlight key points in your text:
    This text will be _**bold and italic**_.
    This text will be **_bold and italic_**.
    ```
+
+## Text color {#text-color}
+
+You can set the text color this way: `{color}(text)`. The following colors are supported:
+
+* gray
+* yellow
+* orange
+* red
+* green
+* blue
+* violet
+
+For example, the following markup:
+
+```markdown
+This text is {green}(green).
+```
+
+will be displayed as:
+
+This text is <font color="green">green</font>.
 
 ## Lists {#lists}
 
@@ -102,7 +123,7 @@ will be displayed as:
 
 ### Simple ordered list {#ordered-list}
 
-To make an ordered list, use numbers with a `.` or `)`.
+To make an ordered list, use numbers with a `.` or `)` symbol.
 
 For example, the following markup:
 
@@ -242,27 +263,18 @@ will be displayed as a highlighted Kotlin code snippet:
 val a: Int = 1
 ```
 
+## Image {#image}
 
-## Cuts {#cuts}
 
-Use cuts to hide content, e.g., additional information or long blocks of code.
+You can add images of any format.
 
-For example, the following markup:
+
+
+To add an image, paste the following code in the widget:
 
 ```markdown
-
-{% cut "Title of the text to cut" %}
-
-Content to be displayed on click.
-
-{% endcut %}
-
+![alt text](https://link_to_image "Text for tip on hover" =100x200)
 ```
 
-will be displayed as:
 
-{% cut "Title of the text to cut" %}
 
-Content to be displayed on click.
-
-{% endcut %}

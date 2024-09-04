@@ -58,7 +58,7 @@ The date and time can be converted to the specified [time zone](https://en.wikip
 
 **Syntax:**`DATETIME_PARSE( value )`
 
-Converts the `value` expression to date and time format. Unlike [DATETIME](DATETIME.md), it supports multiple formats.
+Converts the `value` expression to date and time format. Unlike [DATETIME](DATETIME.md), it supports multiple formats. The expression is processed on the {{ CH }} source side. For more information on the supported formats, see the relevant {{ CH }} [documentation](https://clickhouse.com/docs/en/sql-reference/functions/type-conversion-functions#parsedatetime32besteffort).
 
 
 
@@ -137,7 +137,7 @@ Generates a Geopoint type value. For the input, it accepts a string, a "geopoint
 
 **Syntax:**`GEOPOLYGON( value )`
 
-Converts the `value` expression to [geopolygon](../concepts/data-types.md#geopolygon) format.
+Converts the `value` expression to [geopolygon](../concepts/data-types.md#geopolygon) format. At input, the function accepts strings in `[[[lat_1,lon_1], [lat_2,lon_2], ..., [lat_N-1,lon_N-1], [lat_N,lon_N]]]` format.
 
 
 
@@ -162,5 +162,13 @@ Converts the `expression` expression to integer format according to the followin
 **Syntax:**`STR( expression )`
 
 Converts the `expression` expression to string type.
+
+
+
+## [TREE](TREE.md)
+
+**Syntax:**`TREE( array )`
+
+Converts the `array` expression to `Tree of strings` format. Can be used to create [tree hierarchies](../concepts/data-types.md#tree-hierarchy).
 
 

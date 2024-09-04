@@ -5,38 +5,60 @@ description: "In this tutorial, you will learn what types of charts are availabl
 
 # Visualization reference
 
-The following types of charts are available in {{ datalens-full-name }}:
 
-* **Charts**:
+When [running](../quickstart.md#create-datalens) your {{ datalens-short-name }} instance, you can enable [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) (with `HC=1`) or run the instance without this option. Depending on that, the following chart types will be available:
 
-   - [Line chart](line-chart.md)
-   - [Stacked area chart](area-chart.md)
-   - [Normalized area chart](normalized-area-chart.md)
-   - [Column chart](column-chart.md)
-   - [Normalized column chart](normalized-column-chart.md)
-   - [Bar chart](bar-chart.md)
-   - [Normalized bar chart](normalized-bar-chart.md)
-   - [Scatter chart](scatter-chart.md)
-   - [Pie chart](pie-chart.md)
-   - [Donut chart](ring-chart.md)
-   - [Tree chart](tree-chart.md)
-   - [Combined chart](combined-chart.md)
+{% list tabs %}
 
-* **Tables**:
+- With Highcharts
 
-   - [Table](table-chart.md)
-   - [Pivot table](pivot-table-chart.md)
+   * **Charts**:
 
+      * [Line chart](line-chart.md)
+      * [Stacked area chart](area-chart.md)
+      * [Normalized area chart](normalized-area-chart.md)
+      * [Column chart](column-chart.md)
+      * [Normalized column chart](normalized-column-chart.md)
+      * [Bar chart](bar-chart.md)
+      * [Normalized bar chart](normalized-bar-chart.md)
+      * [Scatter chart](scatter-chart.md)
+      * [Pie chart](pie-chart.md)
+      * [Donut chart](ring-chart.md)
+      * [Tree chart](tree-chart.md)
+      * [Combined chart](combined-chart.md)
 
-* **Other**:
+   * **Tables**:
 
-   - [Indicator](indicator-chart.md)
+      * [Table](table-chart.md)
+      * [Pivot table](pivot-table-chart.md)
+
+   * **Other**:
+
+      * [Indicator](indicator-chart.md)
+
+- Without Highcharts
+
+   * **Charts**:
+
+      * [Column chart](column-chart.md)
+      * [Scatter chart](scatter-chart.md)
+      * [Pie chart](pie-chart.md)
+
+   * **Tables**:
+
+      * [Table](table-chart.md)
+      * [Pivot table](pivot-table-chart.md)
+
+   * **Other**:
+
+      * [Indicator](indicator-chart.md)
+
+{% endlist %}
 
 {% note info %}
 
-[QL charts](../concepts/chart/index.md#sql-charts) do not support:
-
-* Any type of map
-* Pivot table
+[QL charts](../concepts/chart/index.md#sql-charts) do not support pivot tables.
 
 {% endnote %}
+
+

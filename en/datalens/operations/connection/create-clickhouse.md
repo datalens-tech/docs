@@ -15,17 +15,16 @@ All data requests are executed with the [join_use_nulls]({{ ch.docs }}/operation
 
 To create a {{ CH }} connection:
 
-1. Go to the workbook page.
+1. Go to the [workbook](../../workbooks-collections/index.md) page or create a new one.
 1. In the top-right corner, click **Create** → **Connection**.
 1. Select a **{{ CH }}** connection.
 1. Specify the connection parameters for the external {{ CH }} database:
 
    {% include [datalens-db-connection-parameters](../../../_includes/datalens/datalens-db-connection-parameters.md) %}
 
-1. Click **Create connection**. If you use the new {{ datalens-short-name }} object model with [workbooks and collections](../../../datalens/workbooks-collections/index.md), select or create a workbook to save the connection in.
+1. (Optional) Make sure the connection works properly. To do this, click **Check connection**.
+1. Click **Create connection**.
 1. Enter a name for the connection and click **Create**.
-
-{% include [datalens-check-host](../../../_includes/datalens/operations/datalens-check-host.md) %}
 
 
 ## Additional settings {#clickhouse-additional-settings}
