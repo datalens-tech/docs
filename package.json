@@ -5,10 +5,11 @@
   "scripts": {
     "build": "rm -rf ./build/* && yfm -i ./docs -o ./build/docs",
     "prebuild": "node ./scripts/pre-build.js ./docs",
-    "postbuild": "node ./scripts/post-build.js ./build/docs"
+    "postbuild": "node ./scripts/post-build.js ./build/docs",
+    "dev": "npm run build && npx serve ./build"
   },
   "dependencies": {
-    "@diplodoc/cli": "^4.35.0",
+    "@diplodoc/cli": "^4.36.5",
     "cheerio": "^1.0.0-rc.12",
     "fs-extra": "^11.2.0",
     "walk-sync": "^3.0.0"
@@ -19,6 +20,7 @@
     "@gravity-ui/stylelint-config": "2.0.0",
     "eslint": "8.48.0",
     "prettier": "3.2.0",
+    "serve": "^14.2.3",
     "stylelint": "14.0.0"
   }
 }
