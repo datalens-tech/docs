@@ -9,8 +9,8 @@
     "dev": "npm run build && npx serve ./build"
   },
   "dependencies": {
-    "@diplodoc/cli": "^4.36.5",
-    "cheerio": "^1.0.0-rc.12",
+    "@diplodoc/cli": "^4.39.1",
+    "cheerio": "^1.0.0",
     "fs-extra": "^11.2.0",
     "walk-sync": "^3.0.0"
   },
