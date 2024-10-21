@@ -10,3 +10,7 @@ analytics:
   gtm:
     id: 'GTM-M2R6PB63'
     mode: 'notification'
+search:
+  provider: local
+  confidence: phrased
+  tolerance: 2
