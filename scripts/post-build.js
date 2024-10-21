@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const cheerio = require('cheerio');
 const walkSync = require('walk-sync');
@@ -31,6 +32,19 @@ const notes = {
     Совет: 'Tip',
     Внимание: 'Alert',
     Важно: 'Warning',
+};
+
+const VENDOR_FIX = {
+    consent: {
+        ru: {
+            old: 'Нажав Принять, вы даёте согласие на использование нашим веб-сайтом файлов cookie Google Analytics для предоставления вам наиболее релевантных услуг и в аналитических целях.',
+            new: 'Мы используем файлы cookie, чтобы вы могли наилучшим образом пользоваться нашим веб-сайтом. Если вы продолжаете использовать наш веб-сайт, мы полагаем, что вы согласны с таким использованием.',
+        },
+        en: {
+            old: 'By clicking Accept, you consent to our website’s use of Google Analytics cookies in order to give you the most relevant experience, and for analytics purposes.',
+            new: 'We use cookies to ensure that you have the best experience on our website. If you continue to use our website, we assume that you are happy with it.',
+        },
+    },
 };
 
 const LINK = [
@@ -66,9 +80,21 @@ async function main() {
         includeBasePath: true,
     });
 
+    // fix vendor script
+    let vendorScript = fs.readFileSync(path.join(basePath, '_bundle', 'vendor.js')).toString();
+    Object.keys(VENDOR_FIX).forEach((key) => {
+        Object.keys(VENDOR_FIX[key]).forEach((lang) => {
+            vendorScript = vendorScript.replace(
+                VENDOR_FIX[key][lang].old,
+                VENDOR_FIX[key][lang].new,
+            );
+        });
+    });
+    fs.writeFileSync(path.join(basePath, '_bundle', 'vendor.js'), vendorScript);
+
     for (let i = 0; i < paths.length; i += 1) {
-        const path = paths[i];
-        const trimPath = path.replace(basePath, '');
+        const filePath = paths[i];
+        const trimPath = filePath.replace(basePath, '');
         const trimPathLog = trimPath.replace(/^\//g, '');
 
         // eslint-disable-next-line no-console
@@ -90,7 +116,7 @@ async function main() {
             }
         }
 
-        const fileHtml = fs.readFileSync(path);
+        const fileHtml = fs.readFileSync(filePath);
         const $ = cheerio.load(fileHtml);
 
         const head = $('head');
@@ -153,7 +179,7 @@ async function main() {
                 .replace(/>В этой статье</g, '>In this article<');
         }
 
-        fs.writeFileSync(path, html);
+        fs.writeFileSync(filePath, html);
     }
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
