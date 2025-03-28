@@ -54,7 +54,5 @@
 
 ## Ограничения {#restrictions}
 
-Для полей `Measure Names` и `Measure Values` существуют следующие ограничения:
 
-* `Measure Names` и `Measure Values` нельзя использовать для фильтрации чарта.
-* `Measure Values` можно использовать для сортировки только в чартах [{#T}](../../visualization-ref/area-chart.md) и [{#T}](../../visualization-ref/normalized-area-chart.md) после добавления `Measure Names` в секцию **Цвета**.
+Поля `Measure Names` и `Measure Values` нельзя использовать для фильтрации чарта.

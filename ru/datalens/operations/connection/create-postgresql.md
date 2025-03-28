@@ -1,6 +1,6 @@
 ---
-title: "Инструкция по созданию подключения к {{ PG }} в {{ datalens-full-name }}"
-description: "Из статьи вы узнаете, как подключиться к {{ PG }} в {{ datalens-full-name }}."
+title: Инструкция по созданию подключения к {{ PG }} в {{ datalens-full-name }}
+description: Из статьи вы узнаете, как подключиться к {{ PG }} в {{ datalens-full-name }}.
 ---
 
 # Создание подключения к {{ PG }}
@@ -16,7 +16,7 @@ description: "Из статьи вы узнаете, как подключить
 
    {% include [datalens-db-connection-parameters-postgresql](../../../_includes/datalens/datalens-db-connection-parameters-postgresql.md) %}
 
-1. (опционально) Проверьте работоспособность подключения. Для этого нажмите кнопку **Проверить подключение**. 
+1. (опционально) Проверьте работоспособность подключения. Для этого нажмите кнопку **Проверить подключение**.
 1. Нажмите кнопку **Создать подключение**.
 1. Укажите название подключения и нажмите кнопку **Создать**.
 
@@ -34,3 +34,5 @@ description: "Из статьи вы узнаете, как подключить
 * **TLS** — опция определяет необходимость использования протокола TLS. Когда опция включена, параметр `sslmode` принимает значение `required`, когда выключена — `prefer`.
 * **CA Certificate** — чтобы загрузить сертификат, нажмите кнопку **Прикрепить файл** и укажите файл сертификата. Когда сертификат загружен, поле отображает название файла.
 * {% include [datalens-db-connection-export-settings-item](../../../_includes/datalens/operations/datalens-db-connection-export-settings-item.md) %}
+
+![screen07](../../../_assets/datalens/operations/connection/create-postgresql/screen07.png)

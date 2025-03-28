@@ -48,20 +48,20 @@ Returns the statistical [standard deviation](https://en.wikipedia.org/wiki/Stand
 
 Source data
 
-| **Month**     | **Temperature**   |
-|:--------------|:------------------|
-| `'January'`   | `-8.00`           |
-| `'February'`  | `-4.00`           |
-| `'March'`     | `-1.00`           |
-| `'April'`     | `7.00`            |
-| `'May'`       | `14.00`           |
-| `'June'`      | `18.00`           |
-| `'July'`      | `22.00`           |
-| `'August'`    | `19.00`           |
-| `'September'` | `13.00`           |
-| `'October'`   | `5.00`            |
-| `'November'`  | `1.00`            |
-| `'December'`  | `-4.00`           |
+| **Date**     | **Temperature**   |
+|:-------------|:------------------|
+| `2019-03-01` | `5.00`            |
+| `2019-03-02` | `0.00`            |
+| `2019-03-03` | `-3.00`           |
+| `2019-03-04` | `1.00`            |
+| `2019-03-05` | `4.00`            |
+| `2019-03-06` | `5.00`            |
+| `2019-03-07` | `1.00`            |
+| `2019-03-08` | `-6.00`           |
+| `2019-03-09` | `-6.00`           |
+| `2019-03-10` | `-4.00`           |
+| `2019-03-11` | `-2.00`           |
+| `2019-03-12` | `0.00`            |
 
 Formulas:
 
@@ -72,11 +72,11 @@ Result
 
 | **Temperature SD**   |
 |:---------------------|
-| `10.21`              |
+| `3.90`               |
 
 
 
 
 #### Data source support {#data-source-support}
 
-`ClickHouse 21.8`, `Microsoft SQL Server 2017 (14.0)`, `MySQL 5.7`, `Oracle Database 12c (12.1)`, `PostgreSQL 9.3`, `YDB`.
+`ClickHouse 21.8`, `Files`, `Google Sheets`, `Microsoft SQL Server 2017 (14.0)`, `MySQL 5.7`, `Oracle Database 12c (12.1)`, `PostgreSQL 9.3`, `Yandex Documents`, `YDB`.

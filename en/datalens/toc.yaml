@@ -1,18 +1,10 @@
 title: DataLens
 href: index.yaml
-label:
-  title: To be announced soon
-  description: The service will soon be available in Kazakhstan.
-  theme: info
-  when: region == "kz"
 items:
   - name: Getting started
     items:
       - name: Overview
         href: concepts/index.md
-      - name: Navigation and interface
-        href: getting-started/navigation.md
-        hidden: true
       - name: Getting started
         href: quickstart.md
       - name: Limits
@@ -50,35 +42,17 @@ items:
   - name: Datasets
     items:
       - name: Overview
-        href: concepts/dataset/index.md
+        href: dataset/index.md
+      - name: Working with datasets
+        href: dataset/create-dataset.md
       - name: Data model
-        href: concepts/dataset/data-model.md
+        href: dataset/data-model.md
+      - name: Dataset settings
+        href: dataset/settings.md
       - name: Data types
-        href: concepts/data-types.md
+        href: dataset/data-types.md
       - name: Data type mapping
         href: dataset/types-lookup-table.md
-      - name: Dataset settings
-        href: concepts/dataset/settings.md
-      - name: Step-by-step guides
-        items:
-          - name: Creating a dataset
-            href: operations/dataset/create.md
-          - name: Combining data from multiple tables
-            href: operations/dataset/join-data.md
-          - name: Creating a data field
-            href: operations/dataset/create-field.md
-          - name: Creating a calculated data field
-            href: operations/dataset/create-calculated-field.md
-          - name: Creating a default filter for new charts
-            href: operations/dataset/create-filter.md
-          - name: Replacing a connection in a dataset
-            href: operations/dataset/replace-connection.md
-          - name: Updating fields in datasets
-            href: operations/dataset/update-field.md
-          - name: Describing a dataset via a source SQL query
-            href: operations/dataset/add-data.md
-          - name: Adding parameters to a dataset
-            href: operations/dataset/add-parameter-dataset.md
   - name: Calculated fields
     items:
       - name: Overview
@@ -147,6 +121,8 @@ items:
                 href: function-ref/ARRAY.md
               - name: ARR_AVG
                 href: function-ref/ARR_AVG.md
+              - name: ARR_INTERSECT
+                href: function-ref/ARR_INTERSECT.md
               - name: ARR_MAX
                 href: function-ref/ARR_MAX.md
               - name: ARR_MIN
@@ -409,6 +385,8 @@ items:
                 href: function-ref/MARKUP.md
               - name: SIZE
                 href: function-ref/SIZE.md
+              - name: TOOLTIP
+                href: function-ref/TOOLTIP.md
               - name: URL
                 href: function-ref/URL.md
               - name: USER_INFO
@@ -535,7 +513,7 @@ items:
                 href: operations/chart/replace-dataset.md
               - name: Adding a hierarchy
                 href: operations/chart/add-hierarchy.md
-              - name: Configuring the navigator
+              - name: Configuring a navigator
                 href: operations/chart/config-chart-navigator.md
               - name: Configuring the display of null values
                 href: operations/chart/chart-null-settings.md
@@ -553,7 +531,7 @@ items:
             href: visualization-ref/index.md
           - name: Line chart
             href: visualization-ref/line-chart.md
-          - name: Stacked area chart
+          - name: Area chart
             href: visualization-ref/area-chart.md
           - name: Normalized stacked area chart
             href: visualization-ref/normalized-area-chart.md
@@ -589,6 +567,8 @@ items:
             href: operations/chart/add-guid.md
           - name: Adding parameters to a chart
             href: operations/chart/add-parameter-chart.md
+      - name: Versioning
+        href: concepts/chart/versioning.md
   - name: Dashboards
     items:
       - name: Overview
@@ -599,7 +579,7 @@ items:
         href: dashboard/link.md
       - name: Selectors
         href: dashboard/selector.md
-      - name: Filtering charts by charts
+      - name: Filtering charts by other charts
         href: dashboard/chart-chart-filtration.md
       - name: Parameters
         href: dashboard/dashboard_parameters.md
@@ -607,7 +587,7 @@ items:
         href: dashboard/markdown.md
       - name: Step-by-step guides
         items:
-          - name: Creating dashboards
+          - name: Creating a dashboard
             href: operations/dashboard/create.md
           - name: Adding a chart to a dashboard
             href: operations/dashboard/add-chart.md
@@ -640,6 +620,9 @@ items:
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-DB-CHYT-INVALID_SORTED_JOIN-MORE_THAN_ONE_TABLE.md
+      - name: Cannot parse
+        hidden: true
+        href: troubleshooting/errors/ERR-DS_API-DB-CANNOT_PARSE.md
       - name: Cannot parse datetime
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-CANNOT_PARSE-DATETIME.md
@@ -742,6 +725,9 @@ items:
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-SOURCE_CONFIG-TABLE_NOT_CONFIGURED.md
+      - name: Empty document
+        hidden: true
+        href: troubleshooting/errors/ERR-DS_API-SOURCE-FILE-NO_DATA.md
       - name: Too many series on the chart
         hidden: true
         href: troubleshooting/errors/ERR-CK_TOO_MANY_LINES.md
@@ -789,4 +775,3 @@ items:
       - name: Accessing a nonexistent object
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-REFERENCED_ENTRY_NOT_FOUND.md
-base: en/datalens

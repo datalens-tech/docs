@@ -223,6 +223,14 @@ Returns the average of elements in the `array`.
 
 
 
+## [ARR_INTERSECT](ARR_INTERSECT.md)
+
+**Syntax:**`ARR_INTERSECT( array_1, array_2, array_3 [ , ... ] )`
+
+Returns an array of elements that occur in every array provided as an argument. The function does not put such elements in any particular order. Duplicate elements are only added once.
+
+
+
 ## [ARR_MAX](ARR_MAX.md)
 
 **Syntax:**`ARR_MAX( array )`
@@ -930,7 +938,7 @@ Generates a Geopoint type value. For the input, it accepts a string, a "geopoint
 
 **Syntax:**`GEOPOLYGON( value )`
 
-Converts the `value` expression to [geopolygon](../concepts/data-types.md#geopolygon) format. At input, the function accepts strings in `[[[lat_1,lon_1], [lat_2,lon_2], ..., [lat_N-1,lon_N-1], [lat_N,lon_N]]]` format.
+Converts the `value` expression to [geopolygon](../dataset/data-types.md#geopolygon) format. At input, the function accepts strings in `[[[lat_1,lon_1], [lat_2,lon_2], ..., [lat_N-1,lon_N-1], [lat_N,lon_N]]]` format.
 
 
 
@@ -1966,6 +1974,14 @@ Returns the current date, depending on the data source and connection type.
 
 
 
+## [TOOLTIP](TOOLTIP.md)
+
+**Syntax:**`TOOLTIP( text, tooltip [ , placement ] )`
+
+Adds a small tooltip to a text or other markup function results. The `placement` argument manages the text positioning: `top`, `right`, `bottom` or `left`. The default value is `right`.
+
+
+
 ## [TOP_CONCAT](TOP_CONCAT.md)
 
 **Syntax:**<br/>`TOP_CONCAT( expression, amount [ , separator ] )`<br/>or<br/>`TOP_CONCAT( expression, amount [ , separator ]
@@ -1981,7 +1997,7 @@ Returns a string that contains top `amount` unique values of `expression` delimi
 
 **Syntax:**`TREE( array )`
 
-Converts the `array` expression to `Tree of strings` format. Can be used to create [tree hierarchies](../concepts/data-types.md#tree-hierarchy).
+Converts the `array` expression to `Tree of strings` format. Can be used to create [tree hierarchies](../dataset/data-types.md#tree-hierarchy).
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: "Инструкция по созданию подключения к {{ MY }} в {{ datalens-full-name }}"
-description: "Из статьи вы узнаете, как подключиться к {{ MY }} в {{ datalens-full-name }}."
+title: Инструкция по созданию подключения к {{ MY }} в {{ datalens-full-name }}
+description: Из статьи вы узнаете, как подключиться к {{ MY }} в {{ datalens-full-name }}.
 ---
 
 # Создание подключения к {{ MY }}
@@ -22,5 +22,7 @@ description: "Из статьи вы узнаете, как подключить
 
 
 ## Дополнительные настройки {#additional-settings}
+
+
 
 {% include [datalens-db-connection-export-settings](../../../_includes/datalens/operations/datalens-db-connection-export-settings.md) %}

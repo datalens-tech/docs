@@ -1,6 +1,6 @@
 ---
-title: "How to add aliases in {{ datalens-full-name }}"
-description: "Follow this guide to add an alias for widgets in {{ datalens-full-name }}."
+title: How to add aliases in {{ datalens-full-name }}
+description: Follow this guide to add an alias for widgets in {{ datalens-full-name }}.
 ---
 
 # Creating an alias
@@ -9,7 +9,7 @@ description: "Follow this guide to add an alias for widgets in {{ datalens-full-
 To add an [alias](../../dashboard/link.md#alias) for a pair of widgets:
 
 
-1. In the left-hand panel, click ![image](../../../_assets/datalens/dashboard-0523.svg) **Dashboards** and select the dashboard you need. If you do not have a dashboard, [create one](create.md).
+1. In the left-hand panel, click ![image](../../../_assets/console-icons/layout-cells-large.svg) **Dashboards** and select the dashboard you need. If you do not have a dashboard, [create one](create.md).
 1. At the top of the page, click **Edit**.
 1. To the right of the widget to add a link for, click ![image](../../../_assets/datalens/links.svg).
 

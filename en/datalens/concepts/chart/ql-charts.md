@@ -1,12 +1,18 @@
+---
+title: 'QL charts: Overview'
+description: In this tutorial, you will learn about QL charts and their features.
+---
+
 # QL charts: Overview
 
 
 To create such charts, one uses direct queries to the source. The query is run using the source database's SQL dialect, which helps expand visualization capabilities by using database-specific transactions.
 
 
-Running a query does not create a separate [dataset](../dataset/index.md) object: a chart is generated on the fly and displayed in the preview panel.
+Running a query does not create a separate [dataset](../../dataset/index.md) object: a chart is generated on the fly and displayed in the preview panel.
 
 Unlike [dataset-based charts](dataset-based-charts.md), the logic of a visualization area in QL charts favors queries against the source, i.e., the visualization area only displays the data from the query.
+
 
 
 QL charts:

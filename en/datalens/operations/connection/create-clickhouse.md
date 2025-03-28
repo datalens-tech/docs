@@ -1,13 +1,13 @@
 ---
-title: "How to create a {{ CH }} connection"
-description: "Follow this guide to create a {{ CH }} connection."
+title: How to create a {{ CH }} connection
+description: Follow this guide to create a connection to {{ CH }}.
 ---
 
 # Creating a {{ CH }} connection
 
 {% note info %}
 
-All data requests are executed with the [join_use_nulls]({{ ch.docs }}/operations/settings/settings/#join_use_nulls) flag enabled. See the [{#T}](#ch-connection-specify) section if you use views or subqueries with a JOIN in {{ datalens-short-name }}.
+All data requests must be made with the [join_use_nulls]({{ ch.docs }}/operations/settings/settings/#join_use_nulls) flag enabled. See [Specifics of using a connection to {{ CH }}](#ch-connection-specify) if you are using views or subqueries with the JOIN section in {{ datalens-short-name }}.
 
 {% endnote %}
 
@@ -22,8 +22,10 @@ To create a {{ CH }} connection:
 
    {% include [datalens-db-connection-parameters](../../../_includes/datalens/datalens-db-connection-parameters.md) %}
 
-1. (Optional) Make sure the connection works properly. To do this, click **Check connection**.
-1. Click **Create connection**.
+   ![image](../../../_assets/datalens/operations/connection/connection-clickhouse.png)
+
+1. (Optional) Test the connection. To do this, click **Check connection**.
+1. Click **Create connection**.
 1. Enter a name for the connection and click **Create**.
 
 
@@ -33,13 +35,19 @@ You can specify additional connection settings in the **Advanced connection sett
 
 * **TLS**: If this option is enabled, the DB is accessed via `HTTPS`; if not, via `HTTP`.
 
-* **CA Certificate**: To upload a certificate , click **Attach file** and specify the certificate file. When the certificate is uploaded, the field shows the file name.
+* **CA Certificate**: To upload a certificate, click **Attach file** and select the certificate file. When the certificate is uploaded, the field shows the file name.
 
 * {% include [datalens-db-connection-export-settings-item](../../../_includes/datalens/operations/datalens-db-connection-export-settings-item.md) %}
 
-## Specifics for {{ CH }} connections {#ch-connection-specify}
+* **Readonly**: Select a permission for requests to read data, write data, and change parameters. This setting must not exceed the user's corresponding setting in {{ CH }}:
 
-In {{ CH }}, you can create a dataset on top of a `VIEW` that contains a `JOIN`. To do this, make sure a view is created with the `join_use_nulls` option enabled. We recommend that you set `join_use_nulls = 1` in the `SETTINGS` section:
+  * `0`: Allows all requests.
+  * `1`: Allows only data read requests.
+  * `2`: Allows requests to read data and edit settings.
+
+## Specifics of using a connection to {{ CH }} {#ch-connection-specify}
+
+In {{ CH }}, you can create a dataset on top of a `VIEW` that contains the `JOIN` section. To do this, make sure a view is created with the `join_use_nulls` option enabled. We recommend setting `join_use_nulls = 1` in the `SETTINGS` section:
 
 ```sql
 CREATE VIEW ... (
@@ -54,6 +62,6 @@ CREATE VIEW ... (
 
 You should also enable this option for raw-sql subqueries that are used as a data source in your dataset.
 
-To avoid errors when using views with a JOIN in {{ datalens-short-name }}, re-create all views and set `join_use_nulls = 1`. This fills in empty cells with `NULL` values and converts the type of the corresponding fields to [Nullable]({{ ch.docs }}/sql-reference/data-types/nullable/#data_type-nullable).
+To avoid errors when using views with the JOIN section in {{ datalens-short-name }}, re-create all views and set `join_use_nulls = 1`. This fills in empty cells with `NULL` values and converts the type of the relevant fields to [Nullable]({{ ch.docs }}/sql-reference/data-types/nullable/#data_type-nullable).
 
 {% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}

@@ -1,12 +1,19 @@
+---
+title: Creating a QL chart
+description: Follow this guide to create a QL chart.
+---
+
 # Creating a QL chart
 
 
-QL charts have the same [general settings](../../concepts/chart/settings.md#common-settings) and [section settings](../../concepts/chart/settings.md#section-settings) available as charts based on a dataset. Only certain [measure settings](../../concepts/chart/settings.md#indicator-settings) are supported for chart fields.
+QL charts have the same [general settings](../../concepts/chart/settings.md#common-settings) and [section settings](../../concepts/chart/settings.md#section-settings) as the dataset-based charts. Only certain [measure settings](../../concepts/chart/settings.md#indicator-settings) are supported for chart fields.
+
+At each step, you can [undo/redo](../../concepts/chart/settings.md#undo-redo) any change introduced within the current version.
 
 To create a QL chart:
 
 1. Go to an existing database connection.
-1. Make sure **SQL query access level** → **Allow subqueries in datasets and queries from charts** is enabled.
+1. Make sure **Raw SQL level** → **Allow subqueries in datasets and queries from charts** is enabled.
 1. In the top-right corner, click **Create QL chart**.
 1. In the **Query** tab, enter your query using the SQL dialect of the database you are querying.
 1. In the bottom-left corner, click **Start**.
@@ -14,7 +21,6 @@ To create a QL chart:
 After the query runs, a visualization of your data will be displayed.
 
 {% include [datalens-sql-ch-example](../../../_includes/datalens/datalens-sql-ch-example.md) %}
-
 
 
 
@@ -32,23 +38,23 @@ To add a parameter:
 
    ![image](../../../_assets/datalens/parameters/date-interval.png =450x167)
 
-   Parameter values of the `date`, `datetime`, `date-interval`, and `datetime-interval` types can be specified in one of the following ways:
+   There are several ways to configure the parameters of the `date`, `datetime`, `date-interval`, and `datetime-interval` types:
 
-   * **Exact date**: Specified as an exact value.
-   * **Offset from the current date**: Specified as a relative value that gets updated automatically.
-
+   * **Exact date** to specify an exact value.
+   * **Offset from the current date** to specify a relative value that will be updated automatically.
+   
    Use presets to quickly fill in the values.
 
 To manage parameter values on the dashboard, [create a selector](../dashboard/add-selector.md) with manual input and specify a parameter name in the **Field or parameter name** field.
 
 ### Intervals {#params-interval}
 
-You can use the `date-interval` and the `datetime-interval` type parameters in query code only with the `_from` and `_to` postfixes. For example, for the `interval` parameter set to `2017-01-01 — 2019-12-31`, specify:
+The `date-interval` and the `datetime-interval` type parameters can be used in query code only with the `_from` and `_to` postfixes. For example, for the `interval` parameter set to `2017-01-01 — 2019-12-31`, specify:
 
-* `interval_from` to get the start of the range (`2017-01-01`).
-* `interval_to` to get the end of the range (`2019-12-31`).
+* `interval_from` to get the start of the interval (`2017-01-01`).
+* `interval_to` to get the end of the interval (`2019-12-31`).
 
-{% cut "Sample query" %}
+{% cut "Request example" %}
 
 ```sql
 SELECT toDate(Date) as datedate, count ('Order ID')
@@ -67,14 +73,14 @@ Parameter values from a selector arrive to a QL chart as a:
 * Single value if one element is selected.
 * [Tuple](https://docs.python.org/3/library/stdtypes.html#tuples) if multiple values are selected.
 
-If the query has the `IN` operator specified before a parameter, the substituted value is always converted into a tuple. A query like this will run correctly if you select one or more values.
+If a query for {{ CH }} or {{ PG }} connections has the `in` operator before a parameter, the substituted value is always converted into a tuple. In the case of other connections, there is no automatic conversion. A query with the `in` operator will run correctly if you select one or more values.
 
-{% cut "Sample query with the `IN` operator" %}
+{% cut "Example of a query with `in`" %}
 
 ```sql
 SELECT sum (Sales) as Sales, Category
 FROM samples.SampleLite
-WHERE Category in not_var{{category}}
+WHERE Category in not_var{{category}} 
 GROUP BY Category
 ORDER BY Category
 ```
@@ -83,12 +89,12 @@ ORDER BY Category
 
 If the query has `=` before a parameter, the query will only run correctly if a single value is selected.
 
-{% cut "Sample query with the `=` operator" %}
+{% cut "Example of a query with `=`" %}
 
 ```sql
 SELECT sum (Sales) as Sales, Category
 FROM samples.SampleLite
-WHERE Category = not_var{{category}}
+WHERE Category = not_var{{category}} 
 GROUP BY Category
 ORDER BY Category
 ```
@@ -97,7 +103,7 @@ ORDER BY Category
 
 ### Null choice in selector and parameters {#empty-selector}
 
-If a selector has no value selected and no default value is set for a parameter, a null value is provided to a query. In this case, all values will be selected in [dataset-based charts](../../concepts/chart/dataset-based-charts.md), and the filter for the relevant column will disappear when generating a query.
+If a selector has no value selected and no default value is set for a parameter, a null value is provided to a query. In which case all values will be selected in [dataset-based charts](../../concepts/chart/dataset-based-charts.md), and the filter for the relevant column will disappear when generating a query.
 
 To enable a similar behavior in QL charts, you can use a statement like this in your query:
 

@@ -2,7 +2,7 @@
 
 [Window functions](../function-ref/window-functions.md) are similar to aggregate functions. They allow you to get additional information about the original sample. For example, you can calculate the cumulative total and the moving average or rank values.
 
-The difference is that when calculating window functions, the rows are separate rather than combined into one. The result of the calculation is displayed in each row. The original number of rows does not change. For more information about data aggregation and grouping in {{ datalens-short-name }}, see [{#T}](aggregation-tutorial.md#datalens-aggregation).
+The difference is that when calculating window functions, the rows are separate rather than combined into one. The result of the calculation is displayed in each row. The original number of rows does not change. For more information about how data aggregation and groupings work in {{ datalens-short-name }}, see [{#T}](aggregation-tutorial.md#datalens-aggregation).
 
 
 ## Grouping in window functions {#grouping}
@@ -12,32 +12,32 @@ Just like aggregate functions, window functions can be calculated:
 * For a [single window](#one-window-grouping).
 * For [multiple windows](#some-window-grouping).
 
-For more information on grouping in window functions, see [{#T}](../function-ref/window-functions.md#syntax-grouping).
+For more information about grouping in window functions, see [{#T}](../function-ref/window-functions.md#syntax-grouping).
 
 ### Grouping for a single window {#one-window-grouping}
 
-With this grouping option, the function is calculated for a single window that includes all rows. The grouping type is `TOTAL`, which enables you to calculate totals, rank rows, and perform other operations that require information about all source data.
+With this grouping option, the function is calculated for a single window that includes all rows. For this purpose, use the `TOTAL` grouping type. enables you to calculate totals, rank rows, and perform other operations that require information about all source data.
 
 **Example**
 
 You need to calculate the average sales amount (`AvgSales`) and deviations from it for each category in the city (`DeltaFromAvg`). The best function for this is [AVG](../function-ref/AVG_WINDOW.md):
 
-* AvgSales — `AVG(SUM([Sales]) TOTAL)`
-* DeltaFromAvg — `SUM([Sales]) - [AvgSales]`
+* AvgSales: `AVG(SUM([Sales]) TOTAL)`
+* DeltaFromAvg: `SUM([Sales]) - [AvgSales]`
 
 ![image](../../_assets/datalens/concepts/tutorial/window-func-3.png)
 
 ### Grouping for multiple windows {#some-window-grouping}
 
-Sometimes the window function needs to be calculated separately by group rather than across all records. In this case, the `WITHIN` and `AMONG` groupings are used.
+Sometimes, the window function needs to be calculated separately by group rather than across all records. In this case, one should use the `WITHIN` and `AMONG` grouping types.
 
 #### WITHIN {#within}
 
-`WITHIN`: Similar to `GROUP BY` in `SQL`. It lists all dimensions by which splitting into windows is performed. In `WITHIN`, you can also use measures. In this case, their values are similarly included in the window grouping.
+`WITHIN` works in the same way as `GROUP BY` in `SQL`. It lists all dimensions by which splitting into windows is performed. In `WITHIN`, you can also use measures. In this case, their values are similarly included in the window grouping.
 
 {% note warning %}
 
-In `WITHIN`, the [dimensions](aggregation-tutorial.md#dimensions-and-measures) that are not included in chart grouping are ignored. For example, in a chart grouped by the `City` and `Category` dimensions for the `SUM(SUM([Sales]) WITHIN [Date])` measure, the `Date` dimension is ignored and it becomes the same as the `SUM(SUM([Sales]) TOTAL)` measure.
+In `WITHIN`, the [dimensions](aggregation-tutorial.md#dimensions-and-measures) that are not included in chart grouping are ignored. For example, in a chart grouped by the `City` and `Category` dimensions for the `SUM(SUM([Sales]) WITHIN [Date])` measure, the `Date` dimension is ignored, and the measure will become the same as the `SUM(SUM([Sales]) TOTAL)`.
 
 {% endnote %}
 
@@ -59,7 +59,7 @@ In this case, splitting into windows is performed for all dimensions that are in
 For example, for a chart with grouping by the `City` and `Category` dimensions, the following measures are the same:
 
 * `SUM(SUM([Sales]) AMONG [Category])` and `SUM(SUM([Sales]) WITHIN [City])`
-* `SUM(SUM([Sales]) AMONG [City], [Category])`and `SUM(SUM([Sales]) TOTAL)`
+* `SUM(SUM([Sales]) AMONG [City], [Category])` and `SUM(SUM([Sales]) TOTAL)`
 
 This option is provided only for your convenience and is used when you do not know which dimensions the chart will be built across in advance, but you need to exclude certain dimensions from the window grouping.
 
@@ -71,16 +71,16 @@ The dimensions listed in `AMONG` should be added to the chart sections. Otherwis
 
 ## Sorting {#order-by}
 
-Some window functions support [sorting](../function-ref/window-functions.md#syntax-order-by), the direction of which affects the calculation value. To specify sorting for the window function:
+Some window functions support [sorting](../function-ref/window-functions.md#syntax-order-by), the direction of which affects the value calculation. To specify sorting for the window function:
 
 * Specify dimensions or measures in the `ORDER BY` section.
 * In the chart, move the dimensions or measures to the **Sorting** section.
 
-Dimensions and measures for sorting are first taken from the `ORDER BY` section in the formula and then from the **Sorting** chart section.
+Dimensions and measures for sorting are first taken from the `ORDER BY` section in the formula, and then from the **Sorting** chart section.
 
 **Example**
 
-You need to calculate the change in the total sales amount (`IncTotal`) for the entire period, from the earliest to the latest date. To do this, you can use the [RSUM](../function-ref/RSUM.md) function sorted by the `Date` dimension: `RSUM(SUM([Sales]) TOTAL ORDER BY [Date])`.
+You need to calculate the change in the total sales amount (`IncTotal`) for the entire period, from the earliest to the latest date. To do this, you can use the [RSUM](../function-ref/RSUM.md) function sorted by `Date`: `RSUM(SUM([Sales]) TOTAL ORDER BY [Date])`.
 
 For a **Line chart**, the result will look as follows:
 
@@ -96,7 +96,7 @@ The calculation order is changed when you need to calculate the function value f
 
 **Example**
 
-You need to calculate the change in the total sales amount (`IncTotal`) for the period from `17/01/2014` through `11/03/2014`. If you add a `Date` filter and create the `RSUM(SUM([Sales]) TOTAL ORDER BY [Date])` measure, the function will be calculated only for the data limited by the filter:
+You need to calculate the change in the total sales amount (`IncTotal`) from `17.01.2014` to `11.03.2014`. If you add the `Date` dimension filter and create the `RSUM(SUM([Sales]) TOTAL ORDER BY [Date])` measure, the function will be calculated only for the data limited by the filter:
 
 ![image](../../_assets/datalens/concepts/tutorial/window-func-6.png)
 
@@ -106,13 +106,13 @@ To calculate a function for all data while only displaying the result for a cert
 
 ## Creating measures for a window function {#create-measure}
 
-You cannot use a [dimension](dataset/data-model.md#field) directly as the first argument (`value` in the syntax description) of a window function. You need to first apply an [aggregation function](../function-ref/aggregation-functions.md) to it so that a dimension becomes a [measure](dataset/data-model.md#field) that can be used in window functions.
+You cannot use a [dimension](../dataset/data-model.md#field) directly as the first argument (`value` in the syntax description) of a window function. You need to first apply an [aggregation function](../function-ref/aggregation-functions.md) to it so that a dimension becomes a [measure](../dataset/data-model.md#field) that can be used in window functions.
 
-For example, let's assume you need to rank sales records by profit over the entire period in a chart with data grouped by the `Year` and `Category` dimensions. To do this, you cannot use the `RANK([Profit])` formula, where `Profit` is a dimension. You need to apply an aggregation function first to convert the `Profit` dimension into a measure. The most suitable aggregate function here is [SUM](../function-ref/SUM.md) that returns the amount of profit: `SUM([Profit])`. Next, apply the [RANK](../function-ref/RANK.md) window function to the resulting measure. The correct resulting formula is `RANK(SUM([Profit]))`.
+For example, let's assume you need to rank sales records by profit over the entire period in a chart with data grouped by the `Year` and `Category` dimensions. For this, you cannot use the `RANK([Profit])` formula, where `Profit` is a dimension. You need to apply an aggregation function first to convert the `Profit` dimension into a measure. The most suitable aggregate function here is [SUM](../function-ref/SUM.md) that returns the amount of profit: `SUM([Profit])`. Next, apply the [RANK](../function-ref/RANK.md) window function to the resulting measure. The correct resulting formula is `RANK(SUM([Profit]))`.
 
 You can add measures both at the dataset and the chart level. For more information, see [{#T}](aggregation-tutorial.md#create-measure).
 
-To understand what aggregate function to select for converting dimensions into measures, specify what resulting measure you want to get using a window function. For example, in a chart with data grouped by product `Category`, you need to order records by `Sales`. To order records by sales amount, choose the [SUM](../function-ref/SUM.md) aggregate function: `SUM([Sales])`. To order them by sales count, choose [COUNT](../function-ref/COUNT.md): `COUNT([Sales])`.
+To understand what aggregate function to select for converting dimensions into measures, specify what resulting measure you want to get using a window function. For example, in a chart with data grouped by product `Category`, you need to arrange records by `Sales`. To arrange records by sales amount, use the [SUM](../function-ref/SUM.md) aggregate function: `SUM([Sales])`. To arrange them by sales count, use [COUNT](../function-ref/COUNT.md): `COUNT([Sales])`.
 
 If you need to get a string measure with a value determined by grouping and sorting data in a window function, use the [ANY](../function-ref/ANY.md) aggregate function.
 
@@ -121,10 +121,10 @@ If you need to get a string measure with a value determined by grouping and sort
 
 {% cut "How do I order values for a cumulative total or a rolling average calculation?" %}
 
-For functions that depend on the order of entries in the window (e.g., [RSUM](../function-ref/RSUM.md), [MAVG](../function-ref/MAVG.md), [LAG](../function-ref/LAG.md), [LAST](../function-ref/LAST.md), or [FIRST](../function-ref/FIRST.md)) to work correctly, you must specify sorting. You can do this in any of the following ways:
+   For functions that depend on the order of entries in the window (e.g., [RSUM](../function-ref/RSUM.md), [MAVG](../function-ref/MAVG.md), [LAG](../function-ref/LAG.md), [LAST](../function-ref/LAST.md), or [FIRST](../function-ref/FIRST.md)) to work correctly, you must specify sorting. You can do this in any of the following ways:
 
-* Drag the dimension or measure to sort the chart by to the **Sorting** section.
-* Set sorting for a specific function using `ORDER BY`.
+   * Drag the dimension or measure to sort the chart by to the **Sorting** section.
+   * Set sorting for a specific function using `ORDER BY`.
 
 {% endcut %}
 

@@ -7,12 +7,12 @@ links:
   - title: Getting started
     description: Getting started with DataLens
     href: quickstart
-  - title: Connection
+  - title: Connections
     description: Connect to various data sources
     href: concepts/connection
   - title: Datasets
     description: Describe the structure of the data you got from the source
-    href: concepts/dataset/
+    href: dataset/
   - title: Charts
     description: Visualize your data based on the dataset
     href: concepts/chart/

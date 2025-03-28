@@ -1,4 +1,4 @@
-title: Документация {{ yandex-cloud }}
-href: index.yaml
-items: []
-base: ru
+title: ''
+items:
+  - name: DataLens
+    href: datalens/index.yaml

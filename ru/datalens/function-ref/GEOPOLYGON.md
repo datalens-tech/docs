@@ -15,7 +15,7 @@ GEOPOLYGON( value )
 ```
 
 #### Описание {#description}
-Переводит выражение `value` в формат [геополигона](../concepts/data-types.md#geopolygon). Функция принимает на вход строку вида `[[[lat_1,lon_1], [lat_2,lon_2], ..., [lat_N-1,lon_N-1], [lat_N,lon_N]]]`.
+Переводит выражение `value` в формат [геополигона](../dataset/data-types.md#geopolygon). Функция принимает на вход строку вида `[[[lat_1,lon_1], [lat_2,lon_2], ..., [lat_N-1,lon_N-1], [lat_N,lon_N]]]`.
 
 **Типы аргументов:**
 - `value` — `Геополигон | Строка`
@@ -36,4 +36,4 @@ GEOPOLYGON("[[[55.75,37.52],[55.75,37.68],[55.65,37.60]],[[55.79,37.60],[55.76,3
 
 #### Поддержка источников данных {#data-source-support}
 
-`ClickHouse 21.8`, `Microsoft SQL Server 2017 (14.0)`, `MySQL 5.7`, `Oracle Database 12c (12.1)`, `PostgreSQL 9.3`, `YDB`.
+`ClickHouse 21.8`, `Файлы`, `Google Sheets`, `Microsoft SQL Server 2017 (14.0)`, `MySQL 5.7`, `Oracle Database 12c (12.1)`, `PostgreSQL 9.3`, `Яндекс Документы`, `YDB`.

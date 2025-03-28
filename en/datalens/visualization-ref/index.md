@@ -1,6 +1,6 @@
 ---
-title: "Visualization reference in {{ datalens-full-name }}"
-description: "In this tutorial, you will learn what types of charts are available in {{ datalens-short-name }}."
+title: Visualization reference in {{ datalens-full-name }}
+description: In this article, you will learn about chart types available in {{ datalens-short-name }}.
 ---
 
 # Visualization reference
@@ -12,46 +12,46 @@ When [running](../quickstart.md#create-datalens) your {{ datalens-short-name }} 
 
 - With Highcharts
 
-   * **Charts**:
+  * **Charts**:
 
-      * [Line chart](line-chart.md)
-      * [Stacked area chart](area-chart.md)
-      * [Normalized area chart](normalized-area-chart.md)
-      * [Column chart](column-chart.md)
-      * [Normalized column chart](normalized-column-chart.md)
-      * [Bar chart](bar-chart.md)
-      * [Normalized bar chart](normalized-bar-chart.md)
-      * [Scatter chart](scatter-chart.md)
-      * [Pie chart](pie-chart.md)
-      * [Donut chart](ring-chart.md)
-      * [Tree chart](tree-chart.md)
-      * [Combined chart](combined-chart.md)
+    * [Line chart](line-chart.md)
+    * [Area chart](area-chart.md)
+    * [Normalized stacked area chart](normalized-area-chart.md)
+    * [Column chart](column-chart.md)
+    * [Normalized column chart](normalized-column-chart.md)
+    * [Bar chart](bar-chart.md)
+    * [Normalized bar chart](normalized-bar-chart.md)
+    * [Scatter chart](scatter-chart.md)
+    * [Pie chart](pie-chart.md)
+    * [Donut chart](ring-chart.md)
+    * [Tree chart](tree-chart.md)
+    * [Combined chart](combined-chart.md)
 
-   * **Tables**:
+  * **Tables**:
 
-      * [Table](table-chart.md)
-      * [Pivot table](pivot-table-chart.md)
+    * [Table](table-chart.md)
+    * [Pivot table](pivot-table-chart.md)
 
-   * **Other**:
+  * **Other**:
 
-      * [Indicator](indicator-chart.md)
+    * [Indicator](indicator-chart.md)
 
 - Without Highcharts
 
-   * **Charts**:
+  * **Charts**:
 
-      * [Column chart](column-chart.md)
-      * [Scatter chart](scatter-chart.md)
-      * [Pie chart](pie-chart.md)
+    * [Column chart](column-chart.md)
+    * [Scatter chart](scatter-chart.md)
+    * [Pie chart](pie-chart.md)
 
-   * **Tables**:
+  * **Tables**:
 
-      * [Table](table-chart.md)
-      * [Pivot table](pivot-table-chart.md)
+    * [Table](table-chart.md)
+    * [Pivot table](pivot-table-chart.md)
 
-   * **Other**:
+  * **Other**:
 
-      * [Indicator](indicator-chart.md)
+    * [Indicator](indicator-chart.md)
 
 {% endlist %}
 

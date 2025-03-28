@@ -10,8 +10,21 @@ default:
   link-console-support: https://support.yandex.cloud
   link-datalens-main: https://datalens.yandex.cloud
   link-datalens-wizard: https://datalens.yandex.cloud/wizard
-  MY: MySQL
+  metrika-pro: Metrica Pro
+  MS: SQL Server
+  MY: MySQL®
+  permission-read: Read
+  permission-write: Write
   PG: PostgreSQL
   wiki-full-name: Yandex Wiki
   yandex-cloud: Yandex Cloud
+  ydb-name: Managed Service for YDB
+  ydb-short-name: YDB
+  ydb:
+    docs: https://ydb.tech/docs/en/
   ytsaurus-name: YTsaurus
+  ui-key:
+    yacloud:
+      ydb:
+        overview:
+          label_serverless-limits: Limits

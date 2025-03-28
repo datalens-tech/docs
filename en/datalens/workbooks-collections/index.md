@@ -1,9 +1,9 @@
 ---
-title: "{{ datalens-full-name }} workbooks and collections"
-description: "In this tutorial, you will learn about workbooks and collections, their specifics, and how to start using them."
+title: '{{ datalens-full-name }} workbooks and collections'
+description: In this tutorial, you will learn about workbooks and collections, their specifics, and how to start using them.
 ---
 
-# Workbooks and collections {{ datalens-short-name }}
+# {{ datalens-short-name }} workbooks and collections
 
 
 
@@ -12,5 +12,5 @@ description: "In this tutorial, you will learn about workbooks and collections, 
 * A **workbook** stores connections, datasets, charts, and dashboards. Entities within a workbook may only refer to each other.
 * A **collection** is a container used for grouping workbooks and other collections.
 
-For more information about how to create workbooks or collections, see [{#T}](./workbooks-collections-create.md).
+For more information about how to create a workbook or collection, see [{#T}](./workbooks-collections-create.md).
 
