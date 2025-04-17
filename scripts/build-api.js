@@ -110,7 +110,7 @@ async function main() {
 
     const functionCategories = extractFunctionCategories(toc);
 
-    const apiPath = path.join(path.join('build', 'docs', lang, 'api', 'function-ref'));
+    const apiPath = path.join('build', 'docs', lang, 'api', 'function-ref');
 
     if (fs.existsSync(apiPath)) {
         fs.rmSync(apiPath, {recursive: true});
@@ -131,7 +131,6 @@ async function main() {
 }
 
 main().catch((err) => {
-    // eslint-disable-next-line no-console
     console.error(err.message || err);
     process.exit(1);
 });

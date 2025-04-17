@@ -80,7 +80,6 @@ async function main() {
 }
 
 main().catch((err) => {
-    // eslint-disable-next-line no-console
     console.error(err.message || err);
     process.exit(1);
 });
