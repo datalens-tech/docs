@@ -183,7 +183,6 @@ async function main() {
     }
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
-        // eslint-disable-next-line no-console
         console.error(
             '\n\x1b[31mERROR\x1b[0m Detected files without pair on other lang\n' +
                 Object.entries(FILE_CHECK_MAP)
@@ -194,6 +193,6 @@ async function main() {
 }
 
 main().catch((err) => {
-    // eslint-disable-next-line no-console
     console.error(err.stack || err);
+    process.exit(1);
 });

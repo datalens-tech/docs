@@ -16,12 +16,18 @@ function fixNestedPath(basePath, lang) {
 
     fs.copySync('assets/icon', path.join(basePath, lang, '_assets/icon'));
 
-    fs.rmSync(path.join(basePath, lang, 'index.yaml'));
-    fs.rmSync(path.join(basePath, lang, 'toc.yaml'));
+    try {
+        fs.rmSync(path.join(basePath, lang, 'index.yaml'));
+        fs.rmSync(path.join(basePath, lang, 'toc.yaml'));
+    } catch {
+        // pass
+    }
 
     const moveCandidate = fs.readdirSync(path.join(basePath, lang, 'datalens'));
     moveCandidate.forEach((file) => {
-        fs.moveSync(path.join(basePath, lang, 'datalens', file), path.join(basePath, lang, file));
+        fs.moveSync(path.join(basePath, lang, 'datalens', file), path.join(basePath, lang, file), {
+            overwrite: true,
+        });
     });
 
     fs.rmSync(path.join(basePath, lang, 'datalens'), {recursive: true});
@@ -30,6 +36,7 @@ function fixNestedPath(basePath, lang) {
     const navigationYaml = fs.readFileSync('assets/navigation.yaml').toString();
     tocYaml = tocYaml.replace('href: index.yaml', `href: index.yaml\n${navigationYaml}`);
     fs.writeFileSync(path.join(basePath, lang, 'toc.yaml'), tocYaml);
+    fs.copySync(path.join(lang, 'presets.yaml'), path.join(basePath, lang, 'presets.yaml'));
 
     const paths = walkSync(path.join(basePath, lang), {
         directories: false,
@@ -58,13 +65,14 @@ async function main() {
     const basePath = process.argv[2];
 
     try {
+        fs.rmSync('./build', {recursive: true});
         fs.rmSync(path.join(basePath, '.yfm'));
         fs.rmSync(path.join(basePath, '.yfmlint'));
     } catch {
         // pass
     }
 
-    fs.copyFileSync('./.yfm-dltech', path.join(basePath, '.yfm'));
+    fs.copyFileSync('./.yfm-docs', path.join(basePath, '.yfm'));
     fs.copyFileSync('./.yfmlint', path.join(basePath, '.yfmlint'));
 
     fixNestedPath(basePath, 'ru');
@@ -72,6 +80,6 @@ async function main() {
 }
 
 main().catch((err) => {
-    // eslint-disable-next-line no-console
     console.error(err.message || err);
+    process.exit(1);
 });

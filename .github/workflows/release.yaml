@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Up version
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: diplodoc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: get latest tag
+        id: tag
+        run: |
+          git fetch --tags
+          TAG=$(git tag -l "v*" | sort -V | tail -n 1)
+          VERSION=$(echo "${TAG}" | sed 's|^v||')
+          echo "tag: ${TAG}"
+          echo "tag=${TAG}" >> $GITHUB_OUTPUT
+          echo "version: ${VERSION}"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+      - name: checkout latest tag
+        run: git checkout ${{ steps.tag.outputs.tag }}
+      - name: build
+        run: |
+          npm ci
+          npm run build:prepare
+          npm run build
+          npm run build:fix
+          npm run build:api
+      - uses: thedoctor0/zip-release@0.7.1
+        with:
+          type: zip
+          filename: datalens-docs-${{ steps.tag.outputs.version }}.zip
+          directory: build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: datalens-docs-${{ steps.tag.outputs.version }}
+          path: datalens-docs-${{ steps.tag.outputs.version }}.zip
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: build/datalens-docs-${{ steps.tag.outputs.version }}.zip
+          name: ${{ steps.tag.outputs.tag }}
+          tag: ${{ steps.tag.outputs.tag }}
