@@ -72,6 +72,10 @@ async function main() {
         // pass
     }
 
+    if (!fs.existsSync(basePath)) {
+        fs.mkdirSync(basePath);
+    }
+
     fs.copyFileSync('./.yfm-docs', path.join(basePath, '.yfm'));
     fs.copyFileSync('./.yfmlint', path.join(basePath, '.yfmlint'));
 
