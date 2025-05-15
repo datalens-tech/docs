@@ -12,8 +12,8 @@
     "run:docker": "npm run build:docker && docker run --read-only --user 65534 --tmpfs /tmp --rm --name datalens-docs -p 8080:80 datalens-docs"
   },
   "dependencies": {
-    "@diplodoc/cli": "4.48.1",
-    "@diplodoc/pdf-generator": "^1.0.3",
+    "@diplodoc/cli": "4.59.4",
+    "@diplodoc/pdf-generator": "^1.0.4",
     "cheerio": "^1.0.0",
     "fs-extra": "^11.2.0",
     "js-yaml": "^4.1.0",
