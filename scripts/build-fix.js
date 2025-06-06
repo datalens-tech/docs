@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 const cheerio = require('cheerio');
@@ -72,6 +72,95 @@ li.pc-navigation-item:first-child {
 
 const FILE_CHECK_MAP = [];
 
+const fixFile = async (filePath, basePath) => {
+    const trimPath = filePath.replace(basePath, '');
+    const trimPathLog = trimPath.replace(/^\//g, '');
+
+    // eslint-disable-next-line no-console
+    console.log('\x1b[33m%s\x1b[0m %s %s', 'POST-BUILD', 'Fixing file', trimPathLog);
+
+    let lang = trimPath.match(/\/(en|ru)\//);
+
+    if (lang) {
+        lang = lang[1];
+
+        const pathWithoutLang = trimPath
+            .replace(new RegExp(`^/${lang}/`), '')
+            .replace(new RegExp(`.html$`), '');
+
+        if (FILE_CHECK_MAP[pathWithoutLang]) {
+            delete FILE_CHECK_MAP[pathWithoutLang];
+        } else {
+            FILE_CHECK_MAP[pathWithoutLang] = lang;
+        }
+    }
+
+    const fileHtml = await fs.readFile(filePath);
+    const $ = cheerio.load(fileHtml);
+
+    const head = $('head');
+
+    let title = $('meta[name="title"]');
+    if (title) {
+        title = title.attr('content');
+    }
+
+    let description = $('meta[name="description"]');
+    if (description) {
+        description = description.attr('content');
+    }
+
+    META.forEach((meta) => {
+        const tag = $('<meta>');
+
+        Object.entries(meta).forEach(([key, value]) => {
+            if (typeof value === 'function') {
+                tag.attr(key, value({lang, title, description}));
+            } else {
+                tag.attr(key, value);
+            }
+        });
+
+        head.append(tag);
+    });
+
+    LINK.forEach((link) => {
+        const tag = $('<link>');
+
+        Object.entries(link).forEach(([key, value]) => {
+            tag.attr(key, value);
+        });
+
+        head.append(tag);
+    });
+
+    const tag = $('<style type="text/css"></style>');
+    tag.text(STYLE_FIX);
+    head.append(tag);
+
+    const logoLink = $('a.pc-logo');
+    logoLink.attr('href', lang === 'ru' ? '/ru' : '/');
+
+    let html = $.html()
+        .replace(/"lang":"[a-z]+"/g, `"lang":"${lang}"`)
+        .replace(/("href":".+?\/)index\.html"/g, '$1"')
+        .replace(/( href=".+?\/)index\.html"/g, '$1"')
+        .replace(/("href":")index\.html"/g, '$1./"')
+        .replace(/( href=")index\.html"/g, '$1./"')
+        .replace(/"[^"]+?\/_bundle\/app\.client\.js"/, '"/docs/_bundle/app.client.js"')
+        .replace(/"[^"]+?\/_bundle\/app\.client\.css"/, '"/docs/_bundle/app.client.css"');
+
+    if (lang !== 'ru') {
+        html = html
+            .replace(new RegExp(`>(${Object.keys(notes).join('|')})<`, 'g'), (sub, group) => {
+                return `>${notes[group]}<`;
+            })
+            .replace(/>В этой статье</g, '>In this article<');
+    }
+
+    await fs.writeFile(filePath, html);
+};
+
 async function main() {
     const basePath = process.argv[2];
     const paths = walkSync(basePath, {
@@ -81,7 +170,7 @@ async function main() {
     });
 
     // fix vendor script
-    let vendorScript = fs.readFileSync(path.join(basePath, '_bundle', 'vendor.js')).toString();
+    let vendorScript = (await fs.readFile(path.join(basePath, '_bundle', 'vendor.js'))).toString();
     Object.keys(VENDOR_FIX).forEach((key) => {
         Object.keys(VENDOR_FIX[key]).forEach((lang) => {
             vendorScript = vendorScript.replace(
@@ -90,97 +179,9 @@ async function main() {
             );
         });
     });
-    fs.writeFileSync(path.join(basePath, '_bundle', 'vendor.js'), vendorScript);
+    await fs.writeFile(path.join(basePath, '_bundle', 'vendor.js'), vendorScript);
 
-    for (let i = 0; i < paths.length; i += 1) {
-        const filePath = paths[i];
-        const trimPath = filePath.replace(basePath, '');
-        const trimPathLog = trimPath.replace(/^\//g, '');
-
-        // eslint-disable-next-line no-console
-        console.log('\x1b[33m%s\x1b[0m %s %s', 'POST-BUILD', 'Fixing file', trimPathLog);
-
-        let lang = trimPath.match(/\/(en|ru)\//);
-
-        if (lang) {
-            lang = lang[1];
-
-            const pathWithoutLang = trimPath
-                .replace(new RegExp(`^/${lang}/`), '')
-                .replace(new RegExp(`.html$`), '');
-
-            if (FILE_CHECK_MAP[pathWithoutLang]) {
-                delete FILE_CHECK_MAP[pathWithoutLang];
-            } else {
-                FILE_CHECK_MAP[pathWithoutLang] = lang;
-            }
-        }
-
-        const fileHtml = fs.readFileSync(filePath);
-        const $ = cheerio.load(fileHtml);
-
-        const head = $('head');
-
-        let title = $('meta[name="title"]');
-        if (title) {
-            title = title.attr('content');
-        }
-
-        let description = $('meta[name="description"]');
-        if (description) {
-            description = description.attr('content');
-        }
-
-        META.forEach((meta) => {
-            const tag = $('<meta>');
-
-            Object.entries(meta).forEach(([key, value]) => {
-                if (typeof value === 'function') {
-                    tag.attr(key, value({lang, title, description}));
-                } else {
-                    tag.attr(key, value);
-                }
-            });
-
-            head.append(tag);
-        });
-
-        LINK.forEach((link) => {
-            const tag = $('<link>');
-
-            Object.entries(link).forEach(([key, value]) => {
-                tag.attr(key, value);
-            });
-
-            head.append(tag);
-        });
-
-        const tag = $('<style type="text/css"></style>');
-        tag.text(STYLE_FIX);
-        head.append(tag);
-
-        const logoLink = $('a.pc-logo');
-        logoLink.attr('href', lang === 'ru' ? '/ru' : '/');
-
-        let html = $.html()
-            .replace(/"lang":"[a-z]+"/g, `"lang":"${lang}"`)
-            .replace(/("href":".+?\/)index\.html"/g, '$1"')
-            .replace(/( href=".+?\/)index\.html"/g, '$1"')
-            .replace(/("href":")index\.html"/g, '$1./"')
-            .replace(/( href=")index\.html"/g, '$1./"')
-            .replace(/"[^"]+?\/_bundle\/app\.client\.js"/, '"/docs/_bundle/app.client.js"')
-            .replace(/"[^"]+?\/_bundle\/app\.client\.css"/, '"/docs/_bundle/app.client.css"');
-
-        if (lang !== 'ru') {
-            html = html
-                .replace(new RegExp(`>(${Object.keys(notes).join('|')})<`, 'g'), (sub, group) => {
-                    return `>${notes[group]}<`;
-                })
-                .replace(/>В этой статье</g, '>In this article<');
-        }
-
-        fs.writeFileSync(filePath, html);
-    }
+    await Promise.all(paths.map((filePath) => fixFile(filePath, basePath)));
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
         console.error(
