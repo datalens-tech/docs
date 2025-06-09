@@ -8,11 +8,12 @@
     "build:docker": "docker build . -t datalens-docs",
     "build:fix": "node ./scripts/build-fix.js ./build/docs",
     "build:api": "node ./scripts/build-api.js",
-    "dev": "npm run build:prepare && npm run build && npm run build:fix && npx serve ./build",
+    "serve": "node ./scripts/dev.js",
+    "dev": "npm run build:prepare && npm run build && npm run build:fix && npm run serve",
     "run:docker": "npm run build:docker && docker run --read-only --user 65534 --tmpfs /tmp --rm --name datalens-docs -p 8080:80 datalens-docs"
   },
   "dependencies": {
-    "@diplodoc/cli": "5.0.1",
+    "@diplodoc/cli": "5.0.2",
     "@diplodoc/pdf-generator": "^1.0.6",
     "cheerio": "^1.0.0",
     "fs-extra": "^11.3.0",
@@ -24,8 +25,8 @@
     "@gravity-ui/prettier-config": "1.1.0",
     "@gravity-ui/stylelint-config": "5.0.0",
     "eslint": "9.28.0",
+    "express": "^5.1.0",
     "prettier": "3.5.0",
-    "serve": "^14.2.4",
     "stylelint": "16.20.0"
   }
 }

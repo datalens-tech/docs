@@ -86,6 +86,7 @@ const fixFile = async (filePath, basePath) => {
 
         const pathWithoutLang = trimPath
             .replace(new RegExp(`^/${lang}/`), '')
+            .replace(new RegExp(`^/_search/${lang}/`), '_search/')
             .replace(new RegExp(`.html$`), '');
 
         if (FILE_CHECK_MAP[pathWithoutLang]) {
@@ -147,8 +148,13 @@ const fixFile = async (filePath, basePath) => {
         .replace(/( href=".+?\/)index\.html"/g, '$1"')
         .replace(/("href":")index\.html"/g, '$1./"')
         .replace(/( href=")index\.html"/g, '$1./"')
-        .replace(/"[^"]+?\/_bundle\/app\.client\.js"/, '"/docs/_bundle/app.client.js"')
-        .replace(/"[^"]+?\/_bundle\/app\.client\.css"/, '"/docs/_bundle/app.client.css"');
+        .replace(/"[^"]+?\/_bundle\/app\.client\.js"/g, '"/docs/_bundle/app.client.js"')
+        .replace(/"[^"]+?\/_bundle\/app\.client\.css"/g, '"/docs/_bundle/app.client.css"')
+        .replace(/href="_bundle\/([^"]+?)"/g, 'href="/docs/_bundle/$1"')
+        .replace(/src="_bundle\/([^"]+?)"/g, 'src="/docs/_bundle/$1"')
+        .replace(/src="_search\/([^"]+?)"/g, 'src="/docs/_search/$1"')
+        // .replace(/"api":"_search\/api.js"/g, '"api":"/docs/_search/api.js"')
+        .replace(new RegExp(`src="(${lang})/toc.js"`, 'g'), 'src="/docs/$1/toc.js"');
 
     if (lang !== 'ru') {
         html = html
@@ -182,6 +188,14 @@ async function main() {
     await fs.writeFile(path.join(basePath, '_bundle', 'vendor.js'), vendorScript);
 
     await Promise.all(paths.map((filePath) => fixFile(filePath, basePath)));
+
+    await fs.copyFile('./assets/manifest.json', path.join(basePath, '..', 'manifest.json'));
+    const manifest = JSON.parse(await fs.readFile('./assets/manifest.json'));
+    await Promise.all(
+        manifest.icons.map(({src}) =>
+            fs.copyFile(path.join('./assets/favicon', src), path.join(basePath, '..', src)),
+        ),
+    );
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
         console.error(
