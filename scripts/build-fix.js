@@ -153,6 +153,24 @@ const fixFile = async (filePath, basePath) => {
         .replace(/href="_bundle\/([^"]+?)"/g, 'href="/docs/_bundle/$1"')
         .replace(/src="_bundle\/([^"]+?)"/g, 'src="/docs/_bundle/$1"')
         .replace(/src="_search\/([^"]+?)"/g, 'src="/docs/_search/$1"')
+        // fix double load bundled resources
+        .replace(/,"style":\[[^\]]+?\],"script":\[[^\]]+?\],/g, ',"style":[],"script":[],')
+        .replace(
+            / *?<link type="text\/css" rel="stylesheet" href="_assets\/cut-extension.css">\n/g,
+            '',
+        )
+        .replace(
+            / *?<link type="text\/css" rel="stylesheet" href="_assets\/tabs-extension.css">\n/g,
+            '',
+        )
+        .replace(
+            / *?<script type="application\/javascript" defer="" src="_assets\/cut-extension.js"><\/script>\n/g,
+            '',
+        )
+        .replace(
+            /<script type="application\/javascript" defer="" src="_assets\/tabs-extension.js"><\/script>\n/g,
+            '',
+        )
         // .replace(/"api":"_search\/api.js"/g, '"api":"/docs/_search/api.js"')
         .replace(new RegExp(`src="(${lang})/toc.js"`, 'g'), 'src="/docs/$1/toc.js"');
 

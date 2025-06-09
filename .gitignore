@@ -17,3 +17,6 @@ docs/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# tests
+test-results/.last-run.json
