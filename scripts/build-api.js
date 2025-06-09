@@ -15,11 +15,14 @@ function extractFunctionCategories(toc) {
     const result = [];
 
     for (const item of toc.items) {
-        if (item.name === 'Вычисляемые поля' && item.items) {
+        if (['Вычисляемые поля', 'Calculated fields'].includes(item.name) && item.items) {
             for (const subItem of item.items) {
-                if (subItem.name === 'Справочник функций' && subItem.items) {
+                if (
+                    ['Справочник функций', 'Function reference'].includes(subItem.name) &&
+                    subItem.items
+                ) {
                     for (const category of subItem.items) {
-                        if (category.name === 'Все функции') {
+                        if (['All Functions', 'Все функции'].includes(category.name)) {
                             continue;
                         }
 
@@ -95,15 +98,9 @@ const extractFunctions = async (functionRefPath, targetApiPath) => {
     });
 
     await Promise.all(paths.map((p) => extractApiData(p, functionRefPath, targetApiPath)));
-
-    for (let i = 0; i < paths.length; i += 1) {}
 };
 
-async function main() {
-    // eslint-disable-next-line no-console
-    console.log('[API] Start build json api...');
-
-    const lang = 'ru';
+const buildApi = async (lang) => {
     const datalensPath = path.join(lang, 'datalens');
 
     // eslint-disable-next-line no-console
@@ -124,18 +121,23 @@ async function main() {
 
     // eslint-disable-next-line no-console
     console.log('[API] Generate function api files...');
-    await Promise.all(
-        [
-            path.join('build', 'docs', lang, 'function-ref'),
-            path.join('build', 'docs', lang, 'api', 'function-ref'),
-        ].map(extractFunctions),
+    await extractFunctions(
+        path.join('build', 'docs', lang, 'function-ref'),
+        path.join('build', 'docs', lang, 'api', 'function-ref'),
     );
+};
+
+async function main() {
+    // eslint-disable-next-line no-console
+    console.log('[API] Start build json api...');
+
+    await Promise.all(['ru', 'en'].map(buildApi));
 
     // eslint-disable-next-line no-console
     console.log('[API] Finish build json api');
 }
 
 main().catch((err) => {
-    console.error(err.message || err);
+    console.error(err.stack || err);
     process.exit(1);
 });
