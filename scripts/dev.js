@@ -5,6 +5,16 @@ const fs = require('fs-extra');
 const app = express();
 const root = './build';
 
+// redirects for / root
+app.use((req, res, next) => {
+    if (req.path === '/') {
+        // eslint-disable-next-line no-console
+        console.log('[REDIRECT]', `from [${req.path}]`, `to [/docs]`);
+        return res.redirect(301, '/docs');
+    }
+    return next();
+});
+
 // redirect from /folder to /folder/ if it is directory
 app.use(async (req, res, next) => {
     const reqPath = decodeURIComponent(req.path);
