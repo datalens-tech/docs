@@ -6,10 +6,10 @@ meta:
 links:
   - title: Getting started
     description: Getting started with DataLens
-    href: quickstart
+    href: quickstart.html
   - title: Connections
     description: Connect to various data sources
-    href: concepts/connection
+    href: concepts/connection.html
   - title: Datasets
     description: Describe the structure of the data you got from the source
     href: dataset/
@@ -18,7 +18,7 @@ links:
     href: concepts/chart/
   - title: Dashboards
     description: Build your charts on a single page
-    href: concepts/dashboard
+    href: concepts/dashboard.html
   - title: Quotas and limits
     description: Technical and organizational restrictions
-    href: concepts/limits
+    href: concepts/limits.html
