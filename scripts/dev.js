@@ -55,7 +55,16 @@ app.use((_, res) => {
     res.status(404).send('Not found');
 });
 
-app.listen(3000, () => {
-    // eslint-disable-next-line no-console
-    console.log('[DEV] Server started at http://localhost:3000');
-});
+const listen = () =>
+    app.listen(3000, () => {
+        // eslint-disable-next-line no-console
+        console.log('[DEV] Server started at http://localhost:3000');
+    });
+
+if (require.main === module) {
+    listen();
+}
+
+module.exports = {
+    listen,
+};
