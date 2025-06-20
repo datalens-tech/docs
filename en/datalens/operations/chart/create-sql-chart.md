@@ -57,7 +57,7 @@ The `date-interval` and the `datetime-interval` type parameters can be used in q
 {% cut "Request example" %}
 
 ```sql
-SELECT toDate(Date) as datedate, count ('Order ID')
+SELECT toDate(Date) as datedate, count ('Oreder ID')
 FROM samples.SampleLite
 WHERE not_var{{interval_from}} < datedate AND datedate < not_var{{interval_to}}
 GROUP BY datedate
@@ -114,5 +114,10 @@ CASE
     ELSE column IN not_var{{param}}
 END
 ```
+
+#### See also {#see-also}
+
+* [{#T}](../../concepts/chart/index.md)
+* [{#T}](../dashboard/add-chart.md)
 
 {% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}

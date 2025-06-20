@@ -17,45 +17,41 @@ The settings specified below may not be available for some chart types.
 
 #|
 || **Name** | **Description** ||
-|| Header | Sets the header for the chart.<br/><br/>Possible values:
+|| Header | Sets the header for the chart.<br/><br/>Available values:
 
 * **Hide**: Hide header.
 * **Show**: Show header. You can enter the header text in the text field on the right. ||
-|| Legend | Displays the legend below the chart. The legend contains chart colors with text descriptions referring to the field values in the **Colors** section.<br/><br/>Possible values:
+|| Legend | Displays the legend below the chart. The legend contains chart colors with text descriptions referring to the field values in the **Colors** section.<br/><br/>Available values:
 
-* **Hide**: Hides the legend.
-* **Auto**: Displays the legend if the field is specified in the **Colors** section. ||
-|| Tooltip | Displays tooltips when hovering over a chart item.<br/><br/>Possible values:
+* **On**: Displays the legend if the field is specified in the **Colors** [section](#color-settings).
+* **Off**: Hides the legend. ||
+|| Tooltip | Displays tooltips when hovering over a chart item.<br/><br/>Available values:
 
 * **On**: Shows the tooltip.
 * **Off**: Hides the tooltip. ||
-|| Sum in tooltips | Displays a sum in a tooltip when you hover over the chart display.<br/><br/>Possible values:
+|| Sum in tooltips | Displays a sum in a tooltip when you hover over the chart.<br/><br/>Available values:
 
 * **On**: Displays a sum in a tooltip.
 * **Off**: Hides a sum in a tooltip. ||
-|| Navigator | Displays an additional element below the chart, the navigator. Allows reducing a data selection displayed in the chart.<br/><br/>Possible values:
+|| Navigator | Displays an additional element below the chart, the navigator. It allows to reduce the data selection displayed on the chart.<br/><br/>Available values:
 
 * **On**: Shows the navigator.
 * **Off**: Hides the navigator.
 
 For more information, see [this guide](../../operations/chart/config-chart-navigator.md). ||
-|| Pagination | Breaks a table into pages.<br/><br/>Possible values:
+|| Pagination | Breaks a table into pages.<br/><br/>Available values:
 
 * **On**: Displays the table part by part across a number of pages.
 * **Off**: Displays the whole table. ||
 || Limit | Sets the number of rows to export. This is also the number of rows displayed per page. Available if **Pagination** is enabled. ||
-|| Grouping | Displays unique field values.<br/><br/>Possible values:
+|| Grouping | Displays unique field values.<br/><br/>Available values:
 
 * **On**: Displays unique values.
 * **Off**: Displays all values. ||
-|| Totals | Displays a row with total values for table columns. Values in the row are calculated using the same formulas as [aggregation](../../dataset/data-model.md#aggregation) in the measure.<br/><br/>Possible values:
+|| Summary | Displays a row with total values for table columns. The row values are calculated using the same formulas as [aggregation](../../dataset/data-model.md#aggregation) in the measure.<br/><br/>Available values:
 
 * **On**: Shows the **Total** row.
 * **Off**: Hides the **Total** row. ||
-|| Stacking | Stacked or isolated data display for each category in the [area chart](../../visualization-ref/area-chart.md#stacking).<br/><br/>Possible values:
-
-* **On**: Displays stacked data.
-* **Off**: Displays unstacked data. ||
 |#
 
 ## Field settings {#field-settings}
@@ -79,14 +75,27 @@ If you apply an aggregation to the dimension, it will become a measure and the r
 || **Name** | **Description** ||
 || Name | Sets a dimension name. ||
 || Type | Sets the type of dimension data. ||
-|| Grouping | Sets the type of grouping or rounding. The setting is only available for dimensions of the `Date` and `Date and time` type. ||
+|| Grouping | Sets the type of grouping or rounding. The setting is only available for the `Date` and `Date and time` type dimensions. ||
 || Format | Sets the format of how the values are displayed. ||
-|| Date mode | Sets the date display mode. The setting is only available for dimensions of the `Date` and `Date and time` type.<br/><br/>Possible values:
+|| Date mode | Sets the date display mode. The setting is only available for the `Date` and `Date and time` type dimensions.<br/><br/>Available values:
 
 * **Continuous**: Displays all dates continuously.
 * **Discrete**: Displays dates that contain values. ||
 || Aggregation | Sets the aggregation type. Aggregation functions are available according to the [{#T}](../../dataset/data-model.md#aggregation) table. ||
-|| Markdown | The field value will be formatted according to [{#T}](../../dashboard/markdown.md). Only available for `String` type fields. ||
+|| Markup | The field value will be formatted according to the option you select:
+
+* `None`: No markup.
+* `HTML`: HTML markup. Available only for `String` type fields.
+* `Markdown`: [{#T}](../../dashboard/markdown.md) markup. Available only for `String` type fields in relevant sections, depending on visualization type.
+  
+  #|
+  || **Visualization types** | **Sections** ||
+  || [Scatter chart](../../visualization-ref/scatter-chart.md) | X, Y, Points, [Colors](#color-settings), Shapes ||
+  || [Tree chart](../../visualization-ref/tree-chart.md) | Dimensions ||
+  || [Line](../../visualization-ref/line-chart.md), [Column](../../visualization-ref/column-chart.md), [Bar](../../visualization-ref/bar-chart.md), [Pie](../../visualization-ref/pie-chart.md), and [Ring](../../visualization-ref/ring-chart.md) charts | [Labels](#sign) ||
+  |#
+
+This setting is not available in the following visualizations: [Indicator](../../visualization-ref/indicator-chart.md), [Table](../../visualization-ref/table-chart.md) and [Pivot table](../../visualization-ref/pivot-table-chart.md). ||
 || Sub-totals | Shows columns and/or rows with subtotals. This setting is only available for [Pivot table](../../visualization-ref/pivot-table-chart.md) charts. ||
 |#
 
@@ -97,10 +106,9 @@ If you apply an aggregation to the dimension, it will become a measure and the r
 || Name | Sets the measure name. ||
 || Type | Sets the type of measure data. Not available for [QL charts](./ql-charts.md). ||
 || Aggregation | Sets the aggregation type. Aggregation functions are available according to the [{#T}](../../dataset/data-model.md#aggregation) table. Not available for [QL charts](./ql-charts.md). ||
-|| Markdown | The field value will be formatted according to [{#T}](../../dashboard/markdown.md). Only available for `String` type fields. ||
 || Format | Sets value display format. ||
 || Decimal places | Sets the number of decimal places. Not available for [QL charts](./ql-charts.md). ||
-|| Display groups of thousands | Enables displaying groups of thousands for numeric values.<br/><br/>Possible values:
+|| Display groups of thousands | Enables displaying groups of thousands for numeric values.<br/><br/>Available values:
 
 * **With separator**: Displays spaces between groups of thousands.
 * **Merged**: Hide spaces between groups of thousands. ||
@@ -133,53 +141,53 @@ Some of these settings may not be available for some axes.
 
 #|
 || **Name** | **Description** ||
-|| Axis name | Sets an axis label.<br/><br/>Possible values:
+|| Axis name | Sets an axis label.<br/><br/>Available values:
 
 * **On**: Use the field name. If the section contains multiple fields, {{ datalens-short-name }} uses the name of the field listed first.
 * **Off**: No axis label displayed.
 * **Manually**: Allows setting an axis name manually in a text field. ||
-|| Axis type | Defines the axis type. This setting is available if fields in the axis section are of the `Fractional number` type.<br/><br/>Possible values:
+|| Axis type | Defines the axis type. This setting is available if the fields in the axis section are of the `Fractional number` type.<br/><br/>Available values:
 
 * **Linear**: Use linear axis.
 * **Logarithmic**: Use logarithmic axis. Suitable for charts with a large spread of values. The logarithmic axis allows you to display a fast-growing graph in a convenient form for analysis, reducing values by an order of magnitude. ||
-|| Graph axis | This setting allows you to hide all axis elements: lines, labels, and grid.<br/><br/>Possible values:
+|| Graph axis | This setting allows you to hide all axis elements: lines, labels, and grid.<br/><br/>Available values:
 
 * **Show**: Displays all axis elements.
 * **Hide**: Hides all axis elements. ||
-|| Display mode | Enables configuring continuous chart display.<br/><br/>Possible values:
+|| Display mode | Enables configuring continuous chart display.<br/><br/>Available values:
 
 * **Discrete**: Plots the chart only for non-null values.
 * **Continuous**: Plots the chart for all values continuously. You can only use continuous mode for the `Integer`, `Fractional number`, `Date`, or `Date and time` data types. ||
-|| Axis formatting | Sets the formatting of numerical axis labels.<br/><br/>Possible values:
+|| Axis formatting | Sets the formatting of numerical axis labels.<br/><br/>Available values:
 
 * **Auto**: Default formatting.
 * **By first field on the X axis**: Displays the X axis labels with the formatting specified in the **Format** setting for the first field in the **X** section. Available in the X axis settings.
 * **By first field on the Y axis**: Displays the Y axis labels with the formatting specified in the **Format** setting for the first field in the **Y** section. Available in the Y axis settings. ||
-|| Grid | Enables or disables grid display in a chart.<br/><br/>Possible values:
+|| Grid | Enables or disables grid display on the chart.<br/><br/>Available values:
 
-* **On**: Shows the grid.
-* **Off**: Hides the grid. ||
-|| Grid increments, px | Sets the grid increment in pixels. Available if **Grid** is enabled.<br/><br/>Possible values:
+* **On**: Shows grid.
+* **Off**: Hides grid. ||
+|| Grid increments, px | Sets grid increment in pixels. Available if the **Grid** setting is on.<br/><br/>Available values:
 
 * **Auto**: Calculates grid size automatically.
-* **Manually**: Requires manual input of grid size in pixels. ||
-|| Labels | Shows or hides axis labels based on field values.<br/><br/>Possible values:
+* **Manual**: Specify grid size in pixels. ||
+|| Labels | Shows or hides axis labels based on field values.<br/><br/>Available values:
 
 * **On**: Shows axis labels.
 * **Off**: Hides axis labels. ||
-|| Label appearance | Sets the way the labels are displayed. Available if the **Labels** setting is enabled.<br/><br/>Possible values:
+|| Label appearance | Sets the way the labels are displayed. Available if the **Labels** setting is on.<br/><br/>Available values:
 
 * **Auto**: Displays axis labels.
 * **Horizontal**: Displays axis labels horizontally.
 * **Vertical**: Displays axis labels vertically.
 * **Angled**: Displays axis labels at a 45-degree angle. ||
-|| Null values | Allows you to select a method for handling null values.<br/><br/>Possible values:
+|| Null values | Allows you to select the handling method for null values.<br/><br/>Available values:
 
 * **Hide**: Hides null values in charts.
 * **Connect**: Connects field values where there are null values in between.
 * **Display as 0**: Displays null values in charts as zero (0) field values.
-* **Use previous**: Replaces the chart's empty values with the value of the previous point on the axis. Available in the Y axis settings for the [area chart](../../visualization-ref/area-chart.md). ||
-|| Scaling | Sets the chart axis scale.<br/><br/>Possible values:
+||
+|| Scaling | Sets the chart axis scale.<br/><br/>Available values:
 
 * **Auto**: Enables autoscaling. You can specify how {{ datalens-short-name }} sets the scale: from 0 to the maximum field value (**Autoscale from 0 to max**) or from the minimum to the maximum field values (**Autoscale from min to max**).
 * **Manually**: Requires manual input of the axis scale. You can set the maximum and minimum values along the axis. {{ datalens-short-name }} will trim the chart lines by this value. ||
@@ -189,21 +197,60 @@ Some of these settings may not be available for some axes.
 
 Generally, you can set a specific color for any graph value.
 
-The following settings are available for a tree diagram, a table (including a pivot table), and a map:
+For [tree chart](../../visualization-ref/tree-chart.md), [table](../../visualization-ref/table-chart.md) (including a [pivot table](../../visualization-ref/pivot-table-chart.md)), the following settings are available:
 
 #|
 || **Name** | **Description** ||
-|| Gradient type | Sets the number of gradient colors.<br/><br/>Possible values:
+|| Gradient type | Sets the number of gradient colors.<br/><br/>Available values:
 
 * **Two-color**: Sets two colors for the gradient.
 * **Tree-color**: Sets three colors for the gradient. ||
 || Color | Sets a color for a value. Available colors depend on the gradient type. ||
 || Set threshold values | Allows you to set threshold values that will refer to each color. ||
-|| Borders | Sets borders for geopolygons.<br/><br/>Possible values:
+|| Borders | Sets borders for geopolygons.<br/><br/>Available values:
 
 * **Show**: Displays geopolygon borders.
 * **Hide**: Hides geopolygon borders. ||
 |#
+
+If the **Legend** option is enabled in [common settings](#common-settings), placing this field into the **Colors** section will make the legend visible below the chart. The legend contains chart colors with text descriptions corresponding to the field values in the **Colors** section.
+
+{% cut "Available color settings" %}
+
+To set up colors:
+
+1. In the top-right corner of the **Colors** section, click ![image](../../../_assets/console-icons/gear.svg) (the icon is displayed when you hover over the section).
+1. Set the **Fill type**:
+
+   {% note info %}
+
+   You can use the **Palette** type for dimensions and the **Gradient** type for measures.
+
+   {% endnote %}
+
+   {% list tabs group=fill %}
+
+   - For a dimension {#measure}
+
+     1. Click the color scheme selection field and set a color for each dimension value.
+     1. Click **Apply**.
+
+   - For a measure {#indicator}
+
+     1. Click the gradient selection field and set the following properties:
+
+        * **Gradient type**: Select two or three colors.
+
+          * Gradient color: Select a color palette for the gradient from the list.
+          * Gradient direction: Change the gradient direction using the ![image](../../../_assets/console-icons/arrow-right-arrow-left.svg) icon.
+
+        * **Set threshold values**: Set numeric thresholds for each color.
+
+     1. Click **Apply**.
+
+   {% endlist %}
+
+{% endcut %}
 
 You can [create color palettes](../../operations/chart/create-palette.md) and use them in your charts.
 
@@ -249,6 +296,7 @@ When editing a chart in the wizard or a [QL chart](./ql-charts.md), you can now 
 
 Unsaved changes in the current version are reset:
 
+
+
 * When refreshing the page.
 * When saving a chart.
-* When switching to another [version](./versioning.md).

@@ -1,15 +1,12 @@
 title: ''
 description: []
-meta:
-  title: ''
-  description: ''
 links:
   - title: Начало работы
     description: Как начать работать с DataLens
-    href: quickstart.html
+    href: quickstart
   - title: Подключения
     description: Подключитесь к различным источникам данных
-    href: concepts/connection.html
+    href: concepts/connection
   - title: Датасеты
     description: Опишите структуру данных, полученных из источника
     href: dataset/
@@ -18,7 +15,20 @@ links:
     href: concepts/chart/
   - title: Дашборды
     description: Соберите свои чарты на одной странице
-    href: concepts/dashboard.html
+    href: concepts/dashboard
   - title: Квоты и лимиты
     description: Технические и организационные ограничения сервиса
-    href: concepts/limits.html
+    href: concepts/limits
+meta:
+  title: ''
+  description: ''
+  keywords:
+    - '{{ datalens-name }}'
+    - '{{ datalens-full-name }}'
+    - Сервис {{ datalens-name }}
+    - Сервис для бизнес аналитики
+    - BI аналитика
+    - Визуализация данных в {{ yandex-cloud }}
+    - Как подключиться к источнику данных
+    - бизнес-метрики в {{ yandex-cloud }}
+    - Аналитика {{ yandex-cloud }}

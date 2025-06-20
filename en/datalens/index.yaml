@@ -1,15 +1,12 @@
 title: ''
 description: []
-meta:
-  title: ''
-  description: ''
 links:
   - title: Getting started
     description: Getting started with DataLens
-    href: quickstart.html
+    href: quickstart
   - title: Connections
     description: Connect to various data sources
-    href: concepts/connection.html
+    href: concepts/connection
   - title: Datasets
     description: Describe the structure of the data you got from the source
     href: dataset/
@@ -18,7 +15,10 @@ links:
     href: concepts/chart/
   - title: Dashboards
     description: Build your charts on a single page
-    href: concepts/dashboard.html
+    href: concepts/dashboard
   - title: Quotas and limits
-    description: Technical and organizational restrictions
-    href: concepts/limits.html
+    description: Technical and organizational limitations
+    href: concepts/limits
+meta:
+  title: ''
+  description: ''

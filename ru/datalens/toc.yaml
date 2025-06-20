@@ -15,6 +15,10 @@ items:
         href: workbooks-collections/index.md
       - name: Создание воркбука и коллекции
         href: workbooks-collections/workbooks-collections-create.md
+      - name: Экспорт и импорт воркбуков
+        href: workbooks-collections/export-and-import.md
+      - name: Ошибки и предупреждения при экспорте и импорте
+        href: workbooks-collections/export-import-notifications.md
   - name: Подключения
     items:
       - name: Обзор
@@ -43,6 +47,10 @@ items:
             href: operations/connection/create-greenplum.md
           - name: Создание подключения к {{ MS }}
             href: operations/connection/create-mssql-server.md
+          - name: Создание подключения к Oracle Database
+            href: operations/connection/create-oracle.md
+          - name: Создание подключения к {{ TR }}
+            href: operations/connection/create-trino.md
       - name: Сервисы
         items:
           - name: Создание подключения к Metrica API
@@ -541,8 +549,14 @@ items:
             href: visualization-ref/index.md
           - name: Линейная диаграмма
             href: visualization-ref/line-chart.md
+          - name: Диаграмма с областями
+            href: visualization-ref/area-chart.md
+          - name: Нормированная диаграмма с областями
+            href: visualization-ref/normalized-area-chart.md
           - name: Столбчатая диаграмма
             href: visualization-ref/column-chart.md
+          - name: Нормированная столбчатая диаграмма
+            href: visualization-ref/normalized-column-chart.md
           - name: Линейчатая диаграмма
             href: visualization-ref/bar-chart.md
           - name: Нормированная линейчатая диаграмма
@@ -551,6 +565,8 @@ items:
             href: visualization-ref/scatter-chart.md
           - name: Круговая диаграмма
             href: visualization-ref/pie-chart.md
+          - name: Комбинированная диаграмма
+            href: visualization-ref/combined-chart.md
           - name: Древовидная диаграмма
             href: visualization-ref/tree-chart.md
           - name: Кольцевая диаграмма
@@ -605,6 +621,12 @@ items:
             href: operations/dashboard/add-title.md
           - name: Добавление описания к дашборду
             href: operations/dashboard/add-description.md
+          - name: Добавление сообщения при обращении в поддержку
+            href: operations/dashboard/add-support-message.md
+          - name: Добавление сообщения при ошибке доступа
+            href: operations/dashboard/add-access-message.md
+          - name: Настройка связей на дашборде
+            href: operations/dashboard/dashboard-links.md
           - name: Создание алиаса
             href: operations/dashboard/create-alias.md
           - name: Удаление алиаса
@@ -617,10 +639,20 @@ items:
             href: operations/dashboard/auto-update.md
           - name: Изменение настроек дашборда
             href: operations/dashboard/dash-settings.md
+  - name: Управление доступом
+    items:
+      - name: Обзор
+        href: security/index.md
+      - name: Учетная запись пользователя
+        href: security/user-account.md
+      - name: Роли в {{ datalens-short-name }}
+        href: security/roles.md
   - name: Администратору {{ datalens-name }}
     items:
       - name: Инструкция по развертыванию
         href: concepts/create-instance.md
+      - name: Управление пользователями
+        href: security/manage-users.md
   - name: Решение проблем
     items:
       - name: Рекомендации по оптимизации
@@ -716,6 +748,9 @@ items:
       - name: Measure filter is unsupported for this type of query
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-FILTER-MEASURE_UNSUPPORTED.md
+      - name: Подготовка данных еще не завершилась
+        hidden: true
+        href: troubleshooting/errors/ERR-DS_API-DB-MATERIALIZATION_NOT_FINISHED.md
       - name: Memory limit has been exceeded during query execution
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-MEMORY_LIMIT_EXCEEDED.md
@@ -731,11 +766,14 @@ items:
       - name: Requested database column does not exist
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-COLUMN_DOES_NOT_EXIST.md
+      - name: Подготовка данных еще не завершилась
+        hidden: true
+        href: troubleshooting/errors/ERR-DS_API-DB-DATA_PREPARATION_NOT_FINISHED.md
       - name: Subquery source is disallowed in the connection settings
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-CONNECTION_CONFIG-SUBSELECT_NOT_ALLOWED.md
-      - name: Table is not ready yet
+      - name: Нарушена конфигурация таблицы
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-SOURCE_CONFIG-TABLE_NOT_CONFIGURED.md

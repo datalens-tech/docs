@@ -15,17 +15,13 @@ When [running](../quickstart.md#create-datalens) your {{ datalens-short-name }} 
   * **Charts**:
 
     * [Line chart](line-chart.md)
-    * [Area chart](area-chart.md)
-    * [Normalized stacked area chart](normalized-area-chart.md)
     * [Column chart](column-chart.md)
-    * [Normalized column chart](normalized-column-chart.md)
     * [Bar chart](bar-chart.md)
     * [Normalized bar chart](normalized-bar-chart.md)
     * [Scatter chart](scatter-chart.md)
     * [Pie chart](pie-chart.md)
     * [Donut chart](ring-chart.md)
     * [Tree chart](tree-chart.md)
-    * [Combined chart](combined-chart.md)
 
   * **Tables**:
 

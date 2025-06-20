@@ -22,8 +22,6 @@ To create a {{ CH }} connection:
 
    {% include [datalens-db-connection-parameters](../../../_includes/datalens/datalens-db-connection-parameters.md) %}
 
-   ![image](../../../_assets/datalens/operations/connection/connection-clickhouse.png)
-
 1. (Optional) Test the connection. To do this, click **Check connection**.
 1. Click **Create connection**.
 1. Enter a name for the connection and click **Create**.
@@ -41,8 +39,8 @@ You can specify additional connection settings in the **Advanced connection sett
 
 * **Readonly**: Select a permission for requests to read data, write data, and change parameters. This setting must not exceed the user's corresponding setting in {{ CH }}:
 
-  * `0`: Allows all requests.
-  * `1`: Allows only data read requests.
+  * `0`: All requests are allowed.
+  * `1`: Only read data requests are allowed.
   * `2`: Allows requests to read data and edit settings.
 
 ## Specifics of using a connection to {{ CH }} {#ch-connection-specify}
@@ -65,3 +63,4 @@ You should also enable this option for raw-sql subqueries that are used as a dat
 To avoid errors when using views with the JOIN section in {{ datalens-short-name }}, re-create all views and set `join_use_nulls = 1`. This fills in empty cells with `NULL` values and converts the type of the relevant fields to [Nullable]({{ ch.docs }}/sql-reference/data-types/nullable/#data_type-nullable).
 
 {% include [clickhouse-disclaimer](../../../_includes/clickhouse-disclaimer.md) %}
+

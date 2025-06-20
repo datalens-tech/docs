@@ -17,6 +17,8 @@ _Подключение_ содержит информацию о парамет
 * [{{ MY }}](../operations/connection/create-mysql.md)
 * [{{ GP }}](../operations/connection/create-greenplum.md)
 * [MS SQL Server](../operations/connection/create-mssql-server.md)
+* [Oracle Database](../operations/connection/create-oracle.md)
+* [{{ TR }}](../operations/connection/create-trino.md)
 * [Metrica](../operations/connection/create-metrica-api.md)
 * [AppMetrica](../operations/connection/create-appmetrica.md)
 

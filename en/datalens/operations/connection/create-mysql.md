@@ -16,8 +16,6 @@ To create a {{ MY }} connection:
 
    {% include [datalens-db-connection-parameters-mysql](../../../_includes/datalens/datalens-db-connection-parameters-mysql.md) %}
 
-   ![image](../../../_assets/datalens/operations/connection/connection-mysql.png)
-
 1. (Optional) Test the connection. To do this, click **Check connection**.
 1. Click **Create connection**.
 1. Enter a name for the connection and click **Create**.

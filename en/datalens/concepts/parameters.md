@@ -44,3 +44,4 @@ When using parameters, keep in mind the following parameter naming restrictions:
 * Parameter names cannot be the same as dataset field names.
 * After adding a parameter to a dataset, make sure to save charts in the wizard again.
 * If a dataset and a chart have parameters with the same name, the parameter from the chart is ignored.
+

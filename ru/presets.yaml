@@ -7,7 +7,7 @@ default:
   datalens-short-name: DataLens
   dns-zone: mdb.yandexcloud.net
   GP: Greenplum®
-  link-console-support: https://support.yandex.cloud
+  link-console-support: https://center.yandex.cloud/support
   link-datalens-main: https://datalens.yandex.cloud
   link-datalens-wizard: https://datalens.yandex.cloud/wizard
   metrika-pro: Метрика Про
@@ -16,6 +16,11 @@ default:
   permission-read: Просмотр
   permission-write: Редактирование
   PG: PostgreSQL
+  roles-datalens-admin: datalens.admin
+  roles-datalens-tech-admin: datalens.admin
+  roles-datalens-tech-editor: datalens.editor
+  roles-datalens-tech-viewer: datalens.viewer
+  TR: Trino
   wiki-full-name: Yandex Wiki
   yandex-cloud: Yandex Cloud
   ydb-name: Managed Service for YDB

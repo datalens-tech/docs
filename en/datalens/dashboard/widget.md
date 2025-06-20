@@ -11,8 +11,9 @@ _Widgets_ are dashboard elements. You can create links between **Selector** and 
 
 * [Chart](#chart)
 * [Selector](#selector)
+* [Selector (JS)](#js-selector)
 * [Text](#text)
-* [Header](#title)
+* [Title](#title)
 
 ## Chart {#chart}
 
@@ -28,6 +29,7 @@ A filter that affects query results on its linked widgets. To add a selector to 
 A selector can be linked to a chart or another selector. For more information, see [{#T}](./link.md).
 
 For more information about selectors, see [{#T}](./selector.md).
+
 
 ## Text {#text}
 

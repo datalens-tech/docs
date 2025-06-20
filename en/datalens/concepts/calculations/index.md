@@ -86,7 +86,7 @@ You can create calculated fields in the dataset or wizard interface.
   ![dataset-calculated-field](../../../_assets/datalens/concepts/dataset-calculated-field.png)
 
 - Wizard
-
+  
 
   1. In the left-hand panel, click ![image](../../../_assets/console-icons/chart-column.svg) **Charts** and select the chart created in the [wizard]({{ link-datalens-wizard }}).
   1. On the left side of the screen above the list of dataset fields, click ![image](../../../_assets/console-icons/plus.svg) and select **Field**.
@@ -95,6 +95,8 @@ You can create calculated fields in the dataset or wizard interface.
   1. Click **Create**. The field will appear in the list on the left. You can use it in a chart.
 
   ![chart-calculated-field](../../../_assets/datalens/concepts/chart-calculated-field.png)
+
+  You can also [duplicate](../../dataset/create-dataset.md#duplicate-fields) any dataset field, including the calculated field you previously created.
 
 {% endlist %}
 

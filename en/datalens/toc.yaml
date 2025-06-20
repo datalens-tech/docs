@@ -15,6 +15,10 @@ items:
         href: workbooks-collections/index.md
       - name: Creating workbooks and collections
         href: workbooks-collections/workbooks-collections-create.md
+      - name: Exporting and importing workbooks
+        href: workbooks-collections/export-and-import.md
+      - name: Errors and warnings during export and import
+        href: workbooks-collections/export-import-notifications.md
   - name: Connections
     items:
       - name: Overview
@@ -29,6 +33,8 @@ items:
             href: operations/connection/create-postgresql.md
           - name: Creating a {{ MY }} connection
             href: operations/connection/create-mysql.md
+          - name: Creating a {{ ydb-short-name }} connection
+            href: operations/connection/create-ydb.md
           - name: Creating a {{ ytsaurus-name }} CHYT connection
             items:
               - name: Connection
@@ -39,6 +45,14 @@ items:
                 href: operations/connection/chyt/chyt-recommendations.md
           - name: Creating a {{ GP }} connection
             href: operations/connection/create-greenplum.md
+          - name: Creating a {{ MS }} connection
+            href: operations/connection/create-mssql-server.md
+      - name: Services
+        items:
+          - name: Creating a Yandex Metrica API connection
+            href: operations/connection/create-metrica-api.md
+          - name: Creating an AppMetrica connection
+            href: operations/connection/create-appmetrica.md
   - name: Datasets
     items:
       - name: Overview
@@ -485,11 +499,11 @@ items:
             href: function-ref/availability.md
       - name: Examples of using functions
         items:
-          - name: Aggregate functions
+          - name: Aggregation functions
             href: concepts/aggregation-tutorial.md
           - name: Window functions
             href: concepts/window-function-tutorial.md
-          - name: LOD expressions and filtering in aggregate functions
+          - name: LOD expressions and filtering in aggregation functions
             href: concepts/lod-aggregation.md
       - name: Parameters
         href: concepts/parameters.md
@@ -531,14 +545,8 @@ items:
             href: visualization-ref/index.md
           - name: Line chart
             href: visualization-ref/line-chart.md
-          - name: Area chart
-            href: visualization-ref/area-chart.md
-          - name: Normalized stacked area chart
-            href: visualization-ref/normalized-area-chart.md
           - name: Column chart
             href: visualization-ref/column-chart.md
-          - name: Normalized column chart
-            href: visualization-ref/normalized-column-chart.md
           - name: Bar chart
             href: visualization-ref/bar-chart.md
           - name: Normalized bar chart
@@ -547,8 +555,6 @@ items:
             href: visualization-ref/scatter-chart.md
           - name: Pie chart
             href: visualization-ref/pie-chart.md
-          - name: Combined chart
-            href: visualization-ref/combined-chart.md
           - name: Tree chart
             href: visualization-ref/tree-chart.md
           - name: Donut chart
@@ -569,6 +575,8 @@ items:
             href: operations/chart/add-parameter-chart.md
       - name: Versioning
         href: concepts/chart/versioning.md
+      - name: Chart inspector
+        href: concepts/chart/inspector.md
   - name: Dashboards
     items:
       - name: Overview
@@ -581,6 +589,8 @@ items:
         href: dashboard/selector.md
       - name: Filtering charts by other charts
         href: dashboard/chart-chart-filtration.md
+      - name: Dashboard settings
+        href: dashboard/settings.md
       - name: Parameters
         href: dashboard/dashboard_parameters.md
       - name: Markdown
@@ -599,6 +609,8 @@ items:
             href: operations/dashboard/add-title.md
           - name: Adding a description to a dashboard
             href: operations/dashboard/add-description.md
+          - name: Configuring links on a dashboard
+            href: operations/dashboard/dashboard-links.md
           - name: Creating an alias
             href: operations/dashboard/create-alias.md
           - name: Deleting an alias
@@ -607,6 +619,14 @@ items:
             href: operations/dashboard/add-parameters.md
           - name: Setting up filtering by charts
             href: operations/dashboard/add-filtration.md
+          - name: Dashboard auto-update
+            href: operations/dashboard/auto-update.md
+          - name: Changing dashboard settings
+            href: operations/dashboard/dash-settings.md
+  - name: '{{ datalens-name }} administrator'
+    items:
+      - name: How to deploy
+        href: concepts/create-instance.md
   - name: Troubleshooting
     items:
       - name: Optimization best practices

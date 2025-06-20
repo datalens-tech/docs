@@ -22,7 +22,6 @@ Filtering is available for the following types of charts created using the [wiza
 * [Pie chart](../visualization-ref/pie-chart.md)
 * [Table](../visualization-ref/table-chart.md)
 * [Pivot table](../visualization-ref/pivot-table-chart.md)
-* [Combined chart](../visualization-ref/combined-chart.md)
 
 
 You can check how charts are filtered by charts on the [demo dashboard](https://datalens.yandex/9fms9uae7ip02?tab=LoG).

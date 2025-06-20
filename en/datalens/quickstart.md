@@ -11,52 +11,6 @@ This section outlines how to deploy {{ datalens-short-name }} locally, connect t
 
 
 
-## Deploy {{ datalens-short-name }} {#create-datalens}
-
-To deploy {{ datalens-short-name }} locally, just run multiple containers using [Docker Compose](https://docs.docker.com/compose/):
-
-1. If you do not have Docker, install it by following the guide for your platform:
-
-   * [macOS](https://docs.docker.com/desktop/install/mac-install/)
-   * [Linux](https://docs.docker.com/engine/install/)
-   * [Windows](https://docs.docker.com/desktop/install/windows-install/)
-
-1. Run the following commands:
-
-   1. Clone the repository:
-
-      ```bash
-      git clone https://github.com/datalens-tech/datalens
-      ```
-
-   1. Go to the repository directory and run all the containers required to start {{ datalens-short-name }}:
-
-      ```bash
-      cd <path_to_datalens_folder> && \
-      HC=1 docker compose up
-      ```
-
-      You can run the last command with a parameter for connecting an external database:
-
-      ```bash
-      METADATA_POSTGRES_DSN_LIST="postgres://{user}:{password}@{host}:{port}/{database}" HC=1 docker compose up
-      ```
-
-      {% note info %}
-
-      [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) is a patented commercial product. If you enable Highcharts in your {{ datalens-short-name }} instance (with the `HC=1` variable), make sure to comply with the [license](https://github.com/highcharts/highcharts/blob/master/license.txt). When Highcharts is disabled, not all [visualization types](./visualization-ref/index.md) are available.
-
-      {% endnote %}
-
-1. Open the {{ datalens-short-name }} UI at `http://localhost:8080`.
-
-Once you run {{ datalens-short-name }}, you can:
-
-* Review demo examples
-* Attach data [sources](concepts/connection.md)
-* Build custom [dashboards](concepts/dashboard.md)
-
-The first release of the open-source version includes everything you need to try {{ datalens-short-name }} features in your infrastructure. The [repository](https://github.com/datalens-tech/datalens/) currently hosts the service core, a set of key connectors ([{{ PG }}](operations/connection/create-postgresql.md), [{{ CH }}](operations/connection/create-clickhouse.md), and [{{ ytsaurus-name }}](operations/connection/chyt/create-chyt.md)), and the main interface components.
 
 ## Create a workbook {#create-workbook}
 
@@ -120,7 +74,7 @@ To create a dataset based on the `Sample ClickHouse` connection:
 
    ![drag-table](../_assets/datalens/quickstart/drag-table-os.png)
 
-1. Go to the **Fields** tab.
+1. Navigate to the **Fields** tab.
 
 
 
@@ -200,7 +154,7 @@ To create a chart based on `Sales Dataset`:
    1. In the top-right corner, click ![save-button](../_assets/console-icons/chevron-down.svg) → **Save as copy**.
    1. In the window that opens, enter the `Sales by category` name for the new chart and click **Save**.
 
-1. For the visualization type, select **Pie chart**.
+1. Select **Pie chart** as the visualization type.
 1. Add the product category to the chart. To do this, drag the `ProductCategory` field from **Dimensions** to the **Color** section.
 1. Check that the chart includes the sales measure: the `Sales` field should be located in the **Measures** section. If it is not there, drag it from under **Measures**.
 1. Add a measure label:
@@ -231,7 +185,7 @@ To create a dashboard:
 
 
 
-1. In the panel at the bottom of the page, select **Chart**.
+1. In the panel at the bottom of the page, hold down ![image](../_assets/console-icons/chart-column.svg) **Chart** and drag it to the required area.
 1. In the window that opens, click **Select**.
 1. Select the `Sales by subcategory` chart.
 
@@ -268,7 +222,7 @@ By default, the chart used for filtering filters data in all charts on the curre
 
 To add a selector to a dashboard:
 
-1. In the panel at the bottom of the page, choose **Selector**.
+1. In the panel at the bottom of the page, hold down ![image](../_assets/console-icons/sliders.svg) **Selector** and drag it to the required area.
 1. Add the calendar selector for the order date:
 
    1. Select `Sales Dataset`.

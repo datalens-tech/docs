@@ -71,9 +71,21 @@ December 2019|	451K |	307K | 111K
 
 {% endcut %}
 
+If you use a single value on the X axis to build the chart, e.g., the value you got by filtering, the chart will display dots.
+
+![line-chart-single-values](../../_assets/datalens/visualization-ref/line-chart/line-chart-single-values.png)
+
+{% cut "Source table" %}
+
+Year | Home appliances | Household goods | Household cleaners
+----- | ---------| ---------- | ---------- 
+2018 | 25K | 21K | 16K
+
+{% endcut %}
+
 ## Wizard sections {#wizard-sections}
 
-Section<br/> section| Description
+Wizard<br/> section| Description
 ----- | ----
 X | Dimension. You can specify only one field here. This dimension is usually a date. If this is the case, make sure to specify the `Date` data type for this field in the dataset. This is required for correct sorting and signature display. For better visualization, you can group dates into weeks, months, and years. For more information, see [{#T}](../concepts/chart/settings.md#field-settings).
 Y | Measure. You can specify multiple measures.<br/>If you add more than one measure to a section, the **Colors** section will contain a dimension named [Measure Names](../concepts/chart/measure-values.md).
@@ -104,13 +116,13 @@ To create a line chart:
 1. Drag a dimension to the **Color** section. The measure value is divided by color depending on the selected dimension.
 1. Drag a dimension or measure from the dataset to the **Filters** section. The field can be empty. In this case, no filters are applied.
 
-### Configuring display of null values {#null-settings}
+### Configuring display of `null` values {#null-settings}
 
 {% include [datalens-chart-null-settings](../../_includes/datalens/datalens-chart-null-settings.md) %}
 
 ## Recommendations {#recomendations}
 
-* The perception of data on a line chart depends on its proportions. An upward or downward trend may intensify if the chart is contracted and be less evident if it's spread.
+* The line chart data perception depends on its proportions. An upward or downward trend may intensify if the chart is compressed and become less evident if it is stretched out. 
   
   {% cut "Chart examples" %}
   
@@ -154,6 +166,7 @@ To create a line chart:
   ![line-chart-measure-settings](../../_assets/datalens/visualization-ref/line-chart/line-chart-measure-settings.png)
 
   {% endcut %}
+
 
 
 #### See also {#see-also}
