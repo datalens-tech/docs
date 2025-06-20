@@ -3,10 +3,10 @@ description: []
 links:
   - title: Начало работы
     description: Как начать работать с DataLens
-    href: quickstart
+    href: quickstart.html
   - title: Подключения
     description: Подключитесь к различным источникам данных
-    href: concepts/connection
+    href: concepts/connection.html
   - title: Датасеты
     description: Опишите структуру данных, полученных из источника
     href: dataset/
@@ -15,10 +15,10 @@ links:
     href: concepts/chart/
   - title: Дашборды
     description: Соберите свои чарты на одной странице
-    href: concepts/dashboard
+    href: concepts/dashboard.html
   - title: Квоты и лимиты
     description: Технические и организационные ограничения сервиса
-    href: concepts/limits
+    href: concepts/limits.html
 meta:
   title: ''
   description: ''
