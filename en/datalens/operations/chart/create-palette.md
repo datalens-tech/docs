@@ -16,11 +16,7 @@ To create a color palette:
 
    - Gradient color palette
 
-     {% note info %}
-
-     Use a gradient color palette in charts for numeric values.
-
-     {% endnote %}
+     The gradient color palette is used in charts for numerical indicators.
 
      1. Go to **Gradient color palettes** and click **+ Add palette**.
      1. In the window that opens, enter the following parameters:
@@ -34,19 +30,15 @@ To create a color palette:
 
    - Color palette
 
-     {% note info %}
-
-     Use a color palette in charts for discrete values, such as measure names and dimension values.
-
-     {% endnote %}
+     The color palette is used in charts for discrete values: indicator names, measurement values.
 
      1. Go to **Color palettes** and click**+ Add palette**.
      1. In the window that opens, enter the following parameters:
 
         * Enter the **Palette name** at the top.
-        * In the list on the right, click **+ Add color** and enter values for palette colors in hexadecimal format.
+        * In the list on the right, click **+ Add color** and enter values for palette colors, in hex format.
 
-          By default, values for 20 colors are set. You can edit, add, or delete palette colors. To change the order of colors, drag them using the mouse pointer. The changes will be displayed in the preview window.
+          There are 20 default colors. You can edit, add, or delete palette colors. To change the order of colors, drag them using the mouse pointer. The changes will be displayed in the preview window.
 
      1. Click **Save**.
 
@@ -77,3 +69,4 @@ To delete a color palette:
 1. Go to **Palettes** and hover over the name of the palette to delete.
 1. Click ![image](../../../_assets/console-icons/ellipsis.svg) on the right and select **Delete**.
 1. Click **Delete**.
+

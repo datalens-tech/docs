@@ -13,10 +13,12 @@ default:
   metrika-pro: Metrica Pro
   MS: SQL Server
   MY: MySQL®
-  permission-read: Read
   permission-write: Write
   PG: PostgreSQL
   roles-datalens-admin: datalens.admin
+  roles-datalens-tech-admin: datalens.admin
+  roles-datalens-tech-editor: datalens.editor
+  roles-datalens-tech-viewer: datalens.viewer
   TR: Trino
   wiki-full-name: Yandex Wiki
   yandex-cloud: Yandex Cloud

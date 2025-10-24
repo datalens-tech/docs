@@ -4,6 +4,8 @@ _Limits_ are technical constraints of the {{ datalens-short-name }} architecture
 
 #### General limits {#datalens-common-limits}
 
+
+
 {% note info %}
 
 {{ datalens-short-name }} has no limitation on the amount of data on the source you are connecting to.
@@ -15,7 +17,7 @@ Type of limit | Value
 ----- | -----
 Maximum number of tables in a single dataset | 32
 Maximum number of fields in a single dataset | 1200
-Maximum chart export size | 50 MB
+Maximum data size for direct chart export | 50 MB
 
 
 #### Chart data limits {#datalens-chart-data-limits}
@@ -26,7 +28,7 @@ Chart type | I/O
 ----- | -----
 **Charts** |
 Line chart | 75,000 rows
-Area chart<br/>Normalized stacked area chart | 75,000 rows
+Area chart<br/>Normalized area chart | 75,000 rows
 Column chart<br/>Normalized column chart | 75,000 rows
 Bar chart<br/>Normalized bar chart | 75,000 rows
 Scatter chart | 75,000 rows

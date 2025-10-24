@@ -13,7 +13,7 @@ You can edit parameter values on dashboards using selectors with manual input. H
 
 * Use the **Multiple choice** option.
 * Choose an operation in a selector (leave a dash in the selection field of the **Operation** drop-down list).
-* When using a selector based on a dataset parameter, you must unlink the selector from any others on the dashboard tab (set **Ignore** as your [link](../dashboard/link.md) type).
+* When using a selector based on a dataset parameter, you must unlink the selector from the other selectors on the dashboard tab (set **Not linked** for [link](../dashboard/link.md) type).
 
 You can also specify parameter values in chart links. To do this, add `?` at the end of a URL, write the parameter name without spaces after the URL, put `=`, and specify the parameter value without spaces. You can list multiple parameters in a URL using `&` as a separator. 
 
@@ -24,10 +24,10 @@ To use a chart with a parameter:
 1. [Add a selector](../operations/dashboard/add-selector.md) to the dashboard to manage the chart parameter:
 
    * Select **Manual input**.
-   * In the **Field or parameter name** field, enter the name of the parameter from the chart.
+   * In the **Field or parameter** field, enter the name of the parameter from the chart.
    * Leave a dash in the selection field of the **Operation** drop-down list.
    * In the **Default value** field, specify the value to propagate in the chart parameter.
-   * Enter the selector **Name** to display on the dashboard.
+   * Enter the selector **Header** to display on the dashboard.
 
    By changing selector values, you can customize visualization in the chart through the parameter.
 

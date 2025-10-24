@@ -67,6 +67,10 @@ items:
         href: dataset/data-model.md
       - name: Настройки датасета
         href: dataset/settings.md
+      - name: Версионирование
+        href: dataset/versioning.md
+      - name: Параметризация источников
+        href: dataset/parametrization.md
       - name: Типы данных
         href: dataset/data-types.md
       - name: Соответствие типов данных
@@ -577,6 +581,20 @@ items:
             href: visualization-ref/pivot-table-chart.md
           - name: Индикатор
             href: visualization-ref/indicator-chart.md
+          - name: Карта
+            items:
+              - name: Обзор
+                href: visualization-ref/map-chart.md
+              - name: Точечная карта
+                href: visualization-ref/point-map-chart.md
+              - name: Точечная карта с кластеризацией
+                href: visualization-ref/cluster-point-map-chart.md
+              - name: Полилинейная карта
+                href: visualization-ref/polyline-map-chart.md
+              - name: Фоновая карта
+                href: visualization-ref/choropleth-map-chart.md
+              - name: Тепловая карта
+                href: visualization-ref/heat-map-chart.md
       - name: Параметры в чартах
         items:
           - name: Добавление параметров в настройках чарта на дашборде
@@ -585,6 +603,8 @@ items:
             href: operations/chart/add-guid.md
           - name: Добавление параметра в чарт
             href: operations/chart/add-parameter-chart.md
+      - name: Добавление информации о чарте
+        href: operations/chart/add-description.md
       - name: Версионирование
         href: concepts/chart/versioning.md
       - name: Инспектор чартов
@@ -603,6 +623,8 @@ items:
         href: dashboard/chart-chart-filtration.md
       - name: Настройки дашборда
         href: dashboard/settings.md
+      - name: Версионирование
+        href: dashboard/versioning.md
       - name: Параметры
         href: dashboard/dashboard_parameters.md
       - name: Markdown
@@ -619,7 +641,7 @@ items:
             href: operations/dashboard/add-text.md
           - name: Добавление заголовка на дашборд
             href: operations/dashboard/add-title.md
-          - name: Добавление описания к дашборду
+          - name: Добавление информации о дашборде
             href: operations/dashboard/add-description.md
           - name: Добавление сообщения при обращении в поддержку
             href: operations/dashboard/add-support-message.md
@@ -748,9 +770,6 @@ items:
       - name: Measure filter is unsupported for this type of query
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-FILTER-MEASURE_UNSUPPORTED.md
-      - name: Подготовка данных еще не завершилась
-        hidden: true
-        href: troubleshooting/errors/ERR-DS_API-DB-MATERIALIZATION_NOT_FINISHED.md
       - name: Memory limit has been exceeded during query execution
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-MEMORY_LIMIT_EXCEEDED.md

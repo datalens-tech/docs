@@ -6,7 +6,12 @@ description: Из статьи вы узнаете, какие чарты дос
 # Справочник визуализаций
 
 
-При [запуске](../quickstart.md#create-datalens) своего экземпляра {{ datalens-short-name }} вы можете включить [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) (с переменной `HC=1`), или запустить без него. В зависимости от этого доступны следующие типы чартов:
+При [запуске](../concepts/create-instance.md) своего экземпляра {{ datalens-short-name }} вы можете включить [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) (с переменной `HC=1`) или запустить без этой библиотеки.
+
+По умолчанию визуализации типа **Географическая карта** выключены в {{ datalens-full-name }}. Подключить карты можно также при запуске экземпляра {{ datalens-short-name }} по [инструкции](../concepts/create-instance.md#yandex-maps-integration).
+
+
+
 
 {% list tabs %}
 
@@ -30,8 +35,17 @@ description: Из статьи вы узнаете, какие чарты дос
   * **Таблицы**:
 
     * [Таблица](table-chart.md)
-    * [Сводная таблица](pivot-table-chart.md)
+    * [Сводная таблица](pivot-table-chart.md) — Не поддерживается в [QL-чартах](../concepts/chart/index.md#sql-charts)
 
+  * **Географическая карта**:
+
+    * [Карта](map-chart.md) — Не поддерживаются в [QL-чартах](../concepts/chart/index.md#sql-charts)
+
+      * [Точечная карта](point-map-chart.md)
+      * [Точечная карта с кластеризацией](cluster-point-map-chart.md)
+      * [Полилинейная карта](polyline-map-chart.md)
+      * [Фоновая карта](choropleth-map-chart.md)
+      * [Тепловая карта](heat-map-chart.md)
 
   * **Другое**:
 
@@ -53,19 +67,22 @@ description: Из статьи вы узнаете, какие чарты дос
   * **Таблицы**:
 
     * [Таблица](table-chart.md)
-    * [Сводная таблица](pivot-table-chart.md)
+    * [Сводная таблица](pivot-table-chart.md) — Не поддерживается в [QL-чартах](../concepts/chart/index.md#sql-charts)
+
+  * **Географическая карта**:
+
+    * [Карта](map-chart.md) — Не поддерживаются в [QL-чартах](../concepts/chart/index.md#sql-charts)
+
+      * [Точечная карта](point-map-chart.md)
+      * [Точечная карта с кластеризацией](cluster-point-map-chart.md)
+      * [Полилинейная карта](polyline-map-chart.md)
+      * [Фоновая карта](choropleth-map-chart.md)
+      * [Тепловая карта](heat-map-chart.md)
 
   * **Другое**:
 
     * [Индикатор](indicator-chart.md)
 
 {% endlist %}
-
-
-{% note info %}
-
-[QL-чарты](../concepts/chart/index.md#sql-charts) не поддерживают сводную таблицу.
-
-{% endnote %}
 
 

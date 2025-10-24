@@ -5,8 +5,7 @@ description: На странице приведены коды ошибок и �
 
 # Все ошибки
 
-На странице приведены коды ошибок и их описание.
-Чтобы посмотреть подробную информацию об ошибке, перейдите по ссылке, нажав на код ошибки:
+На странице приведены коды ошибок и их описание. Чтобы посмотреть подробную информацию об ошибке, перейдите по ссылке, нажав на код ошибки:
 
 Код ошибки | Описание |
 ----- | ----- |
@@ -31,7 +30,6 @@ description: На странице приведены коды ошибок и �
 [ERR.DS_API.DB.DB_OPERATIONAL_ERROR](ERR-DS_API-DB-DB_OPERATIONAL_ERROR.md) | Ошибка на стороне БД |
 [ERR.DS_API.DB.INVALID_FUNCTION.PG_DOUBLE_PRECISION_ROUND](ERR-DS_API-DB-INVALID_FUNCTION-PG_DOUBLE_PRECISION_ROUND.md) | ROUND with precision parameter is not supported for double precision data type in PostgreSQL
 [ERR.DS_API.DB.JOIN_COLUMN_TYPE_MISMATCH](ERR-DS_API-DB-JOIN_COLUMN_TYPE_MISMATCH.md) | Columns in JOIN have different types |
-[ERR.DS_API.DB.MATERIALIZATION_NOT_FINISHED](ERR-DS_API-DB-MATERIALIZATION_NOT_FINISHED.md) | Подготовка данных еще не завершилась |
 [ERR.DS_API.DB.MEMORY_LIMIT_EXCEEDED](ERR-DS_API-DB-MEMORY_LIMIT_EXCEEDED.md) | Memory limit has been exceeded during query execution |
 [ERR.DS_API.DB.SOURCE_CONNECT_ERROR](ERR-DS_API-DB-SOURCE_CONNECT_ERROR.md) | Data source refused connection |
 [ERR.DS_API.DB.SOURCE_DOES_NOT_EXIST](ERR-DS_API-DB-SOURCE_DOES_NOT_EXIST.md) | Data source (table) does not exist |

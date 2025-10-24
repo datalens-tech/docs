@@ -1,3 +1,8 @@
+---
+title: Chart settings
+description: In this article, you will learn about chart settings and how to undo and redo changes to charts.
+---
+
 # Chart settings
 
 Charts are configurable. For example, you can choose to display a legend, customize a color scheme, or set your own title.
@@ -39,7 +44,7 @@ The settings specified below may not be available for some chart types.
 * **Off**: Hides the navigator.
 
 For more information, see [this guide](../../operations/chart/config-chart-navigator.md). ||
-|| Pagination | Breaks a table into pages.<br/><br/>Available values:
+|| Pagination | Breaks a table into pages. It is not available if only one page is displayed or there is no data.<br/><br/>Available values:
 
 * **On**: Displays the table part by part across a number of pages.
 * **Off**: Displays the whole table. ||
@@ -52,6 +57,11 @@ For more information, see [this guide](../../operations/chart/config-chart-navig
 
 * **On**: Shows the **Total** row.
 * **Off**: Hides the **Total** row. ||
+|| Preserving spaces and line breaks | Displays spaces and line breaks in the table as in the source data.<br/><br/>Available values:
+
+* **On**: Display all spaces and line breaks.
+* **Off**: Reduce multiple spaces and line breaks to a single space. ||
+
 |#
 
 ## Field settings {#field-settings}
@@ -86,7 +96,7 @@ If you apply an aggregation to the dimension, it will become a measure and the r
 
 * `None`: No markup.
 * `HTML`: HTML markup. Available only for `String` type fields.
-* `Markdown`: [{#T}](../../dashboard/markdown.md) markup. Available only for `String` type fields in relevant sections, depending on visualization type.
+* `Markdown`: [{#T}](../../dashboard/markdown.md) markup. Available only for `String` type fields in relevant sections depending on visualization type.
   
   #|
   || **Visualization types** | **Sections** ||
@@ -95,7 +105,7 @@ If you apply an aggregation to the dimension, it will become a measure and the r
   || [Line](../../visualization-ref/line-chart.md), [Column](../../visualization-ref/column-chart.md), [Bar](../../visualization-ref/bar-chart.md), [Pie](../../visualization-ref/pie-chart.md), and [Ring](../../visualization-ref/ring-chart.md) charts | [Labels](#sign) ||
   |#
 
-This setting is not available in the following visualizations: [Indicator](../../visualization-ref/indicator-chart.md), [Table](../../visualization-ref/table-chart.md) and [Pivot table](../../visualization-ref/pivot-table-chart.md). ||
+This setting is not available in the following visualizations: [Indicator](../../visualization-ref/indicator-chart.md), [Table](../../visualization-ref/table-chart.md), and [Pivot table](../../visualization-ref/pivot-table-chart.md). ||
 || Sub-totals | Shows columns and/or rows with subtotals. This setting is only available for [Pivot table](../../visualization-ref/pivot-table-chart.md) charts. ||
 |#
 

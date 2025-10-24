@@ -37,7 +37,9 @@ To simplify the comparison of different values and make the information easier t
 * [Setting up table data sorting by multiple columns](#sorting-columns)
 * [Setting up column width](#set-column-width)
 * [Freezing table columns](#column-fixation)
+* [Managing the number of rows](#pagination-limit)
 * [Adding a row with totals](#add-totals)
+* [Preserving spaces and line breaks](#spaces-and-line-breaks)
 * [Adding row color](#add-column-color)
 * [Setting field fill color](#set-field-color)
 * [Adding a linear indicator to a column with a measure](#add-linear-indicator)
@@ -46,7 +48,7 @@ To simplify the comparison of different values and make the information easier t
 
 Wizard<br/> section| Description
 ----- | ----
-Columns | Dimensions and measures to be used as columns. The field name appears in the column header. You can use [markup functions](../function-ref/markup-functions.md) in columns.
+Columns | Dimensions and measures that will be used as columns. The field name appears in the column header. You can use [markup functions](../function-ref/markup-functions.md) in columns.
 Colors | Measure. Affects color fill of all cells within a row. It may only contain one measure.
 Sorting | Dimensions and measures specified in the **Columns** section.<br/>You can use multiple dimensions and measures.<br/>The order of section fields affects the sorting order of table fields. The sorting direction is marked with an icon next to the field: ![image](../../_assets/console-icons/bars-ascending-align-left.svg) for ascending or ![image](../../_assets/console-icons/bars-descending-align-left.svg) for descending. To change the sorting direction, click the icon.
 Filters | Dimension or measure. Used as a filter.
@@ -102,8 +104,8 @@ When the option is enabled, the ![image](../../_assets/console-icons/circle-ques
 
 ### Setting up table data sorting by multiple columns {#sorting-columns}
 
-1. On the left side of the screen above the chart, click ![image](../../_assets/console-icons/gear.svg).
-1. Enable the **Pagination** setting and click **Apply**.
+1. At the top of the screen, click ![image](../../_assets/console-icons/gear.svg) next to the chart type.
+1. Disable **Pagination** and click **Apply**.
 1. Press and hold **Ctrl** while clicking the headers of columns to change the sorting for.
 
 ### Setting the width of table columns {#set-column-width}
@@ -139,12 +141,34 @@ To set the width of any column to `Auto`, click **Reset**.
 1. In the **Freeze** window that opens, enter the number of columns to freeze. These columns will stay in place as you scroll horizontally.
 1. Click **Apply**.
 
+### Managing the number of rows {#pagination-limit}
+
+Use the **Pagination** and **Limit** [settings](../concepts/chart/settings.md#common-settings) to manage the number of rows displayed on the screen and exported from the chart. To edit the number of rows:
+
+1. At the top of the screen, click ![image](../../_assets/console-icons/gear.svg) next to the chart type.
+1. Enable pagination and set the number of rows per page or disable pagination.
+1. Click **Apply**.
+
+By default, tables come with pagination on and a limit of `100` rows per page. With pagination off, the whole table will be displayed within the [display limits](../concepts/limits.md#datalens-chart-data-limits). Pagination is not available if only one page is displayed or there is no data.
+
+With pagination on, only table data from the current page will be exported. To save the whole table within the [chart export size limit](../concepts/limits.md#datalens-common-limits), disable pagination.
+
+
+### Enabling pagination {#pagination}
+
+Enable pagination if your table has many rows:
+
+1. At the top of the screen, click ![image](../../_assets/console-icons/gear.svg) next to the chart type.
+1. Enable **Pagination** and click **Apply**.
+
+This option is not available if only one page is displayed or there is no data.
+
 ### Adding a row with totals {#add-totals}
 
-1. On the left side of the screen above the chart, click ![image](../../_assets/console-icons/gear.svg).
-1. Enable the **Results** option and click **Apply**.
+1. At the top of the screen, click ![image](../../_assets/console-icons/gear.svg) next to the chart type.
+1. Enable **Totals** and click **Apply**.
 
-The **Total** row is displayed in the table. Values in the row are calculated using the same formulas as [aggregation](../dataset/data-model.md#aggregation) in the measure.
+The **Total** row will now appear in the table. Values in the row are calculated using the same formulas as [aggregation](../dataset/data-model.md#aggregation) in the measure.
 
 {% note info %}
 
@@ -154,6 +178,13 @@ The **Total** row is displayed in the table. Values in the row are calculated us
 * The row with totals does not display results calculated using [LOD expressions](../concepts/lod-aggregation.md), [window functions](../function-ref/window-functions.md), and [time series functions](../function-ref/time-series-functions.md).
 
 {% endnote %}
+
+### Preserving spaces and line breaks {#spaces-and-line-breaks}
+
+1. At the top of the screen, click ![image](../../_assets/console-icons/gear.svg) next to the chart type.
+1. Enable **Preserve spaces and line breaks** and click **Apply**.
+
+With this option on, the text will feature the same spaces and line breaks as in the source data.
 
 ### Adding row color {#add-column-color}
 
