@@ -6,7 +6,9 @@ description: Следуя данной инструкции, вы сможете
 # Как начать работать с {{ datalens-short-name }}
 
 
-В этом разделе описано, как развернуть {{ datalens-short-name }} локально, подключиться к источнику данных, создать свой первый [датасет](dataset/index.md), построить несколько [чартов](concepts/chart/index.md) для визуализации данных и разместить их на [дашборде](concepts/dashboard.md).
+В этом разделе описано, как подключиться к источнику данных, создать свой первый [датасет](dataset/index.md), построить несколько [чартов](concepts/chart/index.md) для визуализации данных и разместить их на [дашборде](concepts/dashboard.md).
+
+Чтобы начать работать с {{ datalens-short-name }}, воспользуйтесь [инструкцией по развертыванию](./concepts/create-instance.md).
 
 
 
@@ -250,7 +252,7 @@ description: Следуя данной инструкции, вы сможете
 
    1. В чарте `Продажи по подкатегориям` нажмите на столбец со значением `Кухонная`. Связанные чарты отфильтруются по выбранному измерению.
 
-      ![chart-chart-filtration](../_assets/datalens/quickstart/chart-chart-filtration-os.png){
+      ![chart-chart-filtration](../_assets/datalens/quickstart/chart-chart-filtration-os.png)
 
    1. Сбросьте фильтрацию чартом: повторно нажмите на выбранный элемент или в правом верхнем углу чарта нажмите значок ![image](../_assets/datalens/clear-filters.svg).
 

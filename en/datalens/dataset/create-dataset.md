@@ -75,7 +75,7 @@ You can use SQL queries for database sources only.
      1. Enter a **Source name** and enter the SQL code in the **Subquery** field.
      1. Click **Create**.
 
-        {% cut "Example of SQL query" %}
+        {% cut "Example of an SQL query" %}
 
         {% include [datalens-sql-join-example](../../_includes/datalens/datalens-sql-join-example.md) %}
 
@@ -94,7 +94,7 @@ To replace a connection in a dataset:
    ![screenshot](../../_assets/datalens/dataset/dataset-replace-connection.png)
 
 1. Select another connection.
-1. Drag the tables to be used as a data source for the dataset to the workspace.
+1. Drag to the workspace the tables that will serve as sources of data for the dataset.
 1. Edit or delete the [calculated fields](../concepts/calculations/index.md) which use fields not present in the new table.
 1. In the top-right corner, click **Save**.
 
@@ -187,7 +187,7 @@ You can add fields to a dataset from data source tables or create [calculated fi
 
    {% endlist %}
 
-### Duplicating fields {#duplicate-fields}
+### Duplicating fields {#dublicate-fields}
 
 You can duplicate any dataset field, including the calculated field you previously created. To do this:
 
@@ -259,9 +259,13 @@ You can select multiple dataset fields at once to delete, hide, or display them,
 
 ![screenshot](../../_assets/datalens/dataset/dataset-fields-bulk-changes-2.png)
 
+To select the field range, hold the **Shift** key and set the beginning and end of the range with your mouse. You can select multiple ranges. To select each of the field ranges, hold **Ctrl** and click the first field in the range, then hold **Shift** and click the last field in the range.
+
 ## Adding parameters {#add-parameters}
 
-You can use [parameters](../concepts/parameters.md) in calculated dataset fields.
+
+In datasets, you can use parameters in [calculated fields](../concepts/parameters.md).
+
 
 {% note info %}
 
@@ -277,9 +281,11 @@ Parameters added at the dataset level are available in all charts created based 
    * **Type**: Parameter [data type](./data-types.md).
    * **Default value**. This is a required value. It is used when no parameter value is set in the dashboard, chart URL, or chart settings.
 
+
 1. Click **Add**.
 
 You can also create parameters at the [chart level](../operations/chart/add-parameter-chart.md).
+
 
 ## Adding filters {#add-filters}
 

@@ -11,17 +11,17 @@ To create a workbook or collection:
 
 - Creating a workbook
 
-  1. Go to the {{ datalens-short-name }} home page.
   1. In the left-hand panel, select ![collections](../../_assets/console-icons/rectangles-4.svg) **Collections and workbooks**.
 
 
   1. In the top-right corner, click **Create** → **Create workbook**.
   1. Enter a name for the workbook.
+  1. Optionally, enter a description for the workbook.
+  1. Optionally, click **Select file** to [import a workbook](./export-and-import.md#import-workbook).
   1. Click **Create**.
 
 - Creating a collection
 
-  1. Go to the {{ datalens-short-name }} home page.
   1. In the left-hand panel, select ![collections](../../_assets/console-icons/rectangles-4.svg) **Collections and workbooks**.
 
 

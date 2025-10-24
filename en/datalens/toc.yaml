@@ -47,6 +47,10 @@ items:
             href: operations/connection/create-greenplum.md
           - name: Creating a {{ MS }} connection
             href: operations/connection/create-mssql-server.md
+          - name: Creating an Oracle Database connection
+            href: operations/connection/create-oracle.md
+          - name: Creating a {{ TR }} connection
+            href: operations/connection/create-trino.md
       - name: Services
         items:
           - name: Creating a Yandex Metrica API connection
@@ -63,6 +67,10 @@ items:
         href: dataset/data-model.md
       - name: Dataset settings
         href: dataset/settings.md
+      - name: Versioning
+        href: dataset/versioning.md
+      - name: Source parameterization
+        href: dataset/parametrization.md
       - name: Data types
         href: dataset/data-types.md
       - name: Data type mapping
@@ -545,8 +553,14 @@ items:
             href: visualization-ref/index.md
           - name: Line chart
             href: visualization-ref/line-chart.md
+          - name: Area chart
+            href: visualization-ref/area-chart.md
+          - name: Normalized stacked area chart
+            href: visualization-ref/normalized-area-chart.md
           - name: Column chart
             href: visualization-ref/column-chart.md
+          - name: Normalized column chart
+            href: visualization-ref/normalized-column-chart.md
           - name: Bar chart
             href: visualization-ref/bar-chart.md
           - name: Normalized bar chart
@@ -555,6 +569,8 @@ items:
             href: visualization-ref/scatter-chart.md
           - name: Pie chart
             href: visualization-ref/pie-chart.md
+          - name: Combined chart
+            href: visualization-ref/combined-chart.md
           - name: Tree chart
             href: visualization-ref/tree-chart.md
           - name: Donut chart
@@ -565,6 +581,20 @@ items:
             href: visualization-ref/pivot-table-chart.md
           - name: Indicator
             href: visualization-ref/indicator-chart.md
+          - name: Map
+            items:
+              - name: Overview
+                href: visualization-ref/map-chart.md
+              - name: Point map
+                href: visualization-ref/point-map-chart.md
+              - name: Point map with clusters
+                href: visualization-ref/cluster-point-map-chart.md
+              - name: Polyline map
+                href: visualization-ref/polyline-map-chart.md
+              - name: Choropleth map
+                href: visualization-ref/choropleth-map-chart.md
+              - name: Heat map
+                href: visualization-ref/heat-map-chart.md
       - name: Chart parameters
         items:
           - name: Adding parameters in dashboard chart settings
@@ -573,6 +603,8 @@ items:
             href: operations/chart/add-guid.md
           - name: Adding parameters to a chart
             href: operations/chart/add-parameter-chart.md
+      - name: Adding a description to a chart
+        href: operations/chart/add-description.md
       - name: Versioning
         href: concepts/chart/versioning.md
       - name: Chart inspector
@@ -591,6 +623,8 @@ items:
         href: dashboard/chart-chart-filtration.md
       - name: Dashboard settings
         href: dashboard/settings.md
+      - name: Versioning
+        href: dashboard/versioning.md
       - name: Parameters
         href: dashboard/dashboard_parameters.md
       - name: Markdown
@@ -605,11 +639,15 @@ items:
             href: operations/dashboard/add-selector.md
           - name: Adding text to a dashboard
             href: operations/dashboard/add-text.md
-          - name: Adding a dashboard header
+          - name: Adding a title to a dashboard
             href: operations/dashboard/add-title.md
           - name: Adding a description to a dashboard
             href: operations/dashboard/add-description.md
-          - name: Configuring links on a dashboard
+          - name: Adding a message displayed when contacting support
+            href: operations/dashboard/add-support-message.md
+          - name: Adding an access error message
+            href: operations/dashboard/add-access-message.md
+          - name: Configuring links on the dashboard
             href: operations/dashboard/dashboard-links.md
           - name: Creating an alias
             href: operations/dashboard/create-alias.md
@@ -623,10 +661,20 @@ items:
             href: operations/dashboard/auto-update.md
           - name: Changing dashboard settings
             href: operations/dashboard/dash-settings.md
+  - name: Access management
+    items:
+      - name: Overview
+        href: security/index.md
+      - name: User account
+        href: security/user-account.md
+      - name: '{{ datalens-short-name }} roles'
+        href: security/roles.md
   - name: '{{ datalens-name }} administrator'
     items:
       - name: How to deploy
         href: concepts/create-instance.md
+      - name: Managing users
+        href: security/manage-users.md
   - name: Troubleshooting
     items:
       - name: Optimization best practices
@@ -737,11 +785,14 @@ items:
       - name: Requested database column does not exist
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-COLUMN_DOES_NOT_EXIST.md
+      - name: Data preparation is not complete yet
+        hidden: true
+        href: troubleshooting/errors/ERR-DS_API-DB-DATA_PREPARATION_NOT_FINISHED.md
       - name: Subquery source is disallowed in the connection settings
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-CONNECTION_CONFIG-SUBSELECT_NOT_ALLOWED.md
-      - name: Table is not ready yet
+      - name: Table configuration is disrupted
         hidden: true
         href: >-
           troubleshooting/errors/ERR-DS_API-SOURCE_CONFIG-TABLE_NOT_CONFIGURED.md

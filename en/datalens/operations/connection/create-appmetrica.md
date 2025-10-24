@@ -12,7 +12,7 @@ To create an AppMetrica connection:
 1. Go to the [workbook](../../workbooks-collections/index.md) page or create a new one.
 1. In the top-right corner, click **Create** → **Connection**.
 1. Select **AppMetrica** as the connection type.
-1. Specify the connection settings:
+1. Configure the connection as follows:
    * **OAuth token**. Specify the OAuth token to access Yandex Metrica data.
    * **App**. Specify the application ID.
 

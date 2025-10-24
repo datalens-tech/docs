@@ -9,7 +9,7 @@ Dashboard settings allow you to optimize it for a specific task or work with a s
 
 ## Auto-update {#auto-update}
 
-You can set up [automatic updates](../operations/dashboard/auto-update.md) for dashboard data. The update interval is specified in seconds and the minimum value is 30 seconds. The setting is global: after saving the dashboard, auto-update will work for all users that open it. Auto-update also works in the mobile version.
+You can set up [automatic updates](../operations/dashboard/auto-update.md) for dashboard data. The update interval is specified in seconds and the minimum value is 30 seconds. The setting is global: after saving the dashboard, auto-update will work for all users that open it. 
 
 The following limitations apply to auto update:
 
@@ -19,11 +19,14 @@ The following limitations apply to auto update:
   * If the tab is not selected as the current tab, it is not considered active and the data is not updated.
   * If the tab is selected as the current tab, but the browser is running in the background, the tab is considered active and the data is updated.
 
-
-
-## Setting up a description {#message-settings}
+## Description and message settings {#message-settings}
 
 You can [add a description](../operations/dashboard/add-description.md) to a dashboard. To view the description, click ![image](../../_assets/console-icons/circle-info.svg) in the top-right corner of the screen.
+
+You can also set up additional information messages:
+
+* Displayed when [contacting support](../operations/dashboard/add-support-message.md). In this case, if the user clicks ![image](../../_assets/console-icons/circle-question.svg) in the bottom-left corner of the screen and selects **Create request**, they will see an additional message in the **Information** window.
+* Displayed if a [dashboard access error](../operations/dashboard/add-access-message.md) occurs. In this case, if the user has no dashboard view permission, they will see the saved message.
 
 
 ## Widget loading settings {#load-settings}
@@ -37,7 +40,7 @@ You can customize the loading speed of widgets on the dashboard. To do this, [co
 
 ## Pinning widgets {#widget-fixation}
 
-You can pin (i.e. lock the position of) a widget in dedicated lock areas at the top of the dashboard. These areas stay locked as you scroll the page, and the widgets pinned on them keep their position.
+You can pin (i.e., lock the position of) a widget in dedicated lock areas at the top of the dashboard. These areas stay locked as you scroll the page, and the widgets pinned on them keep their position.
 
 There are two lock areas available, one below the other. Their purposes are different:
 
@@ -51,3 +54,15 @@ You can manage pinned widgets in dashboard edit mode as follows:
 * To unpin all widgets, click ![image](../../_assets/console-icons/gear.svg) → ![image](../../_assets/console-icons/pin-slash.svg) **Unpin all** to the right of the lock area.
 * To customize the bottom lock area behavior as you open the dashboard, click ![image](../../_assets/console-icons/gear.svg) → ![image](../../_assets/console-icons/square.svg) **Hide by default** or ![image](../../_assets/console-icons/square-check.svg) **Hide by default** to the right of the lock area.
 
+
+## Undoing and redoing changes to dashboards {#undo-redo}
+
+When editing a dashboard, you can undo/redo any change introduced within the current version:
+
+* To undo changes, click ![image](../../_assets/console-icons/arrow-uturn-ccw-left.svg) in the top-right corner of the screen or press **Ctrl** (**Cmd**) + **Z**.
+* To redo changes, click ![image](../../_assets/console-icons/arrow-uturn-cw-right.svg) or press **Ctrl** (**Cmd**) + **Shift** + **Z**.
+
+Unsaved changes in the current version are reset:
+
+* When refreshing the page.
+* When saving a dashboard.

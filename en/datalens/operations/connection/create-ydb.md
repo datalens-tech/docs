@@ -34,10 +34,7 @@ To create a {{ ydb-short-name }} connection:
      * **Hostname**. Specify the path to the {{ ydb-short-name }} host.
      * **Port**. Specify the {{ ydb-short-name }} connection port. The default port is 2135.
      * **Path to database**. Specify the name of the database to connect to.
-     * **Username**. Specify the username for the {{ CH }} connection.
-
-       {% include [datalens-db-note](../../../_includes/datalens/datalens-db-note.md) %}
-
+     * **Username**. Specify the username for the {{ ydb-short-name }} connection.
      * **Password**. Enter the password for the user.
 
    - OAuth {#oauth}
@@ -54,6 +51,14 @@ To create a {{ ydb-short-name }} connection:
 
 1. Click **Create connection**.
 1. Enter a name for the connection and click **Create**.
+
+
+## Additional settings {#additional-settings}
+
+You can specify additional connection settings in the **Advanced connection settings** section:
+
+* **TLS**: Indicates whether TLS is required. When this option is enabled, the connection requires using SSL.
+* **CA Certificate**: To upload a certificate, click **Attach file** and specify the certificate file. When the certificate is uploaded, the field shows the file name.
 
 
 {% cut "RESOURCE_EXHAUSTED error" %}

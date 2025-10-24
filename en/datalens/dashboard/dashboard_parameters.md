@@ -5,7 +5,7 @@ description: In this article, you will learn what dashboard parameters are, take
 
 # Dashboard parameters
 
-A dashboard parameter is a variable used to filter widgets on the dashboard when you open it. Parameters allow you to use visualization features more flexibly and customize the same charts and widgets for different purposes. You may find parameters useful in situations like these:
+A dashboard parameter is a variable used to filter widgets on the dashboard when you open it or use it in the calculated field formulas. Parameters allow you to use visualization features more flexibly and customize the same charts and widgets for different purposes. You may find parameters useful in situations like these:
 
 * You want to post a link to a dashboard with a filter applied: in a table on another dashboard, on a {{ wiki-full-name }} page, or somewhere else.
 * You want to post the same chart with different filters on the same dashboard tab.
@@ -16,7 +16,9 @@ You can see the examples of how to use the parameters in this {{ yandex-cloud }}
 
 ## Dashboard parameters {#params-dash}
 
-Dashboard parameters are substituted into all widgets (including charts and selectors) when they are uploaded. When opening such a dashboard, its data will be filtered based on the specified parameter values. You can [add parameters](../operations/dashboard/add-parameters.md) in the dashboard settings. For each parameter, specify a name (key) and value. The parameter name must be the same as the name of the dataset field by which data is filtered.
+You can use dashboard parameters to supply values to all charts while they are loading. When opening such a dashboard, its data will be filtered based on the specified values and [parameter application order](#params-applying). By default, dashboard parameter values are not supplied to selectors, but if you specify a selector parameter, you will be able to override its value in the dashboard [link](#params-in-url).
+
+You can [add parameters](../operations/dashboard/add-parameters.md) in the dashboard settings. For each parameter, specify a name (key) and value. The parameter name must be the same as the name of the dataset field or parameter used to filter the data.
 
 {% note info %}
 
@@ -29,7 +31,9 @@ If the field ID changes, you should also update the parameter name. For more inf
 
 {% endnote %}
 
-You can also specify parameter values in a dashboard link. In which case clicking a link will open the dashboard with a filter applied.
+### Providing parameters in a dashboard link {#params-in-url}
+
+If the parameters are added in the dashboard settings, you can also specify the parameter values in a dashboard link. In which case clicking a link will open the dashboard with a filter applied.
 
 {% note info %}
 
@@ -103,14 +107,34 @@ For example, if the current time is `2020-03-24T23:30:39.874Z`, then:
 
 ## Order of applying parameters {#params-applying}
 
-For dashboard widgets, parameters are applied in the following order (values from the previous items are overridden by the subsequent ones):
+Here is the order in which parameters are applied to dashboard widgets (values from the previous items are overridden by the subsequent ones):
 
-1. For wizard and QL charts, filters; for Editor charts, the parameters specified on the  tab.
+1. [Dataset parameters](../dataset/create-dataset.md#add-parameters) for charts based on this dataset.
+1. For charts:
+
+   * Wizard: Dataset parameters with overridden values at the chart level and filters.
+   * QL charts: Parameters.
+   * Editor: Parameters specified on the  tab.
+
 1. [Chart parameters](#params-chart) from dashboard settings.
 1. [Dashboard parameters](#params-dash).
 1. Dasboard [selector](./selector.md) values.
 1. Parameters specified in a dashboard link, e.g., `{{ link-datalens-main }}/test-dashboard?OrderID=123456789`.
 1. Values from the `state` parameter in the dashboard link. {{ datalens-short-name }} remembers the selector settings and writes them to a special parameter named `state` shown in the browser address bar. To share the current dashboard state, just copy the resulting link. This way, you can show the dashboard with required data directly instead of describing the filter settings.
+
+   {% note info %}
+
+   Changing the dashboard settings does not update the `state` parameter in the link, so the settings it contains become irrelevant. To get the link with relevant settings, copy it again from the browser address bar.
+
+   {% endnote %}
+
+For example, if a dashboard parameter has a default value, it overrides the parameter value in chart settings. If a dashboard selector has a parameter with the same name, its default value overrides the dashboard parameter value. If you specify the parameter value in the [dashboard link](#params-in-url), it overrides both the selector parameter with the same name and the parameter value in chart settings.
+
+{% note info %}
+
+Non-empty parameter values defined in QL and wizard charts will have higher priority than any empty parameter value.
+
+{% endnote %}
 
 ## Limitations {#params-restrictions}
 
@@ -145,4 +169,4 @@ The following limitations apply when using parameters:
   1. Delete the selector you added from the dashboard.
 
   The dashboard's `parameter` value will now be applied to all the widgets the remote selector was connected to.
-  
+

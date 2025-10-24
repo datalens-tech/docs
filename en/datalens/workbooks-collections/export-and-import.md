@@ -5,7 +5,7 @@ description: Follow this guide to export and import workbooks.
 
 # Exporting and importing workbooks
 
-In {{ datalens-short-name }}, you can move [workbooks](./index.md) between installations using export and import tools. For example, you can export a ready-made workbook with its settings and links from cloud {{ datalens-full-name }} to an [open source](https://datalens.tech) installation.
+In {{ datalens-short-name }}, you can move [workbooks](./index.md) between installations using export and import tools. For example, you can export a ready-made workbook with its settings and connections from the cloud {{ datalens-full-name }} to an [open source](https://datalens.tech) installation.
 
 
 
@@ -30,9 +30,9 @@ To export a workbook:
 1. Click **Export**. You can see the progress in the indicator. Note the following:
 
    * Workbooks are exported to a JSON file.
-   * Export may take a few minutes.
-   * Sensitive [connection](../concepts/connection.md) data is not saved. During [import](#import-workbook), the user will have to set up connections again, e.g., specify a token or enter a password.   
-   * Other {{ datalens-short-name }} versions may not support certain connection types. During import, such connections will not work.
+   * This may take a few minutes.
+   * Sensitive [connection](../concepts/connection.md) data is not saved. During [import](#import-workbook), the user will have to set up connections again, e.g., specify a token or enter a password.
+   * Other {{ datalens-short-name }} versions may not support certain connection types. During import, such connection will not work.
    
    If you try to close the indicator window before the export is complete, you will get the cancel export warning. Select:
 

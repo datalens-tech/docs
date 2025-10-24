@@ -8,12 +8,11 @@ default:
   dns-zone: mdb.yandexcloud.net
   GP: Greenplum®
   link-console-support: https://center.yandex.cloud/support
-  link-datalens-main: https://datalens.yandex.cloud
-  link-datalens-wizard: https://datalens.yandex.cloud/wizard
+  link-datalens-main: https://datalens.ru
+  link-datalens-wizard: https://datalens.ru/wizard
   metrika-pro: Метрика Про
   MS: SQL Server
   MY: MySQL®
-  permission-read: Просмотр
   permission-write: Редактирование
   PG: PostgreSQL
   roles-datalens-admin: datalens.admin

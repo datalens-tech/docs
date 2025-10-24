@@ -6,7 +6,9 @@ description: In this tutorial, you will connect to a data source, create your fi
 # Getting started with {{ datalens-short-name }}
 
 
-This section outlines how to deploy {{ datalens-short-name }} locally, connect to a data source, create your first [dataset](dataset/index.md), build multiple [charts](concepts/chart/index.md) for data visualization, and place them on a [dashboard](concepts/dashboard.md).
+This section outlines how to connect to a data source, create your first [dataset](dataset/index.md), build multiple [charts](concepts/chart/index.md) for data visualization, and place them on a [dashboard](concepts/dashboard.md).
+
+To get started with {{ datalens-short-name }}, follow [this deployment guide](./concepts/create-instance.md).
 
 
 
@@ -41,10 +43,10 @@ To create a connection:
 
    1. In the window that opens, specify the connection parameters:
 
-      * Host name: `rc1a-ckg8nrosr2lim5iz.{{ dns-zone }}`
-      * HTTP interface port: `8443` (default)
-      * Username: `samples_ro`
-      * Password: `MsgfcjEhJk`
+      * Host name: `rc1a-ckg8nrosr2lim5iz.{{ dns-zone }}`.
+      * HTTP interface port: `8443` (default).
+      * Username: `samples_ro`.
+      * Password: `MsgfcjEhJk`.
 
    1. Enable **Allow subqueries in datasets and queries from charts**.
    1. Click **Check connection** and make sure you get a green check mark.
@@ -250,7 +252,7 @@ To add a selector to a dashboard:
 
    1. In the `Sales by subcategory` chart, click the column with the `Kitchen appliances` value. This will filter the linked charts by the selected dimension.
 
-      ![chart-chart-filtration](../_assets/datalens/quickstart/chart-chart-filtration-os.png){
+      ![chart-chart-filtration](../_assets/datalens/quickstart/chart-chart-filtration-os.png)
 
    1. Clear chart filtering by clicking the selected item once more or ![image](../_assets/datalens/clear-filters.svg) in the top-right corner of the chart.
 
