@@ -1,9 +1,9 @@
 ---
 title: Справочник визуализаций в {{ datalens-full-name }}
-description: Из статьи вы узнаете, какие чарты доступны в {{ datalens-short-name }}.
+description: Из статьи вы узнаете, какие чарты доступны в {{ datalens-full-name }}.
 ---
 
-# Справочник визуализаций
+# Справочник визуализаций в {{ datalens-full-name }}
 
 
 При [запуске](../concepts/create-instance.md) своего экземпляра {{ datalens-short-name }} вы можете включить [Highcharts](https://github.com/highcharts/highcharts/blob/master/readme.md) (с переменной `HC=1`) или запустить без этой библиотеки.
