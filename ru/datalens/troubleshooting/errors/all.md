@@ -1,9 +1,9 @@
 ---
 title: Ошибки в {{ datalens-full-name }}
-description: На странице приведены коды ошибок и их описания.
+description: На странице приведены коды ошибок в {{ datalens-full-name }} и их описания.
 ---
 
-# Все ошибки
+# Все ошибки в {{ datalens-full-name }}
 
 На странице приведены коды ошибок и их описание. Чтобы посмотреть подробную информацию об ошибке, перейдите по ссылке, нажав на код ошибки:
 
@@ -13,6 +13,7 @@ description: На странице приведены коды ошибок и �
 [ERR.CHARTS.REQUEST_SIZE_LIMIT_EXCEEDED](ERR-CHARTS-REQUEST_SIZE_LIMIT_EXCEEDED.md) | Request size limit exceeded |
 [ERR.CK.TOO_MANY_LINES](ERR-CK_TOO_MANY_LINES.md) | Too many series on the chart |
 [ERR.DS_API](ERR-DS_API.md) | Internal server error |
+[ERR.DS_API.CONNECTION_CONFIG.DASHSQL_NOT_ALLOWED](ERR-DS_API-CONNECTION_CONFIG-DASHSQL_NOT_ALLOWED.md) | Использование QL-чартов запрещено на уровне подключения |
 [ERR.DS_API.CONNECTION_CONFIG.SUBSELECT_NOT_ALLOWED](ERR-DS_API-CONNECTION_CONFIG-SUBSELECT_NOT_ALLOWED.md) | Subquery source is disallowed in the connection settings |
 [ERR.DS_API.DATABASE_UNAVAILABLE](ERR-DS_API-DATABASE_UNAVAILABLE.md) | Data source is unavailable |
 [ERR.DS_API.DB](ERR-DS_API-DB.md) | Ошибка выполнения запроса в источнике данных |

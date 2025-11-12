@@ -605,6 +605,8 @@ items:
             href: operations/chart/add-parameter-chart.md
       - name: Добавление информации о чарте
         href: operations/chart/add-description.md
+      - name: Открытие чарта как таблицы
+        href: operations/chart/open-as-table.md
       - name: Версионирование
         href: concepts/chart/versioning.md
       - name: Инспектор чартов
@@ -788,6 +790,10 @@ items:
       - name: Подготовка данных еще не завершилась
         hidden: true
         href: troubleshooting/errors/ERR-DS_API-DB-DATA_PREPARATION_NOT_FINISHED.md
+      - name: Использование QL-чартов запрещено на уровне подключения
+        hidden: true
+        href: >-
+          troubleshooting/errors/ERR-DS_API-CONNECTION_CONFIG-DASHSQL_NOT_ALLOWED.md
       - name: Subquery source is disallowed in the connection settings
         hidden: true
         href: >-

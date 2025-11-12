@@ -2,7 +2,7 @@ default:
   CH: ClickHouse®
   ch:
     docs: https://clickhouse.com/docs/ru
-  datalens-full-name: DataLens
+  datalens-full-name: DataLens Open Source
   datalens-name: DataLens
   datalens-short-name: DataLens
   dns-zone: mdb.yandexcloud.net

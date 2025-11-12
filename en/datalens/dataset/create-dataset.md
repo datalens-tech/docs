@@ -1,9 +1,9 @@
 ---
-title: Working with a dataset
-description: Follow this guide to learn how to work with a dataset.
+title: Working with a dataset in {{ datalens-full-name }}
+description: Follow this guide to learn how to work with a dataset in {{ datalens-full-name }}.
 ---
 
-# Working with datasets
+# Working with a dataset in {{ datalens-full-name }}
 
 In this section, you will learn how to work with a dataset:
 
@@ -153,7 +153,9 @@ You can add fields to a dataset from data source tables or create [calculated fi
 1. In the dataset, go to the **Fields** tab.
 1. At the top of the screen, click ![icon](../../_assets/console-icons/plus.svg) **Add field**.
 
+   
    ![screenshot](../../_assets/datalens/dataset/dataset-new-field.png)
+
 
 1. Create a field:
 
@@ -202,6 +204,8 @@ You can perform the following operations on dataset fields:
 1. Change the source: If the table schema in the source has changed, you can select a new field from the source to match the dataset field.
 1. Change the field data type: [Data type](./data-types.md) determines how to process data and which [functions](../function-ref/all.md) can apply to the field. To change the data type, click the current type and select a new one from the list of available types.
 1. Select an aggregation type: Aggregation type determines the [aggregation function](./data-model.md#aggregation) to apply to the field. To change the aggregation type, click the current type and select a new one from the list of available aggregation types.
+
+
 1. Sort fields: You can sort fields by name, data type, aggregation type, and other parameters. To do this, use the sorting buttons at the top of the **Fields** table.
 1. Add a description: You can add a comment to a field in the **Description** column. This can help other users understand what the field is used for or how it is calculated.
 1. Hide fields: You can hide fields you do not need at the moment. Other users will not see these fields in the wizard when creating a chart. To do this, click ![icon](../../_assets/console-icons/eye-slash.svg).
@@ -224,7 +228,9 @@ To update fields in a dataset:
    * If a field is present in both the dataset and the data source, the field will be updated, e.g., its type will change.
    * If a field is present in the dataset but missing in the data source, that field will be marked in red. Delete it from the dataset or [replace](#replace-field) it with a different field from the data source.
 
+   
    ![screenshot](../../_assets/datalens/dataset/dataset-update-fields.png)
+
 
 1. In the top-right corner, click **Save**.
 
@@ -257,7 +263,9 @@ To perform operations with fields, click ![image](../../_assets/console-icons/el
 
 You can select multiple dataset fields at once to delete, hide, or display them, change their type or aggregation.
 
+
 ![screenshot](../../_assets/datalens/dataset/dataset-fields-bulk-changes-2.png)
+
 
 To select the field range, hold the **Shift** key and set the beginning and end of the range with your mouse. You can select multiple ranges. To select each of the field ranges, hold **Ctrl** and click the first field in the range, then hold **Shift** and click the last field in the range.
 
@@ -306,7 +314,7 @@ Default filters are not applied to data in the dataset preview area.
 
 ## Deleting a dataset {#delete}
 
-Before deleting a dataset, check which objects are using it. To do this, at the top of the dataset, click ![image](../../_assets/console-icons/ellipsis.svg) → ![image](../../_assets/console-icons/code-trunk.svg) **Linked objects**.
+Before deleting a dataset, check which objects are using it. To do this, at the top of the dataset, click ![image](../../_assets/console-icons/ellipsis.svg) → ![image](../../_assets/console-icons/code-trunk.svg) **Linked objects**. If an error appears when opening the linked object window, try clicking the **Retry** button.
 
 To delete a dataset:
 
