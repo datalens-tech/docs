@@ -1,7 +1,7 @@
 allowHTML: true
 staticContent: true
 addSystemMeta: true
-assetsPublicPath: /docs
+assetsPublicPath: /opensource/docs
 lang: ru
 langs:
   - ru
