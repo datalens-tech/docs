@@ -14,3 +14,13 @@ search:
   provider: local
   confidence: phrased
   tolerance: 2
+# custom settings
+docsPath: /opensource/docs
+endpoint: https://datalens.ru
+manifest:
+  name: DataLens OpenSource
+  shortName: DataLens OpenSource
+  description: 'DataLens: An open-source BI system'
+  themeColor: '#efefef'
+  backgroundColor: '#ffffff'
+# custom settings

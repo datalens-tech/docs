@@ -1,11 +1,21 @@
 /* eslint-disable max-depth */
 const fs = require('fs-extra');
 const path = require('path');
-const yaml = require('js-yaml');
+const yaml = require('yaml');
 const crypto = require('crypto');
 
 const cheerio = require('cheerio');
 const walkSync = require('walk-sync');
+
+const YAML_SETTINGS = yaml.parse(fs.readFileSync(path.join(__dirname, '..', '.yfm-docs'), 'utf8'));
+
+const argsPath = process.argv[2] ? process.argv[2].replace(/^\.?\/?build\//, '/') : '';
+
+const BUILD_SETTINGS = {
+    docsPath: argsPath || YAML_SETTINGS.docsPath || '/docs',
+    lang: YAML_SETTINGS.lang || '',
+    langs: YAML_SETTINGS.langs || [],
+};
 
 function md5(str) {
     return crypto.createHash('md5').update(str).digest('hex');
@@ -106,11 +116,11 @@ const buildApi = async (lang) => {
     // eslint-disable-next-line no-console
     console.log('[API] Analyze toc and generate main file...');
     const content = await fs.readFile(path.join(datalensPath, 'toc.yaml'), 'utf8');
-    const toc = yaml.load(content);
+    const toc = yaml.parse(content);
 
     const functionCategories = extractFunctionCategories(toc);
 
-    const apiPath = path.join('build', 'docs', lang, 'api', 'function-ref');
+    const apiPath = path.join('build', BUILD_SETTINGS.docsPath, lang, 'api', 'function-ref');
 
     if (await fs.exists(apiPath)) {
         await fs.rm(apiPath, {recursive: true});
@@ -122,8 +132,8 @@ const buildApi = async (lang) => {
     // eslint-disable-next-line no-console
     console.log('[API] Generate function api files...');
     await extractFunctions(
-        path.join('build', 'docs', lang, 'function-ref'),
-        path.join('build', 'docs', lang, 'api', 'function-ref'),
+        path.join('build', BUILD_SETTINGS.docsPath, lang, 'function-ref'),
+        path.join('build', BUILD_SETTINGS.docsPath, lang, 'api', 'function-ref'),
     );
 };
 

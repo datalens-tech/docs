@@ -3,6 +3,7 @@
 .idea/
 
 docs/*
+opensource/*
 
 # dependencies
 /node_modules
@@ -19,4 +20,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # tests
-test-results/.last-run.json
+test-results
+test-artifacts

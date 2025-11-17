@@ -3,9 +3,24 @@ const path = require('path');
 const fs = require('fs-extra');
 const walkSync = require('walk-sync');
 
+const yaml = require('yaml');
+
+const root = './build';
+const subDir = 'datalens';
+
+const YAML_SETTINGS = yaml.parse(fs.readFileSync(path.join(__dirname, '..', '.yfm-docs'), 'utf8'));
+
+const argsPath = process.argv[2] ? process.argv[2].replace(/^\.?\/?build\//, '/') : '';
+
+const BUILD_SETTINGS = {
+    docsPath: argsPath || YAML_SETTINGS.docsPath || '/docs',
+    lang: YAML_SETTINGS.lang || '',
+    langs: YAML_SETTINGS.langs || [],
+};
+
 const ASSETS_PATH_FIX = ['_assets', '_includes', '_qa'];
 
-const fixNestedPath = async (basePath, lang) => {
+const fixNestedPath = async (basePath, lang = null) => {
     try {
         await fs.rm(path.join(basePath, lang), {recursive: true});
     } catch {
@@ -13,21 +28,28 @@ const fixNestedPath = async (basePath, lang) => {
     }
 
     await fs.copy(lang, path.join(basePath, lang));
+    if (await fs.exists(path.join(basePath, '_assets'))) {
+        await fs.rm(path.join(basePath, '_assets'), {recursive: true});
+        await fs.mkdir(path.join(basePath, '_assets'), {recursive: true});
+    }
+    // async throw error
+    fs.copySync('assets/icon', path.join(basePath, '_assets/icon'), {overwrite: true});
+    fs.copySync('assets/favicon', path.join(basePath, '_assets/favicon'), {overwrite: true});
+    fs.copySync('assets/meta', path.join(basePath, '_assets/meta'), {overwrite: true});
+    fs.copySync('assets/manifest.json', path.join(basePath, 'manifest.json'), {overwrite: true});
 
-    await fs.copy('assets/icon', path.join(basePath, lang, '_assets/icon'));
-
-    try {
+    if (await fs.exists(path.join(basePath, lang, 'index.yaml'))) {
         await fs.rm(path.join(basePath, lang, 'index.yaml'));
+    }
+    if (await fs.exists(path.join(basePath, lang, 'toc.yaml'))) {
         await fs.rm(path.join(basePath, lang, 'toc.yaml'));
-    } catch {
-        // pass
     }
 
-    const moveCandidate = await fs.readdir(path.join(basePath, lang, 'datalens'));
+    const moveCandidate = await fs.readdir(path.join(basePath, lang, subDir));
     await Promise.all(
         moveCandidate.map((file) => {
             return fs.move(
-                path.join(basePath, lang, 'datalens', file),
+                path.join(basePath, lang, subDir, file),
                 path.join(basePath, lang, file),
                 {
                     overwrite: true,
@@ -36,7 +58,7 @@ const fixNestedPath = async (basePath, lang) => {
         }),
     );
 
-    await fs.rm(path.join(basePath, lang, 'datalens'), {recursive: true});
+    await fs.rm(path.join(basePath, lang, subDir), {recursive: true});
 
     let tocYaml = (await fs.readFile(path.join(basePath, lang, 'toc.yaml'))).toString();
     const navigationYaml = (await fs.readFile('assets/navigation.yaml')).toString();
@@ -54,11 +76,11 @@ const fixNestedPath = async (basePath, lang) => {
             let fileMd = (await fs.readFile(fPath)).toString();
 
             if (ASSETS_PATH_FIX.some((p) => fPath.includes(path.join(lang, p)))) {
-                fileMd = fileMd.replace(new RegExp(`\\.\\./\\.\\./datalens/`, 'g'), '../../');
+                fileMd = fileMd.replace(new RegExp(`\\.\\./\\.\\./${subDir}/`, 'g'), '../../');
             } else {
                 ASSETS_PATH_FIX.forEach((p) => {
                     fileMd = fileMd.replace(new RegExp(`\\.\\./${p}`, 'g'), p);
-                    fileMd = fileMd.replace(new RegExp(`\\.\\./datalens/`, 'g'), '/');
+                    fileMd = fileMd.replace(new RegExp(`\\.\\./${subDir}/`, 'g'), '/');
                 });
             }
 
@@ -68,23 +90,24 @@ const fixNestedPath = async (basePath, lang) => {
 };
 
 async function main() {
-    const basePath = process.argv[2];
+    const basePath = path.join(__dirname, '../', BUILD_SETTINGS.docsPath);
 
-    try {
-        await fs.rmSync('./build', {recursive: true});
-        await fs.rmSync(path.join(basePath, '.yfm'));
-        await fs.rmSync(path.join(basePath, '.yfmlint'));
-    } catch {
-        // pass
+    if (await fs.exists(root)) {
+        await fs.rm(root, {recursive: true});
     }
-
+    if (await fs.exists(basePath)) {
+        await fs.rm(basePath, {recursive: true});
+    }
     if (!(await fs.exists(basePath))) {
-        await fs.mkdir(basePath);
+        await fs.mkdir(basePath, {recursive: true});
     }
 
-    await fs.copyFile('./.yfm-docs', path.join(basePath, '.yfm'));
-    await fs.copyFile('./.yfmlint', path.join(basePath, '.yfmlint'));
-    await Promise.all([fixNestedPath(basePath, 'ru'), fixNestedPath(basePath, 'en')]);
+    const promises = [];
+    BUILD_SETTINGS.langs.forEach((lang) => {
+        promises.push(fixNestedPath(basePath, lang));
+    });
+
+    await Promise.all(promises);
 }
 
 main().catch((err) => {

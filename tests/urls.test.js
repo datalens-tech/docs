@@ -1,8 +1,13 @@
 const {test, expect} = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
+const yaml = require('yaml');
 
-const LANGS = ['ru', 'en'];
+const yamlSettings = yaml.parse(fs.readFileSync(path.join(__dirname, '..', '.yfm-docs'), 'utf8'));
+const testSettings = {
+    docsPath: yamlSettings.docsPath || '/docs',
+    langs: yamlSettings.langs || [],
+};
 
 // Function to extract urls from toc file
 const extractUrlsFromToc = (tocPath) => {
@@ -10,12 +15,12 @@ const extractUrlsFromToc = (tocPath) => {
     const jsonStr = content.match(/window\.__DATA__\.data\.toc = ({.*});/)[1];
     const tocData = JSON.parse(jsonStr);
 
-    const urls = new Set();
+    const urls = {};
 
     const traverse = (items) => {
         items.forEach((item) => {
             if (item.href) {
-                urls.add(item.href);
+                urls[item.href] = item.name;
             }
             if (item.items) {
                 traverse(item.items);
@@ -24,25 +29,30 @@ const extractUrlsFromToc = (tocPath) => {
     };
 
     traverse(tocData.items);
-    return Array.from(urls);
+    return urls;
 };
 
 test.describe('doc urls test', () => {
-    // get all urls from both language tocs
-    const urls = LANGS.map((lang) =>
-        extractUrlsFromToc(path.join(__dirname, `../build/docs/${lang}/toc.js`)),
-    );
-
-    const allUrls = [];
-    urls.forEach((langUrls) => {
-        langUrls.forEach((url) => {
-            allUrls.push(url);
+    // get all urls from toc
+    let allUrls = {};
+    if (testSettings.langs.length > 0) {
+        testSettings.langs.forEach((lang) => {
+            allUrls = {
+                ...allUrls,
+                ...extractUrlsFromToc(
+                    path.join(__dirname, `../build/${testSettings.docsPath}/${lang}/toc.js`),
+                ),
+            };
         });
-    });
+    } else {
+        allUrls = extractUrlsFromToc(
+            path.join(__dirname, `../build/${testSettings.docsPath}/toc.js`),
+        );
+    }
 
     // create a test for each url
-    allUrls.forEach((url) => {
-        test(`[${url}] load without errors`, async ({page}) => {
+    Object.entries(allUrls).forEach(([url, title]) => {
+        test(`[${url}] - [${title}] load without errors`, async ({page}) => {
             // check for console errors
             const consoleErrors = [];
             page.on('console', (msg) => {
@@ -51,7 +61,9 @@ test.describe('doc urls test', () => {
                 }
             });
 
-            const response = await page.goto(`http://localhost:3000/docs/${url}`);
+            const response = await page.goto(
+                new URL(path.join(testSettings.docsPath, url), 'http://localhost:3000').href,
+            );
             expect(response.status()).toBe(200);
 
             if (consoleErrors.length > 0) {
