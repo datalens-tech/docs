@@ -206,18 +206,8 @@ const fixFile = async (filePath, basePath) => {
     tag.text(STYLE_FIX);
     head.append(tag);
 
-    const docsPath = BUILD_SETTINGS.docsPath;
-
     let html = $.html();
     html = html
-        .replace(/"[^"]+?\/_bundle\/app\.client\.js"/g, `"${docsPath}/_bundle/app.client.js"`)
-        .replace(/"[^"]+?\/_bundle\/app\.client\.css"/g, `"${docsPath}/_bundle/app.client.css"`)
-        .replace(/href="_bundle\/([^"]+?)"/g, `href="${docsPath}/_bundle/$1"`)
-        .replace(/src="_bundle\/([^"]+?)"/g, `src="${docsPath}/_bundle/$1"`)
-        .replace(/src="_search\/([^"]+?)"/g, `src="${docsPath}/_search/$1"`)
-        .replace(/src="([^"]+?)\/toc\.js"/g, `src="${docsPath}/$1/toc.js"`)
-        // fix double load bundled resources
-        .replace(/,"style":\[[^\]]+?\],"script":\[[^\]]+?\],/g, ',"style":[],"script":[],')
         .replace(
             / *?<link type="text\/css" rel="stylesheet" href="_assets\/cut-extension.css">\n/g,
             '',
