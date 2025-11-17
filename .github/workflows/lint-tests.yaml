@@ -20,10 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm run deps
-        env:
-          # folder in vm runner
-          NPM_CACHE_ROOT: /home/github/actions-runner/_work/.cache/npm-cache
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+      - run: npm ci
       - run: npm run test
       - uses: actions/upload-artifact@v4
         if: github.event_name == 'pull_request'
