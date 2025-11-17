@@ -10,16 +10,88 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
-  node:
-    name: datalens-docs
-    runs-on: ubuntu-24.04
+  run:
+    name: lint-tests
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 22
-          cache: 'npm'
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - uses: actions/checkout@v4
+      - run: npm run deps
+        env:
+          # folder in vm runner
+          NPM_CACHE_ROOT: /home/github/actions-runner/_work/.cache/npm-cache
       - run: npm run test
+      - uses: actions/upload-artifact@v4
+        if: github.event_name == 'pull_request'
+        id: upload-artifact-report
+        with:
+          name: playwright-report
+          path: ./test-artifacts/
+          retention-days: 7
+      - uses: daun/playwright-report-summary@v3
+        if: github.event_name == 'pull_request'
+        id: report-md
+        with:
+          report-file: ./test-artifacts/report.json
+          create-comment: false
+      - name: create or update pr comment
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueNumber = context.issue.number;
+            const repo = context.repo;
+
+            const commentIdentifier = "<!-- tests-report -->";
+            const { data: comments } = await github.rest.issues.listComments({
+              ...repo,
+              issue_number: issueNumber,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.body.includes(commentIdentifier) && 
+              comment.user.login === 'github-actions[bot]'
+            );
+
+            const timestamp = new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19) + ' MSK';
+
+            let commentBody = `
+            ## 🧪 Tests
+
+            ${{ steps.report-md.outputs.summary }}
+
+            ---
+
+            👉 Link with detailed report: [playwright-report.zip](${process.env.REPORT_LINK})
+
+            Last updated: ${timestamp}
+
+            ${commentIdentifier}
+            `;
+
+            commentBody = commentBody.replace(/@screenshot/g, '`@screenshot`');
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                ...repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+              
+              console.log('updated existing comment on PR #' + issueNumber);
+            } else {
+              await github.rest.issues.createComment({
+                ...repo,
+                issue_number: issueNumber,
+                body: commentBody
+              });
+              
+              console.log('added new comment to PR #' + issueNumber);
+            }
+        env:
+          REPORT_LINK: ${{ steps.upload-artifact-report.outputs.artifact-url }}

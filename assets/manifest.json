@@ -1,35 +1,36 @@
 {
-  "short_name": "Datalens",
-  "name": "DataLens Tech",
+  "short_name": "{manifest.shortName}",
+  "name": "{manifest.name}",
+  "description": "{manifest.description}",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "{docsPath}/favicon.ico",
       "sizes": "76x76 64x64 32x32 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "favicon-120x120.png",
+      "src": "{docsPath}/_assets/favicon/favicon-120x120.png",
       "type": "image/png",
       "sizes": "120x120"
     },
     {
-      "src": "favicon-152x152.png",
+      "src": "{docsPath}/_assets/favicon/favicon-152x152.png",
       "type": "image/png",
       "sizes": "152x152"
     },
     {
-      "src": "favicon-180x180.png",
+      "src": "{docsPath}/_assets/favicon/favicon-180x180.png",
       "type": "image/png",
       "sizes": "180x180"
     },
     {
-      "src": "favicon-192x192.png",
+      "src": "{docsPath}/_assets/favicon/favicon-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
   ],
-  "start_url": ".",
+  "start_url": "{docsPath}",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "{manifest.themeColor}",
+  "background_color": "{manifest.backgroundColor}"
 }

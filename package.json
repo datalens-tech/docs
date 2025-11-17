@@ -3,29 +3,31 @@
   "version": "0.13.0",
   "private": false,
   "scripts": {
-    "build": "npx @diplodoc/cli -i ./docs -o ./build/docs",
+    "build": "npx @diplodoc/cli -i ./docs -o ./build/opensource/docs --config ./.yfm-docs",
     "build:prepare": "node ./scripts/build-prepare.js ./docs",
     "build:docker": "docker build . -t datalens-docs",
-    "build:fix": "node ./scripts/build-fix.js ./build/docs",
+    "build:fix": "node ./scripts/build-fix.js",
     "build:api": "node ./scripts/build-api.js",
     "serve": "node ./scripts/dev.js",
-    "dev": "npm run build:prepare && npm run build && npm run build:fix && npm run serve",
+    "dev": "DISABLE_WATCHER=true node ./scripts/dev.js",
     "run:docker": "npm run build:docker && docker run --read-only --user 65534 --tmpfs /tmp --rm --name datalens-docs -p 8080:80 datalens-docs",
-    "test": "playwright test"
+    "test": "playwright test",
+    "test:prepare": "npx playwright install --with-deps chromium"
   },
   "dependencies": {
-    "@diplodoc/cli": "5.0.2",
-    "@diplodoc/pdf-generator": "^1.0.6",
-    "cheerio": "^1.0.0",
+    "@diplodoc/cli": "5.15.2",
+    "@diplodoc/pdf-generator": "^1.1.9",
+    "cheerio": "^1.1.0",
     "fs-extra": "^11.3.0",
-    "js-yaml": "^4.1.0",
-    "walk-sync": "^3.0.0"
+    "yaml": "^2.8.1",
+    "walk-sync": "^4.0.0"
   },
   "devDependencies": {
     "@gravity-ui/eslint-config": "4.1.0",
     "@gravity-ui/prettier-config": "1.1.0",
     "@gravity-ui/stylelint-config": "5.0.0",
-    "@playwright/test": "^1.42.1",
+    "@playwright/test": "1.48.2",
+    "chokidar": "^4.0.3",
     "eslint": "9.28.0",
     "express": "^5.1.0",
     "prettier": "3.5.0",

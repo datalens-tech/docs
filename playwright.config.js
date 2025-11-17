@@ -9,12 +9,17 @@ module.exports = defineConfig({
     fullyParallel: true,
     forbidOnly: Boolean(process.env.CI),
     retries: 0,
-    // workers: process.env.CI ? 1 : undefined,
-    reporter: 'list',
+    workers: process.env.CI ? 4 : undefined,
+    reporter: [
+        ['html', {outputFolder: 'test-artifacts/report', open: 'never'}],
+        ['json', {outputFile: 'test-artifacts/report.json'}],
+        ['list'],
+    ],
+    maxFailures: 30,
 
-    // disable all artifacts
+    // disable useless artifacts
     use: {
-        trace: 'off',
+        trace: {mode: 'off', screenshots: true, sources: false},
         screenshot: 'off',
         video: 'off',
     },
@@ -31,5 +36,8 @@ module.exports = defineConfig({
         url: 'http://localhost:3000',
         reuseExistingServer: true,
         timeout: 30 * 1000,
+        env: {
+            DISABLE_WATCHER: true,
+        },
     },
 });

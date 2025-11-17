@@ -1,6 +1,6 @@
 # DataLens docs
 
-Welcome to the datalens-tech/docs repository. Here you can suggest additions and fixes for the DataLens [documentation](https://datalens.tech/docs) or make them by yourself.
+Welcome to the datalens-tech/docs repository. Here you can suggest additions and fixes for the DataLens [documentation](https://datalens.ru/opensource/docs) or make them by yourself.
 
 ## Making edits
 
@@ -39,7 +39,7 @@ npm run postbuild
 
 4. Go to [datalens-landing](https://github.com/datalens-tech/landing/) repository and manually run `Deploy` workflow action: [link](https://github.com/datalens-tech/landing/actions/workflows/deploy.yml)
 
-5. GitHub workflow action at landing repository automatically pull new docs release, build and deploy landing and docs to [datalens.tech](https://datalens.tech) as GitHub pages 
+5. GitHub workflow action at landing repository automatically pull new docs release, build and deploy landing and docs to [datalens.ru/opensource](https://datalens.ru/opensource) as GitHub pages 
 
 
 ## Sync with docs

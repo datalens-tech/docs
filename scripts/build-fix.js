@@ -1,38 +1,50 @@
 const fs = require('fs-extra');
 const path = require('path');
 
+const yaml = require('yaml');
 const cheerio = require('cheerio');
 const walkSync = require('walk-sync');
 
-const META = [
-    {name: 'theme-color', content: '#efefef'},
-    {itemprop: 'name', content: ({title}) => title || 'DataLens'},
-    {itemprop: 'description', content: ({description}) => description || ''},
-    {itemprop: 'image', content: ({lang}) => `/docs/${lang}/_assets/share.png`},
+const YAML_SETTINGS = yaml.parse(fs.readFileSync(path.join(__dirname, '..', '.yfm-docs'), 'utf8'));
 
-    {property: 'og:title', content: ({title}) => title || 'DataLens'},
+const argsPath = process.argv[2] ? process.argv[2].replace(/^\.?\/?build\//, '/') : '';
+
+const BUILD_SETTINGS = {
+    docsPath: argsPath || YAML_SETTINGS.docsPath || '/docs',
+    manifest: {
+        name: YAML_SETTINGS.manifest?.name || 'DataLens',
+        shortName: YAML_SETTINGS.manifest?.shortName || 'DataLens',
+        description: YAML_SETTINGS.manifest?.description || '',
+        themeColor: YAML_SETTINGS.manifest?.themeColor || '#efefef',
+        backgroundColor: YAML_SETTINGS.manifest?.backgroundColor || '#ffffff',
+    },
+    endpoint: YAML_SETTINGS.endpoint || '',
+    lang: YAML_SETTINGS.lang || '',
+    langs: YAML_SETTINGS.langs || '',
+};
+
+const META = [
+    {name: 'theme-color', content: ({manifest}) => manifest.themeColor},
+    {itemprop: 'name', content: ({title, manifest}) => title || manifest.name},
+    {itemprop: 'description', content: ({description}) => description || ''},
+    {itemprop: 'image', content: ({docsPath, lang}) => `${docsPath}/_assets/share-${lang}.png`},
+
+    {property: 'og:title', content: ({title, manifest}) => title || manifest.name},
     {property: 'og:description', content: ({description}) => description || ''},
     {property: 'og:type', content: 'website'},
-    {property: 'og:site_name', content: 'DataLens'},
+    {property: 'og:site_name', content: ({manifest}) => manifest.name},
     {property: 'og:locale', content: ({lang}) => lang},
-    {property: 'og:image', content: ({lang}) => `/docs/${lang}/_assets/share.png`},
-    {property: 'og:url', content: ({lang}) => `https://datalens.tech/docs/${lang}/`},
+    {property: 'og:image', content: ({docsPath, lang}) => `${docsPath}/_assets/share-${lang}.png`},
+    {property: 'og:url', content: ({docsPath, endpoint, lang}) => `${endpoint}${docsPath}/${lang}`},
 
     {name: 'twitter:title', content: ({title}) => title || 'DataLens'},
     {name: 'twitter:description', content: ({description}) => description || ''},
     {name: 'twitter:card', content: 'summary_large_image'},
-    {name: 'twitter:image', content: ({lang}) => `/docs/${lang}/_assets/share.png`},
+    {name: 'twitter:image', content: ({docsPath, lang}) => `${docsPath}/_assets/share-${lang}.png`},
 
     {property: 'share:title', content: ({title}) => title || 'DataLens'},
     {property: 'share:sharing_schema', content: 'default'},
 ];
-
-const notes = {
-    Примечание: 'Note',
-    Совет: 'Tip',
-    Внимание: 'Alert',
-    Важно: 'Warning',
-};
 
 const VENDOR_FIX = {
     consent: {
@@ -48,18 +60,61 @@ const VENDOR_FIX = {
 };
 
 const LINK = [
-    {rel: 'icon', href: '/favicon.ico', sizes: 'any'},
-    {type: 'image/x-icon', rel: 'shortcut icon', href: '/favicon.ico'},
-    {type: 'image/png', sizes: '16x16', rel: 'icon', href: '/favicon-16x16.png'},
-    {type: 'image/png', sizes: '32x32', rel: 'icon', href: '/favicon-32x32.png'},
-    {type: 'image/png', sizes: '64x64', rel: 'icon', href: '/favicon-64x64.png'},
-    {type: 'image/png', sizes: '76x76', rel: 'icon', href: '/favicon-76x76.png'},
-    {type: 'image/png', sizes: '120x120', rel: 'icon', href: '/favicon-120x120.png'},
-    {type: 'image/png', sizes: '152x152', rel: 'icon', href: '/favicon-152x152.png'},
-    {type: 'image/png', sizes: '180x180', rel: 'icon', href: '/favicon-180x180.png'},
-    {type: 'image/png', sizes: '192x192', rel: 'icon', href: '/favicon-192x192.png'},
-    {rel: 'apple-touch-icon', href: '/favicon-192x192.png'},
-    {rel: 'manifest', href: '/manifest.json'},
+    {rel: 'icon', sizes: 'any', href: ({docsPath}) => `${docsPath}/favicon.ico`},
+    {type: 'image/x-icon', rel: 'shortcut icon', href: ({docsPath}) => `${docsPath}/favicon.ico`},
+    {
+        type: 'image/png',
+        sizes: '16x16',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-16x16.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '32x32',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-32x32.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '64x64',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-64x64.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '76x76',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-76x76.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '120x120',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-120x120.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '152x152',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-152x152.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '180x180',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-180x180.png`,
+    },
+    {
+        type: 'image/png',
+        sizes: '192x192',
+        rel: 'icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-192x192.png`,
+    },
+    {
+        rel: 'apple-touch-icon',
+        href: ({docsPath}) => `${docsPath}/_assets/favicon/favicon-192x192.png`,
+    },
+    {rel: 'manifest', href: ({docsPath}) => `${docsPath}/manifest.json`},
 ];
 
 const STYLE_FIX = `
@@ -79,23 +134,6 @@ const fixFile = async (filePath, basePath) => {
     // eslint-disable-next-line no-console
     console.log('\x1b[33m%s\x1b[0m %s %s', 'POST-BUILD', 'Fixing file', trimPathLog);
 
-    let lang = trimPath.match(/\/(en|ru)\//);
-
-    if (lang) {
-        lang = lang[1];
-
-        const pathWithoutLang = trimPath
-            .replace(new RegExp(`^/${lang}/`), '')
-            .replace(new RegExp(`^/_search/${lang}/`), '_search/')
-            .replace(new RegExp(`.html$`), '');
-
-        if (FILE_CHECK_MAP[pathWithoutLang]) {
-            delete FILE_CHECK_MAP[pathWithoutLang];
-        } else {
-            FILE_CHECK_MAP[pathWithoutLang] = lang;
-        }
-    }
-
     const fileHtml = await fs.readFile(filePath);
     const $ = cheerio.load(fileHtml);
 
@@ -111,50 +149,65 @@ const fixFile = async (filePath, basePath) => {
         description = description.attr('content');
     }
 
+    head.append('\n');
     META.forEach((meta) => {
         const tag = $('<meta>');
 
         Object.entries(meta).forEach(([key, value]) => {
             if (typeof value === 'function') {
-                tag.attr(key, value({lang, title, description}));
+                tag.attr(
+                    key,
+                    value({
+                        lang: BUILD_SETTINGS.lang,
+                        title,
+                        description,
+                        manifest: BUILD_SETTINGS.manifest,
+                        docsPath: BUILD_SETTINGS.docsPath,
+                        endpoint: BUILD_SETTINGS.endpoint,
+                    }),
+                );
             } else {
                 tag.attr(key, value);
             }
         });
 
         head.append(tag);
+        head.append('\n');
     });
 
+    head.append('\n');
     LINK.forEach((link) => {
         const tag = $('<link>');
 
         Object.entries(link).forEach(([key, value]) => {
-            tag.attr(key, value);
+            if (typeof value === 'function') {
+                tag.attr(
+                    key,
+                    value({
+                        lang: BUILD_SETTINGS.lang,
+                        title,
+                        description,
+                        manifest: BUILD_SETTINGS.manifest,
+                        docsPath: BUILD_SETTINGS.docsPath,
+                        endpoint: BUILD_SETTINGS.endpoint,
+                    }),
+                );
+            } else {
+                tag.attr(key, value);
+            }
         });
 
         head.append(tag);
+        head.append('\n');
     });
 
+    head.append('\n');
     const tag = $('<style type="text/css"></style>');
     tag.text(STYLE_FIX);
     head.append(tag);
 
-    const logoLink = $('a.pc-logo');
-    logoLink.attr('href', lang === 'ru' ? '/ru' : '/');
-
-    let html = $.html()
-        .replace(/"lang":"[a-z]+"/g, `"lang":"${lang}"`)
-        .replace(/("href":".+?\/)index\.html"/g, '$1"')
-        .replace(/( href=".+?\/)index\.html"/g, '$1"')
-        .replace(/("href":")index\.html"/g, '$1./"')
-        .replace(/( href=")index\.html"/g, '$1./"')
-        .replace(/"[^"]+?\/_bundle\/app\.client\.js"/g, '"/docs/_bundle/app.client.js"')
-        .replace(/"[^"]+?\/_bundle\/app\.client\.css"/g, '"/docs/_bundle/app.client.css"')
-        .replace(/href="_bundle\/([^"]+?)"/g, 'href="/docs/_bundle/$1"')
-        .replace(/src="_bundle\/([^"]+?)"/g, 'src="/docs/_bundle/$1"')
-        .replace(/src="_search\/([^"]+?)"/g, 'src="/docs/_search/$1"')
-        // fix double load bundled resources
-        .replace(/,"style":\[[^\]]+?\],"script":\[[^\]]+?\],/g, ',"style":[],"script":[],')
+    let html = $.html();
+    html = html
         .replace(
             / *?<link type="text\/css" rel="stylesheet" href="_assets\/cut-extension.css">\n/g,
             '',
@@ -170,31 +223,25 @@ const fixFile = async (filePath, basePath) => {
         .replace(
             /<script type="application\/javascript" defer="" src="_assets\/tabs-extension.js"><\/script>\n/g,
             '',
-        )
-        // .replace(/"api":"_search\/api.js"/g, '"api":"/docs/_search/api.js"')
-        .replace(new RegExp(`src="(${lang})/toc.js"`, 'g'), 'src="/docs/$1/toc.js"');
-
-    if (lang !== 'ru') {
-        html = html
-            .replace(new RegExp(`>(${Object.keys(notes).join('|')})<`, 'g'), (sub, group) => {
-                return `>${notes[group]}<`;
-            })
-            .replace(/>В этой статье</g, '>In this article<');
-    }
+        );
 
     await fs.writeFile(filePath, html);
 };
 
 async function main() {
-    const basePath = process.argv[2];
+    const basePath = path.join(__dirname, '../build', BUILD_SETTINGS.docsPath);
+
     const paths = walkSync(basePath, {
         directories: false,
         globs: ['**/*.html'],
         includeBasePath: true,
     });
 
-    // fix vendor script
-    let vendorScript = (await fs.readFile(path.join(basePath, '_bundle', 'vendor.js'))).toString();
+    const vendorFiles = await fs.readdir(path.join(basePath, '_bundle'));
+    const vendorFile = vendorFiles.find(
+        (file) => file.startsWith('vendor-') && file.endsWith('.js'),
+    );
+    let vendorScript = (await fs.readFile(path.join(basePath, '_bundle', vendorFile))).toString();
     Object.keys(VENDOR_FIX).forEach((key) => {
         Object.keys(VENDOR_FIX[key]).forEach((lang) => {
             vendorScript = vendorScript.replace(
@@ -203,17 +250,20 @@ async function main() {
             );
         });
     });
-    await fs.writeFile(path.join(basePath, '_bundle', 'vendor.js'), vendorScript);
+    await fs.writeFile(path.join(basePath, '_bundle', vendorFile), vendorScript);
 
     await Promise.all(paths.map((filePath) => fixFile(filePath, basePath)));
 
-    await fs.copyFile('./assets/manifest.json', path.join(basePath, '..', 'manifest.json'));
-    const manifest = JSON.parse(await fs.readFile('./assets/manifest.json'));
-    await Promise.all(
-        manifest.icons.map(({src}) =>
-            fs.copyFile(path.join('./assets/favicon', src), path.join(basePath, '..', src)),
-        ),
-    );
+    const manifestPath = path.join(basePath, 'manifest.json');
+    let manifest = fs.readFileSync(manifestPath, 'utf8');
+    manifest = manifest
+        .replaceAll('{docsPath}', BUILD_SETTINGS.docsPath)
+        .replaceAll('{manifest.name}', BUILD_SETTINGS.manifest.name)
+        .replaceAll('{manifest.shortName}', BUILD_SETTINGS.manifest.shortName)
+        .replaceAll('{manifest.description}', BUILD_SETTINGS.manifest.description)
+        .replaceAll('{manifest.themeColor}', BUILD_SETTINGS.manifest.themeColor)
+        .replaceAll('{manifest.backgroundColor}', BUILD_SETTINGS.manifest.backgroundColor);
+    fs.writeFile(manifestPath, manifest);
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
         console.error(
