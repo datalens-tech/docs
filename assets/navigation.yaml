@@ -1,15 +1,15 @@
 navigation:
   logo:
-    url: '/'
+    url: '/opensource/'
     dark:
-      icon: '_assets/icon/logo-dark.svg'
+      icon: '/opensource/docs/_assets/icon/logo-dark.svg'
     light:
-      icon: '_assets/icon/logo.svg'
+      icon: '/opensource/docs/_assets/icon/logo.svg'
   header:
     rightItems:
       - type: search
       - type: 'button'
-        img: '_assets/icon/github.svg'
+        img: '/opensource/docs/_assets/icon/github.svg'
         theme: 'flat'
         text: 'GitHub'
         url: 'https://github.com/datalens-tech/datalens'
