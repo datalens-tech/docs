@@ -64,6 +64,11 @@ const fixNestedPath = async (basePath, lang = null) => {
     const navigationYaml = (await fs.readFile('assets/navigation.yaml')).toString();
     tocYaml = tocYaml.replace('href: index.yaml', `href: index.yaml\n${navigationYaml}`);
     await fs.writeFile(path.join(basePath, lang, 'toc.yaml'), tocYaml);
+
+    let indexYaml = await fs.readFile(path.join(basePath, lang, 'index.yaml'), 'utf-8');
+    indexYaml = indexYaml.replace(/(href:.+[^/])\n/g, '$1.md\n');
+    await fs.writeFile(path.join(basePath, lang, 'index.yaml'), indexYaml);
+
     await fs.copy(path.join(lang, 'presets.yaml'), path.join(basePath, lang, 'presets.yaml'));
 
     const paths = walkSync(path.join(basePath, lang), {
