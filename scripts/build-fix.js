@@ -127,7 +127,7 @@ li.pc-navigation-item:first-child {
 
 const FILE_CHECK_MAP = [];
 
-const fixFile = async (filePath, basePath) => {
+const fixHtmlFile = async (filePath, basePath) => {
     const trimPath = filePath.replace(basePath, '');
     const trimPathLog = trimPath.replace(/^\//g, '');
 
@@ -208,6 +208,10 @@ const fixFile = async (filePath, basePath) => {
 
     let html = $.html();
     html = html
+        .replace(/("href":".+?\/)index\.html"/g, '$1"')
+        .replace(/( href=".+?\/)index\.html"/g, '$1"')
+        .replace(/("href":")index\.html"/g, '$1./"')
+        .replace(/( href=")index\.html"/g, '$1./"')
         .replace(
             / *?<link type="text\/css" rel="stylesheet" href="_assets\/cut-extension.css">\n/g,
             '',
@@ -226,6 +230,21 @@ const fixFile = async (filePath, basePath) => {
         );
 
     await fs.writeFile(filePath, html);
+};
+
+const fixTocFile = async (filePath, basePath) => {
+    const trimPath = filePath.replace(basePath, '');
+    const trimPathLog = trimPath.replace(/^\//g, '');
+
+    // eslint-disable-next-line no-console
+    console.log('\x1b[33m%s\x1b[0m %s %s', 'POST-BUILD', 'Fixing TOC file', trimPathLog);
+
+    let fileToc = await fs.readFile(filePath, 'utf8');
+    fileToc = fileToc
+        .replace(/("href":".+?\/)index\.html"/g, '$1"')
+        .replace(/("href":")index\.html"/g, '$1./"');
+
+    await fs.writeFile(filePath, fileToc);
 };
 
 async function main() {
@@ -252,7 +271,14 @@ async function main() {
     });
     await fs.writeFile(path.join(basePath, '_bundle', vendorFile), vendorScript);
 
-    await Promise.all(paths.map((filePath) => fixFile(filePath, basePath)));
+    await Promise.all(paths.map((filePath) => fixHtmlFile(filePath, basePath)));
+
+    const tocList = walkSync(basePath, {
+        directories: false,
+        globs: ['**/toc.js'],
+        includeBasePath: true,
+    });
+    await Promise.all(tocList.map((filePath) => fixTocFile(filePath, basePath)));
 
     const manifestPath = path.join(basePath, 'manifest.json');
     let manifest = fs.readFileSync(manifestPath, 'utf8');
@@ -263,7 +289,11 @@ async function main() {
         .replaceAll('{manifest.description}', BUILD_SETTINGS.manifest.description)
         .replaceAll('{manifest.themeColor}', BUILD_SETTINGS.manifest.themeColor)
         .replaceAll('{manifest.backgroundColor}', BUILD_SETTINGS.manifest.backgroundColor);
-    fs.writeFile(manifestPath, manifest);
+    await fs.writeFile(manifestPath, manifest);
+
+    await fs.cp(path.join(__dirname, '../assets/index.html'), path.join(basePath, 'index.html'), {
+        force: true,
+    });
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
         console.error(
