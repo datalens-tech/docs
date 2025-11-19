@@ -23,4 +23,5 @@ manifest:
   description: 'DataLens: An open-source BI system'
   themeColor: '#efefef'
   backgroundColor: '#ffffff'
+noindex: true
 # custom settings

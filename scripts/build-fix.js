@@ -21,6 +21,7 @@ const BUILD_SETTINGS = {
     endpoint: YAML_SETTINGS.endpoint || '',
     lang: YAML_SETTINGS.lang || '',
     langs: YAML_SETTINGS.langs || '',
+    noindex: YAML_SETTINGS.noindex || false,
 };
 
 const META = [
@@ -147,6 +148,14 @@ const fixHtmlFile = async (filePath, basePath) => {
     let description = $('meta[name="description"]');
     if (description) {
         description = description.attr('content');
+    }
+
+    if (BUILD_SETTINGS.noindex) {
+        const tag = $('<meta>');
+        tag.attr('name', 'robots');
+        tag.attr('content', 'noindex, nofollow');
+        head.append(tag);
+        head.append('\n');
     }
 
     head.append('\n');

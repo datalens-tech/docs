@@ -7,6 +7,7 @@ const yamlSettings = yaml.parse(fs.readFileSync(path.join(__dirname, '..', '.yfm
 const testSettings = {
     docsPath: yamlSettings.docsPath || '/docs',
     langs: yamlSettings.langs || [],
+    noindex: yamlSettings.noindex || false,
 };
 
 // Function to extract urls from toc file
@@ -72,6 +73,13 @@ test.describe('doc urls test', () => {
 
             await expect(page.locator('body')).not.toBeEmpty();
             await expect(page).toHaveTitle(/./);
+
+            if (testSettings.noindex) {
+                await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+                    'content',
+                    'noindex, nofollow',
+                );
+            }
         });
     });
 });
