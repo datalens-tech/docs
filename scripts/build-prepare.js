@@ -63,6 +63,7 @@ const fixNestedPath = async (basePath, lang = null) => {
     let tocYaml = (await fs.readFile(path.join(basePath, lang, 'toc.yaml'))).toString();
     const navigationYaml = (await fs.readFile('assets/navigation.yaml')).toString();
     tocYaml = tocYaml.replace('href: index.yaml', `href: index.yaml\n${navigationYaml}`);
+    tocYaml = tocYaml.replace('title: DataLens', `title: ${lang === 'ru' ? 'Главная' : 'Home'}`);
     await fs.writeFile(path.join(basePath, lang, 'toc.yaml'), tocYaml);
 
     let indexYaml = await fs.readFile(path.join(basePath, lang, 'index.yaml'), 'utf-8');

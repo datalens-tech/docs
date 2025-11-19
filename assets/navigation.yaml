@@ -1,6 +1,6 @@
 navigation:
   logo:
-    url: '/opensource/'
+    url: 'https://datalens.ru/promo'
     dark:
       icon: '/opensource/docs/_assets/icon/logo-dark.svg'
     light:
