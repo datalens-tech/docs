@@ -38,12 +38,12 @@ const META = [
     {property: 'og:image', content: ({docsPath, lang}) => `${docsPath}/_assets/share-${lang}.png`},
     {property: 'og:url', content: ({docsPath, endpoint, lang}) => `${endpoint}${docsPath}/${lang}`},
 
-    {name: 'twitter:title', content: ({title}) => title || 'DataLens'},
+    {name: 'twitter:title', content: ({title, manifest}) => title || manifest.name},
     {name: 'twitter:description', content: ({description}) => description || ''},
     {name: 'twitter:card', content: 'summary_large_image'},
     {name: 'twitter:image', content: ({docsPath, lang}) => `${docsPath}/_assets/share-${lang}.png`},
 
-    {property: 'share:title', content: ({title}) => title || 'DataLens'},
+    {property: 'share:title', content: ({title, manifest}) => title || manifest.name},
     {property: 'share:sharing_schema', content: 'default'},
 ];
 
