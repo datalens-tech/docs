@@ -12,7 +12,8 @@
     "dev": "DISABLE_WATCHER=true node ./scripts/dev.js",
     "run:docker": "npm run build:docker && docker run --read-only --user 65534 --tmpfs /tmp --rm --name datalens-docs -p 8080:80 datalens-docs",
     "test": "playwright test",
-    "test:prepare": "npx playwright install --with-deps chromium"
+    "test:prepare": "npx playwright install --with-deps chromium",
+    "deps": "bash ./scripts/cached-npm-install.sh"
   },
   "dependencies": {
     "@diplodoc/cli": "5.15.2",
