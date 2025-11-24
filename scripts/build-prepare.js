@@ -60,13 +60,13 @@ const fixNestedPath = async (basePath, lang = null) => {
 
     await fs.rm(path.join(basePath, lang, subDir), {recursive: true});
 
-    let tocYaml = (await fs.readFile(path.join(basePath, lang, 'toc.yaml'))).toString();
-    const navigationYaml = (await fs.readFile('assets/navigation.yaml')).toString();
+    let tocYaml = await fs.readFile(path.join(basePath, lang, 'toc.yaml'), 'utf8');
+    const navigationYaml = await fs.readFile('assets/navigation.yaml', 'utf8');
     tocYaml = tocYaml.replace('href: index.yaml', `href: index.yaml\n${navigationYaml}`);
     tocYaml = tocYaml.replace('title: DataLens', `title: ${lang === 'ru' ? 'Главная' : 'Home'}`);
     await fs.writeFile(path.join(basePath, lang, 'toc.yaml'), tocYaml);
 
-    let indexYaml = await fs.readFile(path.join(basePath, lang, 'index.yaml'), 'utf-8');
+    let indexYaml = await fs.readFile(path.join(basePath, lang, 'index.yaml'), 'utf8');
     indexYaml = indexYaml.replace(/(href:.+[^/])\n/g, '$1.md\n');
     await fs.writeFile(path.join(basePath, lang, 'index.yaml'), indexYaml);
 

@@ -1,0 +1,122 @@
+name: Preview
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  INPUT_PATH: docs
+  REPOSITORY: ${{ github.repository }}
+
+jobs:
+  run:
+    name: preview
+    runs-on:
+      - self-hosted
+      - linux
+      - cloud
+      - datalens-opensource
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm run deps
+        env:
+          # folder in vm runner
+          NPM_CACHE_ROOT: /home/github/actions-runner/_work/.cache/npm-cache
+      - name: build docs and upload to s3
+        run: |
+          REPOSITORY_NAME="$(basename "${REPOSITORY}")"
+          echo "REPOSITORY_NAME=${REPOSITORY_NAME}" >> "${GITHUB_ENV}"
+          BUILD_PREFIX="${REPOSITORY_NAME}/${{ github.event.pull_request.number || github.ref_name }}/${STORAGE_PREFIX}"
+
+          npm run build:prepare
+          npx @diplodoc/cli --input "./${INPUT_PATH}" --output "./build/${BUILD_PREFIX}" --config ./.yfm-docs
+          node ./scripts/build-fix.js "./build/${BUILD_PREFIX}"
+
+          aws --region "${STORAGE_REGION}" --endpoint-url "${STORAGE_ENDPOINT}" s3 cp "./build/${BUILD_PREFIX}" "s3://${STORAGE_BUCKET}/${BUILD_PREFIX}/" --recursive
+          LINK_S3_WEBSITE="https://${STORAGE_BUCKET}.${HTML_ENDPOINT}/${BUILD_PREFIX}"
+          echo "🔗 link to s3: ${LINK_S3_WEBSITE}"
+          echo "LINK_S3_WEBSITE=${LINK_S3_WEBSITE}" >> "$GITHUB_ENV"
+          echo "LINK_S3_PREFIX=${BUILD_PREFIX}" >> "$GITHUB_ENV"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.PREVIEW_S3_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.PREVIEW_S3_SECRET_KEY }}
+          STORAGE_ENDPOINT: ${{ vars.PREVIEW_S3_ENDPOINT }}
+          # TODO: STORAGE_REGION: ru-central1
+          STORAGE_REGION: ${{ vars.PREVIEW_S3_REGION }}
+          STORAGE_BUCKET: ${{ vars.PREVIEW_S3_BUCKET }}
+          STORAGE_PREFIX: ${{ env.INPUT_PATH }}
+          HTML_ENDPOINT: ${{ vars.PREVIEW_HTML_ENDPOINT }}
+      - uses: actions/upload-artifact@v4
+        id: upload-artifact
+        if: github.event_name == 'pull_request'
+        with:
+          name: ${{ env.REPOSITORY_NAME }}
+          path: ./build/preview/${{ github.event.pull_request.number || github.ref_name }}/${{ env.INPUT_PATH }}
+          retention-days: 7
+      - name: create or update pr comment
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issueNumber = context.issue.number;
+            const repo = context.repo;
+
+            const commentIdentifier = "<!-- preview -->";
+            const { data: comments } = await github.rest.issues.listComments({
+              ...repo,
+              issue_number: issueNumber,
+            });
+
+            const botComment = comments.find(comment => 
+              comment.body.includes(commentIdentifier) && 
+              comment.user.login === 'github-actions[bot]'
+            );
+
+            const timestamp = new Date(Date.now() + 3 * 60 * 60 * 1000).toISOString().replace('T', ' ').slice(0, 19) + ' MSK';
+
+            let commentBody = `
+            ## 📑 Docs Preview
+
+            🔗 Preview link: [${process.env.LINK_S3_PREFIX}](${process.env.LINK_S3_WEBSITE})
+
+            📦 Build static link: [${{ env.REPOSITORY_NAME }}.zip](${process.env.ARTIFACT_LINK})
+
+            Last updated: ${timestamp}
+
+            ${commentIdentifier}
+            `;
+
+            commentBody = commentBody.replace(/@screenshot/g, '`@screenshot`');
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                ...repo,
+                comment_id: botComment.id,
+                body: commentBody
+              });
+              
+              console.log('updated existing comment on PR #' + issueNumber);
+            } else {
+              await github.rest.issues.createComment({
+                ...repo,
+                issue_number: issueNumber,
+                body: commentBody
+              });
+              
+              console.log('added new comment to PR #' + issueNumber);
+            }
+        env:
+          LINK_S3_WEBSITE: ${{ env.LINK_S3_WEBSITE }}
+          LINK_S3_PREFIX: ${{ env.LINK_S3_PREFIX }}
+          ARTIFACT_LINK: ${{ steps.upload-artifact.outputs.artifact-url }}

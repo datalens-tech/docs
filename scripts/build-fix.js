@@ -8,6 +8,7 @@ const walkSync = require('walk-sync');
 const YAML_SETTINGS = yaml.parse(fs.readFileSync(path.join(__dirname, '..', '.yfm-docs'), 'utf8'));
 
 const argsPath = process.argv[2] ? process.argv[2].replace(/^\.?\/?build\//, '/') : '';
+const isArgRootIndexHtml = process.argv.includes('--root-index-html');
 
 const BUILD_SETTINGS = {
     docsPath: argsPath || YAML_SETTINGS.docsPath || '/docs',
@@ -22,6 +23,7 @@ const BUILD_SETTINGS = {
     lang: YAML_SETTINGS.lang || '',
     langs: YAML_SETTINGS.langs || '',
     noindex: YAML_SETTINGS.noindex || false,
+    rootIndexHtml: isArgRootIndexHtml,
 };
 
 const META = [
@@ -300,9 +302,13 @@ async function main() {
         .replaceAll('{manifest.backgroundColor}', BUILD_SETTINGS.manifest.backgroundColor);
     await fs.writeFile(manifestPath, manifest);
 
-    await fs.cp(path.join(__dirname, '../assets/index.html'), path.join(basePath, 'index.html'), {
-        force: true,
-    });
+    let index = fs.readFileSync(path.join(__dirname, '../assets/index.html'), 'utf8');
+    index = index.replaceAll('{docsPath}', BUILD_SETTINGS.docsPath);
+    index = index.replaceAll('{manifest.name}', BUILD_SETTINGS.manifest.name);
+    await fs.writeFile(path.join(basePath, 'index.html'), index);
+    if (BUILD_SETTINGS.rootIndexHtml) {
+        await fs.writeFile(path.join(basePath, '..', 'index.html'), index);
+    }
 
     if (Object.keys(FILE_CHECK_MAP).length > 0) {
         console.error(
