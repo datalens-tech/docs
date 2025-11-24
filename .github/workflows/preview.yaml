@@ -51,7 +51,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.PREVIEW_S3_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.PREVIEW_S3_SECRET_KEY }}
           STORAGE_ENDPOINT: ${{ vars.PREVIEW_S3_ENDPOINT }}
-          # TODO: STORAGE_REGION: ru-central1
           STORAGE_REGION: ${{ vars.PREVIEW_S3_REGION }}
           STORAGE_BUCKET: ${{ vars.PREVIEW_S3_BUCKET }}
           STORAGE_PREFIX: ${{ env.INPUT_PATH }}
@@ -61,7 +60,7 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           name: ${{ env.REPOSITORY_NAME }}
-          path: ./build/preview/${{ github.event.pull_request.number || github.ref_name }}/${{ env.INPUT_PATH }}
+          path: ./build/${{ env.REPOSITORY_NAME }}/${{ github.event.pull_request.number || github.ref_name }}/${{ env.INPUT_PATH }}
           retention-days: 7
       - name: create or update pr comment
         uses: actions/github-script@v7
