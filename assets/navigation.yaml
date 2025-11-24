@@ -2,14 +2,14 @@ navigation:
   logo:
     url: 'https://datalens.ru/promo'
     dark:
-      icon: '/opensource/docs/_assets/icon/logo-dark.svg'
+      icon: '_assets/icon/logo-dark.svg'
     light:
-      icon: '/opensource/docs/_assets/icon/logo.svg'
+      icon: '_assets/icon/logo.svg'
   header:
     rightItems:
       - type: search
       - type: 'button'
-        img: '/opensource/docs/_assets/icon/github.svg'
+        img: '_assets/icon/github.svg'
         theme: 'flat'
         text: 'GitHub'
         url: 'https://github.com/datalens-tech/datalens'

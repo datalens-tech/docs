@@ -1,5 +1,7 @@
 FROM --platform=${BUILDPLATFORM} node:20-alpine3.19 AS build-stage
 
+ARG BUILD_PREFIX=/docs
+
 RUN apk add --no-cache \
   chromium \
   nss \
@@ -19,18 +21,18 @@ RUN npm ci
 COPY . .
 
 RUN npm run build:prepare
-RUN npm run build
-RUN npm run build:fix
-RUN npm run build:api
+RUN npm run build -- --output ./build${BUILD_PREFIX}
+RUN npm run build:fix -- ./build${BUILD_PREFIX} --root-index-html
+RUN npm run build:api -- ./build${BUILD_PREFIX}
 
 FROM nginx:stable-alpine3.19 AS runtime-stage
 
-RUN rm -rf /etc/nginx/conf.d
-RUN rm -rf /docker-entrypoint.d
+RUN rm -rf /etc/nginx/conf.d && \
+  rm -rf /docker-entrypoint.d && \
+  rm -rf /usr/share/nginx/html
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY ./nginx/docker-entrypoint.sh /docker-entrypoint.sh
-COPY ./assets/index.html /usr/share/nginx/html/index.html
-COPY --from=build-stage /opt/app/build/docs /usr/share/nginx/html/docs
+COPY --from=build-stage /opt/app/build /usr/share/nginx/html
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]

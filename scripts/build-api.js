@@ -17,22 +17,25 @@ const BUILD_SETTINGS = {
     langs: YAML_SETTINGS.langs || [],
 };
 
+const TOC_ITEMS = {
+    fields: ['Вычисляемые поля', 'Calculated fields'],
+    reference: ['Справочник функций', 'Function reference'],
+    all: ['All Functions', 'Все функции'],
+};
+
 function md5(str) {
     return crypto.createHash('md5').update(str).digest('hex');
 }
 
-function extractFunctionCategories(toc) {
+function extractFunctionCategories(toc, lang = 'ru') {
     const result = [];
 
     for (const item of toc.items) {
-        if (['Вычисляемые поля', 'Calculated fields'].includes(item.name) && item.items) {
+        if (TOC_ITEMS.fields.includes(item.name) && item.items) {
             for (const subItem of item.items) {
-                if (
-                    ['Справочник функций', 'Function reference'].includes(subItem.name) &&
-                    subItem.items
-                ) {
+                if (TOC_ITEMS.reference.includes(subItem.name) && subItem.items) {
                     for (const category of subItem.items) {
-                        if (['All Functions', 'Все функции'].includes(category.name)) {
+                        if (TOC_ITEMS.all.includes(category.name)) {
                             continue;
                         }
 
@@ -44,7 +47,7 @@ function extractFunctionCategories(toc) {
                             for (const funcItem of category.items) {
                                 if (funcItem.href) {
                                     const href = path
-                                        .join('/docs/ru', funcItem.href)
+                                        .join(`${BUILD_SETTINGS}/${lang}`, funcItem.href)
                                         .replace(/\\/g, '/')
                                         .replace(/\.md$/, '');
                                     const id = md5(href);
@@ -95,7 +98,7 @@ const extractApiData = async (originalPath, functionRefPath, targetApiPath) => {
         .replace(/<svg[\s\S]+?<\/svg>/gs, '');
 
     await fs.writeFile(
-        path.join(targetApiPath, path.parse(trimPath).name) + '.json',
+        path.join(targetApiPath, `${path.parse(trimPath).name}.json`),
         JSON.stringify({html}),
     );
 };
@@ -118,7 +121,7 @@ const buildApi = async (lang) => {
     const content = await fs.readFile(path.join(datalensPath, 'toc.yaml'), 'utf8');
     const toc = yaml.parse(content);
 
-    const functionCategories = extractFunctionCategories(toc);
+    const functionCategories = extractFunctionCategories(toc, lang);
 
     const apiPath = path.join('build', BUILD_SETTINGS.docsPath, lang, 'api', 'function-ref');
 
