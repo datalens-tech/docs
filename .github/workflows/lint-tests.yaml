@@ -9,7 +9,7 @@ on:
       - completed
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.actor }}
   cancel-in-progress: true
 
 permissions:
