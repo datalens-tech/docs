@@ -2,11 +2,9 @@ name: Build Docker
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Up version
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}

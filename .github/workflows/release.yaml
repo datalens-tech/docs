@@ -2,11 +2,9 @@ name: Release
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows:
-      - Up version
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
