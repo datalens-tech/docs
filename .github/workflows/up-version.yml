@@ -10,9 +10,10 @@ permissions:
   contents: write
 
 jobs:
-  up:
-    name: npm
+  run:
+    name: up-version
     runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,6 +25,7 @@ jobs:
       - name: up version
         id: version
         run: |
+          echo "actor: ${{ github.actor }}"
           VERSION=$(npm version minor --no-commit-hooks --no-git-tag-version)
           echo "version: ${VERSION}"
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
