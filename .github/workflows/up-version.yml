@@ -13,7 +13,7 @@ jobs:
   run:
     name: up-version
     runs-on: ubuntu-latest
-    if: github.actor != 'robot-charts'
+    if: ${{ github.actor != 'robot-charts' }}
     steps:
       - uses: actions/checkout@v4
         with:
