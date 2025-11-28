@@ -21,8 +21,8 @@ permissions:
   packages: write
 
 jobs:
-  build:
-    name: docker
+  run:
+    name: build-docker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
