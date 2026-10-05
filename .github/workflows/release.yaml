@@ -65,6 +65,7 @@ jobs:
         with:
           name: datalens-docs-${{ steps.release_tag.outputs.version }}
           path: build/datalens-docs-${{ steps.release_tag.outputs.version }}.zip
+          retention-days: 1
       - uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
         with:
           artifacts: build/datalens-docs-${{ steps.release_tag.outputs.version }}.zip
